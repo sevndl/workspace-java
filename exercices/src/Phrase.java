@@ -1,7 +1,7 @@
 public class Phrase {
   
   private String phrase = "";
-  private String separateur = " ";
+  private String separateur = ".";
 
   public void setSeparateur(String separateur) {
     this.separateur = separateur;
@@ -13,14 +13,34 @@ public class Phrase {
   }
 
   public String ajouter(String aAjouter) {
-    phrase = phrase + this.separateur + aAjouter;
+    if (phrase.isBlank()) {
+      phrase += aAjouter;
+    } else {
+      phrase = phrase + this.separateur + aAjouter;
+    }
     System.out.println(phrase);
     return phrase;
   }
 
   public String ajouter(String aAjouter, int nbRepetitions) {
     for (int i = 0; i < nbRepetitions; ++i) {
-      phrase = phrase + this.separateur + aAjouter;
+      if (phrase.isBlank()) {
+        phrase += aAjouter;
+      } else {
+        phrase = phrase + this.separateur + aAjouter;
+      }
+    }
+    System.out.println(phrase);
+    return phrase;
+  }
+
+  public String ajouter(String... aAjouter) {
+    for (String s : aAjouter) {
+      if (phrase.isBlank()) {
+        phrase += s;
+      } else {
+        phrase = phrase + this.separateur + s;
+      }
     }
     System.out.println(phrase);
     return phrase;
@@ -48,7 +68,7 @@ public class Phrase {
     phrase.setSeparateur(" et encore ");
     phrase.ajouter("des mots", 3);
     phrase.setSeparateur(' ');
-    // phrase.ajouter("toujours", "et", "encore");
+    phrase.ajouter("toujours", "et", "encore");
 
     System.out.println(phrase);
     System.out.println(phrase.getNbLettres());
