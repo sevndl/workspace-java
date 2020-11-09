@@ -1,7 +1,12 @@
 public class Phrase {
   
   private String phrase = "";
-  private String separateur = ".";
+  private String separateur = " ";
+  private char fin = '.';
+
+  protected void finalize() {
+    System.out.println(phrase);
+  }
 
   public void setSeparateur(String separateur) {
     this.separateur = separateur;
@@ -18,7 +23,7 @@ public class Phrase {
     } else {
       phrase = phrase + this.separateur + aAjouter;
     }
-    System.out.println(phrase);
+    // System.out.println(phrase);
     return phrase;
   }
 
@@ -30,7 +35,7 @@ public class Phrase {
         phrase = phrase + this.separateur + aAjouter;
       }
     }
-    System.out.println(phrase);
+    // System.out.println(phrase);
     return phrase;
   }
 
@@ -42,7 +47,7 @@ public class Phrase {
         phrase = phrase + this.separateur + s;
       }
     }
-    System.out.println(phrase);
+    // System.out.println(phrase);
     return phrase;
   }
 
@@ -55,6 +60,11 @@ public class Phrase {
       }
     }
     return cpt;
+  }
+
+  public String toString() {
+    String finalString = phrase + this.fin;
+    return finalString;
   }
 
   public static void main(String[] args) {
