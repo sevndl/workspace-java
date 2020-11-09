@@ -9,7 +9,7 @@ public class AffichageNombresPremiersAmeliore {
 		
 		for (int i = 2; i <= 1000; i++) {
 			boolean estUnNombrePremier = true;
-			for (int j = 2; j < nombresPremiers.size(); j++) {
+			for (int j = 2; j < i; j++) {
 				if (i % j == 0) {
 					// i n'est pas un nombre premier
 					estUnNombrePremier = false;
