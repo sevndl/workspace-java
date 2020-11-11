@@ -6,42 +6,42 @@ public class JeuDuPendu {
   private int nbTentatives = 6;
 
   public JeuDuPendu(String aDeviner) {
-    mot = aDeviner.toLowerCase();
-    motMasque = mot;
-    motMasque = motMasque.replaceAll("[a-z]", "_");
+    this.mot = aDeviner.toLowerCase();
+    this.motMasque = this.mot;
+    this.motMasque = this.motMasque.replaceAll("[a-z]", "_");
   }
 
   public boolean proposer(char lettreProposee) {
-    int index = 0;
     int occurences = 0;
+    int length = this.mot.length();
 
-    for (char c : mot.toCharArray()) {
-      if (lettreProposee == c) {
-        char lettreActuelle = motMasque.charAt(index);
-        motMasque = motMasque.replace(lettreActuelle, lettreProposee);
+    for (int index = 0; index < length; index += 1) {
+      if (lettreProposee == this.mot.charAt(index)) {
+        StringBuilder str = new StringBuilder(this.motMasque);
+        str.setCharAt(index, lettreProposee);
+        this.motMasque = str.toString();
         occurences += 1;
       }
-      index += 1;
     }
     if (occurences >= 1) {
       return true;
     } else {
-      nbTentatives -= 1;
+      this.nbTentatives -= 1;
       return false;
     }
   }
 
   public int getNbTentativesRestantes() {
-    return nbTentatives;
+    return this.nbTentatives;
   }
 
   public boolean isPartieGagnee() {
-    for (char c : motMasque.toCharArray()) {
-      if (c == '_') {
+    for (int index = 0; index < this.motMasque.length(); index += 1) {
+      if (motMasque.charAt(index) == '_') {
         return false;
       }
     }
-    if (nbTentatives > 0) {
+    if (this.nbTentatives > 0) {
       return true;
     } else {
       return false;
@@ -49,7 +49,7 @@ public class JeuDuPendu {
   }
 
   public boolean isPartieTerminee() {
-    if (nbTentatives == 0 || isPartieGagnee()) {
+    if (this.nbTentatives == 0 || this.motMasque.equals(this.mot)) {
       return true;
     } else {
       return false;
@@ -57,13 +57,11 @@ public class JeuDuPendu {
   }
 
   public String getMotMasque() {
-    String motMasqueString = motMasque.toString();
-    return motMasqueString;
+    return this.motMasque;
   }
 
   public String getSolution() {
-    String motString = mot.toString();
-    return motString;
+    return this.mot;
   }
 
 
