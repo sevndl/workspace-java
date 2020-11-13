@@ -1,3 +1,5 @@
+import javax.swing.text.StyledEditorKit;
+
 public class Rectangle {
   private double longueur;
   private double largeur;
@@ -15,6 +17,15 @@ public class Rectangle {
   public Rectangle(Rectangle r) {
     this(r.longueur, r.largeur);
   }
+
+  public boolean equals(Object object) {
+		if (object instanceof Rectangle) {
+			Rectangle f = (Rectangle) object;
+			return (this.getLongueur() == f.getLongueur() && this.getLargeur() == f.getLargeur());
+		} else {
+			return false;
+		}
+	}
 
   public double getLongueur() {
     return this.longueur;
@@ -58,6 +69,10 @@ public class Rectangle {
 		r.setLargeur(10);
     r.setLongueur(20);
     Rectangle r2 = new Rectangle(r);
+
+    if (r.equals(r2)) {
+      System.out.println("r = r2");
+    }
 
 		System.out.printf("Un rectangle de largeur %.2f et de longueur %.2f\n", r.getLargeur(), r.getLongueur());
 		System.out.printf("Le perimettre de ce rectangle est %.2f\n", r.getPerimetre());
