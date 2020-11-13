@@ -1,5 +1,3 @@
-import javax.swing.text.StyledEditorKit;
-
 public class Rectangle {
   private double longueur;
   private double largeur;
