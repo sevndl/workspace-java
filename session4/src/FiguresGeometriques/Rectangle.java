@@ -2,14 +2,20 @@ package FiguresGeometriques;
 
 public class Rectangle extends Figure {
 	private double longueur;
-  private double largeur;
+	private double largeur;
 
 	public Rectangle(double longueur, double largeur) {
+		if (longueur < 0 || largeur < 0) {
+			throw new IllegalArgumentException("Un côté ne peut pas être nul");
+		}
 		this.longueur = longueur;
-		this.largeur = largeur;
+		this.largeur = largeur;			
 	}
 
 	public Rectangle(double cote) {
+		if (cote < 0) {
+			throw new IllegalArgumentException("Un côté ne peut pas être nul");
+		}
 		this.longueur = cote;
 		this.largeur = cote;
 	}
@@ -23,6 +29,9 @@ public class Rectangle extends Figure {
 	}
 
 	public void setLongueur(double valeur) {
+		if (valeur < 0) {
+			throw new IllegalArgumentException("Un côté ne peut pas être nul");
+		}
 		this.longueur = valeur;
 	}
 
@@ -31,6 +40,9 @@ public class Rectangle extends Figure {
 	}
 
 	public void setLargeur(double valeur) {
+		if (valeur < 0) {
+			throw new IllegalArgumentException("Un côté ne peut pas être nul");
+		}
 		this.largeur = valeur;
 	}
 

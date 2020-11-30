@@ -2,12 +2,13 @@ package FiguresGeometriques;
 
 public class DemoFiguresGeometriques {
   public static void main(String[] args) {
-		Figure r = new Rectangle(10, 20);
-		Figure r2 = new Rectangle(10, 20);
-		Figure d = new Disque(5);
+		Rectangle r = new Rectangle(10, 20);
+		Rectangle r2 = new Rectangle(10, 20);
+		Disque d = new Disque(5);
 
 		System.out.println(r.getAire());
 		System.out.println(r.getPerimetre());
+		
 		System.out.println(d.getAire());
 		System.out.println(d.getPerimetre());
 

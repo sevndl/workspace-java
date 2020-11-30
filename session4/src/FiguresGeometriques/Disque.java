@@ -4,7 +4,7 @@ public class Disque extends Figure {
 	private double rayon;
 
 	public Disque(double rayon) {
-		this.rayon = rayon;
+		setRayon(rayon);
 	}
 
 	public Disque(Disque d) {
@@ -16,6 +16,9 @@ public class Disque extends Figure {
 	}
 
 	public void setRayon(double rayon) {
+		if (rayon < 0) {
+			throw new IllegalArgumentException("Le rayon ne peut pas être négatif");
+		}
 		this.rayon = rayon;
 	}
 
