@@ -18,6 +18,8 @@ public class Disque extends Figure {
 	public void setRayon(double rayon) throws IllegalArgumentException {
 		if (rayon < 0) {
 			throw new IllegalArgumentException("Le rayon ne peut pas être négatif");
+		} else if (rayon == 0) {
+			throw new IllegalArgumentException("Le rayon ne peut pas être nul");
 		}
 		this.rayon = rayon;
 	}
