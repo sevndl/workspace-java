@@ -1,14 +1,14 @@
 package FiguresGeometriques;
 
 public class DemoFiguresGeometriques {
-  public static void main(String[] args) {
+	public static void main(String[] args) {
 		Rectangle r = new Rectangle(10, 20);
 		Rectangle r2 = new Rectangle(10, 20);
 		Disque d = new Disque(5);
 
 		System.out.println(r.getAire());
 		System.out.println(r.getPerimetre());
-		
+
 		System.out.println(d.getAire());
 		System.out.println(d.getPerimetre());
 
@@ -26,7 +26,12 @@ public class DemoFiguresGeometriques {
 		f2.ajouterFigure(new Rectangle(10, 20));
 		f2.ajouterFigure(new Rectangle(5, 10));
 		f2.ajouterFigure(new Disque(5));
-		f.ajouterFigure(f2);
+		try {
+			f.ajouterFigure(f2);
+			f.ajouterFigure(f);
+		} catch (FigureInterditeException e) {
+			System.out.println(e.getMessage());
+		}
 
 		System.out.println(f.getPerimetre());
 		System.out.println(f.getAire());

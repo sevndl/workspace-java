@@ -3,7 +3,7 @@ package FiguresGeometriques;
 public class Disque extends Figure {
 	private double rayon;
 
-	public Disque(double rayon) {
+	public Disque(double rayon) throws IllegalArgumentException {
 		setRayon(rayon);
 	}
 
@@ -15,7 +15,7 @@ public class Disque extends Figure {
 		return this.rayon;
 	}
 
-	public void setRayon(double rayon) {
+	public void setRayon(double rayon) throws IllegalArgumentException {
 		if (rayon < 0) {
 			throw new IllegalArgumentException("Le rayon ne peut pas être négatif");
 		}
