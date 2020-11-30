@@ -28,7 +28,6 @@ public class ApprentissageFiguresGeometriques {
 		print("2) Ajouter un disque");
 		print("3) Afficher le perimetre et l'aire");
 		print("Autre chiffre pour quitter");
-		print();
 		String input = scanner.next();
 		if (!input.matches("^[0-9]+$")) {
 			throw new IllegalArgumentException("Entrez un nombre entier positif.");
@@ -50,25 +49,38 @@ public class ApprentissageFiguresGeometriques {
 	}
 
 	private void creerRectangle() {
-		print("Quelle est la largeur du rectangle ?");
-		double longueur = scanner.nextDouble();
-		print("Quelle est la longueur du rectangle ?");
-		double largeur = scanner.nextDouble();
-
-		Rectangle r = new Rectangle(largeur, longueur);
-		figure.ajouterFigure(r);
-		printf("Rectange de largeur %.04f et de longueur %f", r.getLargeur(), r.getLongueur());
-		printf("Ce rectangle a un perimetre de %.04f et une aire de %.04f", r.getPerimetre(), r.getAire());
+		try {
+			print("Quelle est la largeur du rectangle ?");
+			double longueur = scanner.nextDouble();
+			
+			print("Quelle est la longueur du rectangle ?");
+			double largeur = scanner.nextDouble();
+			
+			Rectangle r = new Rectangle(largeur, longueur);
+			figure.ajouterFigure(r);
+			printf("Rectange de largeur %.04f et de longueur %f", r.getLargeur(), r.getLongueur());
+			printf("Ce rectangle a un perimetre de %.04f et une aire de %.04f", r.getPerimetre(), r.getAire());
+		} catch (java.util.InputMismatchException e) {
+			scanner.next();
+			System.out.println("Entrez un nombre entier positif.");
+			creerRectangle();
+		}
 	}
 
 	private void creerDisque() {
-		print("Quel est le rayon du disque ?");
-		double rayon = scanner.nextDouble();
-
-		Disque d = new Disque(rayon);
-		figure.ajouterFigure(d);
-		printf("Disque de rayon %.04f", d.getRayon());
-		printf("Ce disque a un perimetre de %.04f et une aire de %.04f", d.getPerimetre(), d.getAire());
+		try {
+			print("Quel est le rayon du disque ?");
+			double rayon = scanner.nextDouble();
+			
+			Disque d = new Disque(rayon);
+			figure.ajouterFigure(d);
+			printf("Disque de rayon %.04f", d.getRayon());
+			printf("Ce disque a un perimetre de %.04f et une aire de %.04f", d.getPerimetre(), d.getAire());			
+		} catch (java.util.InputMismatchException e) {
+			scanner.next();
+			System.out.println("Entrez un nombre entier positif.");
+			creerDisque();
+		}
 	}
 
 	private void afficherPerimetreEtAire() {
