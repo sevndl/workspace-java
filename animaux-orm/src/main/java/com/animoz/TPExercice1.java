@@ -1,35 +1,34 @@
 package com.animoz;
 
+import java.util.Scanner;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.animoz.modele.Espece;
 
-public class ApplicationEspeceDemo {
+public class TPExercice1 {
 
 	public static void main(String[] args) {
-		// création de l'entitymanagerfactory et de l'entitymanager
-		// "animaux" correspond à la connexion "animaux" du fichier persistence.xml
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("animaux");
 		EntityManager em = emf.createEntityManager();
+		
+		Scanner in = new Scanner(System.in);
+		System.out.print("Nom de l'espèce : ");
+		String nom = in.nextLine();
 
 		try {
-			// Espece espece = em.find(Espece.class, 1L); // L = Long --> c'est le type du champ id dans Espece.java
-			// System.out.println(espece.getNom());
 			
-			// pour modifier la base de données, il faut commencer une transaction 
-			// (peut contenir plusieurs requêtes)
-			// et il faut commit à la fin de la transaction si tout se passe bien
-			// sinon rollback
 			em.getTransaction().begin();
 			Espece espece = new Espece();
-			espece.setNom("Bovidé"); // on ne set pas l'id puisqu'il s'auto-incrémente
+			espece.setNom(nom);
 			em.persist(espece);
 			em.getTransaction().commit();
 			
 			System.out.println(espece.getNom());
 			System.out.println(espece.getId());
+			
 		} finally {
 			em.close();
 			emf.close();
