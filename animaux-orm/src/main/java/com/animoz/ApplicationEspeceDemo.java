@@ -15,8 +15,18 @@ public class ApplicationEspeceDemo {
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			Espece espece = em.find(Espece.class, 1L); // L = Long --> c'est le type du champ id dans Espece.java
-			System.out.println(espece.getNom());
+			// Espece espece = em.find(Espece.class, 1L); // L = Long --> c'est le type du champ id dans Espece.java
+			// System.out.println(espece.getNom());
+			
+			// pour modifier la base de données, il faut commencer une transaction 
+			// (peut contenir plusieurs requêtes)
+			// et il faut commit à la fin de la transaction si tout se passe bien
+			// sinon rollback
+			em.getTransaction().begin();
+			Espece espece = new Espece();
+			espece.setNom("Reptile"); // on ne set pas l'id puisqu'il s'auto-incrémente
+			em.persist(espece);
+			em.getTransaction().commit();
 		} finally {
 			em.close();
 			emf.close();
