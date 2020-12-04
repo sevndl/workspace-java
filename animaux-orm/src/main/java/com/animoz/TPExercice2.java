@@ -7,7 +7,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.animoz.modele.Animal;
-import com.animoz.modele.Espece;
 
 public class TPExercice2 {
 
