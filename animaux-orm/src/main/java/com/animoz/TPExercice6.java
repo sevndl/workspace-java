@@ -25,6 +25,9 @@ public class TPExercice6 {
 			List<Animal> animal = em.createQuery("select a from Animal a where LOWER(a.nom) = :nom", Animal.class)
 									.setParameter("nom", nom)
 									.getResultList();
+			if (animal.isEmpty()) {
+				throw new IllegalArgumentException("L'animal " + nom + " n'existe pas en base.");
+			}
 			for (Animal a : animal) {
 				System.out.println(a.getId());
 				System.out.println(a.getNom());
@@ -33,6 +36,8 @@ public class TPExercice6 {
 				System.out.println(a.getRegime());
 			}
 			
+		} catch(IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		} finally {
 			em.close();
 			emf.close();
