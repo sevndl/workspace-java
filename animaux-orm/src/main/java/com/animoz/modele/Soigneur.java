@@ -23,6 +23,10 @@ public class Soigneur {
 	@Column(updatable=false)
 	private Date dateRecrutement;
 	
+	public Long getId() {
+		return this.id;
+	}
+	
 	public String getNumero() {
 		return this.numero;
 	}
