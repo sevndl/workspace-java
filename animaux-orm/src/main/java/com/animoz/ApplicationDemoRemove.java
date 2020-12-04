@@ -14,8 +14,8 @@ public class ApplicationDemoRemove {
 
 		try {
 			em.getTransaction().begin();
-			Espece espece = em.find(Espece.class, 8L);
-			em.remove(espece);
+			Espece espece = em.find(Espece.class, 5L);
+			espece.setNom("Aligator");
 			em.getTransaction().commit();
 		} finally {
 			em.close();
