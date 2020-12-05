@@ -13,7 +13,7 @@ public class DemoCatalogue {
 		
 		ImportCatalogue nouveauCatalogue = new ImportCatalogue();
 		try {
-			nouveauCatalogue.importer("C:/Users/nandi/Desktop/Code/EPSI/B3/workspace-java/session5/src/fr/epsi/catalogue/catalogue.txt");
+			nouveauCatalogue.importer("C:/Users/nandi/Desktop/Code/EPSI/B3/workspace-java/session5/src/fr/epsi/catalogue/catalogue.txt").lire();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
