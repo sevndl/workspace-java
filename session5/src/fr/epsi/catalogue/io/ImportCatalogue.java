@@ -16,17 +16,21 @@ import fr.epsi.catalogue.NiveauPEGI.Niveaux;
 public class ImportCatalogue implements ImporteurCatalogue {
 
 	@Override
-	public Catalogue importer(String nomFichier) throws IOException {
-			
-		Path fichier = Paths.get(nomFichier);
-		// exception à gérer si le fichier n'est pas reconnu
-		List<String> contenu = Files.readAllLines(fichier);
-		Catalogue catalogue = new Catalogue();
+	public Catalogue importer(String nomFichier) throws IOException, NullPointerException {
 		
-		for (String ligne : contenu) {
-			String[] contenuLigne = ligne.split(";");
-			int noteMetascore = Integer.parseInt(contenuLigne[2]);
-			switch (contenuLigne[3]) {
+		try {
+			
+			Path fichier = Paths.get(nomFichier);
+			if (!Files.exists(fichier)) {
+				throw new NullPointerException("Le fichier n'existe pas.");
+			}
+			List<String> contenu = Files.readAllLines(fichier);
+			Catalogue catalogue = new Catalogue();
+			
+			for (String ligne : contenu) {
+				String[] contenuLigne = ligne.split(";");
+				int noteMetascore = Integer.parseInt(contenuLigne[2]);
+				switch (contenuLigne[3]) {
 				case "jeu":
 					JeuVideo jeuVideo = new JeuVideo(contenuLigne[0], contenuLigne[1], noteMetascore, contenuLigne[4], Niveaux.valueOf(contenuLigne[5]));
 					catalogue.ajouterArticle(jeuVideo);
@@ -41,9 +45,17 @@ public class ImportCatalogue implements ImporteurCatalogue {
 					break;
 				default:
 					throw new IOException("Le type de contenu n'est pas reconnu.");
+				}
 			}
+			return catalogue;
+			
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return null;
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+			return null;
 		}
-		return catalogue;
 	}
 
 }

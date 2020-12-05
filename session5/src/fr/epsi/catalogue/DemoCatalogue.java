@@ -3,43 +3,60 @@ package fr.epsi.catalogue;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 
 import fr.epsi.catalogue.NiveauPEGI.Niveaux;
 import fr.epsi.catalogue.io.ImportCatalogue;
 
 public class DemoCatalogue {
 
-	public static void main(String[] args) throws MalformedURLException {
+	private static Scanner scanner = new Scanner(System.in);
+	
+	public static void main(String[] args) {
 		
-		ImportCatalogue nouveauCatalogue = new ImportCatalogue();
+		System.out.println("Entrez un chemin de fichier pour en créer un catalogue : ");
+		String nomFichier = scanner.next();
+		// C:/Users/nandi/Desktop/Code/EPSI/B3/workspace-java/session5/src/fr/epsi/catalogue/catalogue.txt
+		
 		try {
-			nouveauCatalogue.importer("C:/Users/nandi/Desktop/Code/EPSI/B3/workspace-java/session5/src/fr/epsi/catalogue/catalogue.txt").lire();
+			ImportCatalogue nouveauCatalogue = new ImportCatalogue();
+			nouveauCatalogue.importer(nomFichier).lire();
+			
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
+			main(args);
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+			main(args);
 		}
 		
-//		Catalogue catalogue = new Catalogue();
-//		catalogue.lire();
-//
-//		Article MarioBros = new JeuVideo("code pour tester", "Mario Bros", -27, "studio pour tester", Niveaux.PEGI16);
-//		Article Perdida = new SerieTV("code pour tester", "Perdida", 27, "distributeur pour tester", 3);
-//		Article AgeDeGlace = new Film("code pour tester", "L'âge de Glace", 27, "realisateur pour tester", new URL("http://test.test"));
-//		
-//		System.out.println(MarioBros.getNoteMetascore());
-//		MarioBros.setNoteMetascore(27);
-//		System.out.println(MarioBros.getNoteMetascore());
-//		
-//		catalogue.ajouterArticle(MarioBros);
-//		catalogue.ajouterArticle(AgeDeGlace);
-//		catalogue.ajouterArticle(Perdida);
-//		catalogue.ajouterArticle(Perdida);
-//		catalogue.lire();
-//		System.out.println();
-//		System.out.println(((Film) AgeDeGlace).getAffiche());
-//		
-//		catalogue.supprimerArticle(AgeDeGlace);
-//		catalogue.supprimerArticle(AgeDeGlace);
-//		catalogue.lire();
+
+//		try {
+//			Catalogue catalogue = new Catalogue();
+//			catalogue.lire();
+//			Article MarioBros = new JeuVideo("code pour tester", "Mario Bros", -27, "studio pour tester", Niveaux.PEGI16);
+//			Article Perdida = new SerieTV("code pour tester", "Perdida", 27, "distributeur pour tester", 3);
+//			Article AgeDeGlace;
+//			AgeDeGlace = new Film("code pour tester", "L'âge de Glace", 27, "realisateur pour tester", new URL("http://test.test"));
+//			System.out.println(MarioBros.getNoteMetascore());
+//			MarioBros.setNoteMetascore(27);
+//			System.out.println(MarioBros.getNoteMetascore());
+//			
+//			catalogue.ajouterArticle(MarioBros);
+//			catalogue.ajouterArticle(AgeDeGlace);
+//			catalogue.ajouterArticle(Perdida);
+//			catalogue.ajouterArticle(Perdida);
+//			catalogue.lire();
+//			System.out.println();
+//			System.out.println(((Film) AgeDeGlace).getAffiche());
+//			
+//			catalogue.supprimerArticle(AgeDeGlace);
+//			catalogue.supprimerArticle(AgeDeGlace);
+//			catalogue.lire();
+//		} catch (MalformedURLException e) {
+//			System.out.println(e.getMessage());
+//		}
+		
 	}
 
 }
