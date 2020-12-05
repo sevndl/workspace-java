@@ -6,7 +6,9 @@ import java.net.URL;
 import java.util.Scanner;
 
 import fr.epsi.catalogue.NiveauPEGI.Niveaux;
-import fr.epsi.catalogue.io.ImportCatalogue;
+import fr.epsi.catalogue.io.ExporteurCatalogueHtml;
+import fr.epsi.catalogue.io.ImplImporteurCatalogue;
+import fr.epsi.catalogue.io.ImplImporteurCatalogue;
 
 public class DemoCatalogue {
 
@@ -16,11 +18,17 @@ public class DemoCatalogue {
 		
 		System.out.println("Entrez un chemin de fichier pour en créer un catalogue : ");
 		String nomFichier = scanner.next();
+		System.out.println("Entrez le chemin où sera stocké le fichier html : ");
+		String pathDestination = scanner.next();
 		// C:/Users/nandi/Desktop/Code/EPSI/B3/workspace-java/session5/src/fr/epsi/catalogue/catalogue.txt
+		// C:/Users/nandi/Desktop/
 		
 		try {
-			ImportCatalogue nouveauCatalogue = new ImportCatalogue();
-			nouveauCatalogue.importer(nomFichier).lire();
+			ImplImporteurCatalogue nouveauCatalogue = new ImplImporteurCatalogue(nomFichier);
+			Catalogue catalogue = nouveauCatalogue.importer();
+			
+			ExporteurCatalogueHtml exporteurHtml = new ExporteurCatalogueHtml(pathDestination);
+			exporteurHtml.exporter(catalogue);
 			
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -29,33 +37,6 @@ public class DemoCatalogue {
 			System.out.println(e.getMessage());
 			main(args);
 		}
-		
-
-//		try {
-//			Catalogue catalogue = new Catalogue();
-//			catalogue.lire();
-//			Article MarioBros = new JeuVideo("code pour tester", "Mario Bros", -27, "studio pour tester", Niveaux.PEGI16);
-//			Article Perdida = new SerieTV("code pour tester", "Perdida", 27, "distributeur pour tester", 3);
-//			Article AgeDeGlace;
-//			AgeDeGlace = new Film("code pour tester", "L'âge de Glace", 27, "realisateur pour tester", new URL("http://test.test"));
-//			System.out.println(MarioBros.getNoteMetascore());
-//			MarioBros.setNoteMetascore(27);
-//			System.out.println(MarioBros.getNoteMetascore());
-//			
-//			catalogue.ajouterArticle(MarioBros);
-//			catalogue.ajouterArticle(AgeDeGlace);
-//			catalogue.ajouterArticle(Perdida);
-//			catalogue.ajouterArticle(Perdida);
-//			catalogue.lire();
-//			System.out.println();
-//			System.out.println(((Film) AgeDeGlace).getAffiche());
-//			
-//			catalogue.supprimerArticle(AgeDeGlace);
-//			catalogue.supprimerArticle(AgeDeGlace);
-//			catalogue.lire();
-//		} catch (MalformedURLException e) {
-//			System.out.println(e.getMessage());
-//		}
 		
 	}
 

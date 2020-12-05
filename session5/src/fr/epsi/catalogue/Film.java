@@ -17,7 +17,7 @@ public class Film extends Article {
 		
 	}
 
-	protected URL getAffiche() {
+	public URL getAffiche() {
 		return this.affiche;
 	}
 

@@ -5,13 +5,17 @@ import java.util.List;
 
 public class Catalogue {
 	
-	List<Article> catalogue = new ArrayList<>();
+	List<Article> articles = new ArrayList<>();
+	
+	public List<Article> getArticles() {
+		return this.articles;
+	}
 	
 	public void lire() {
-		if (catalogue.isEmpty()) {
+		if (articles.isEmpty()) {
 			System.out.println("Le catalogue est vide ! Vous pouvez lui ajouter des articles.");
 		} else {
-			for (Article article : catalogue) {
+			for (Article article : articles) {
 				System.out.println("  " + article.getTitre() + ", " + article.getNoteMetascore());
 			}			
 		}
@@ -21,7 +25,7 @@ public class Catalogue {
 		
 		try {
 			int compteur = 0;
-			for (Article article : catalogue) {
+			for (Article article : articles) {
 				if (article.getTitre().equals(articleAAjouter.getTitre())) {
 					compteur += 1;
 				}
@@ -29,7 +33,7 @@ public class Catalogue {
 			if (compteur > 0) {
 				throw new ArticleExistantException();
 			}
-			catalogue.add(articleAAjouter);
+			articles.add(articleAAjouter);
 		} catch (ArticleExistantException e) {
 			System.out.println(e.getMessage());
 		}
@@ -40,7 +44,7 @@ public class Catalogue {
 		
 		try {
 			int compteur = 0;
-			for (Article article : catalogue) {
+			for (Article article : articles) {
 				if (article.getTitre().equals(articleASupprimer.getTitre())) {
 					compteur += 1;
 				}
@@ -48,7 +52,7 @@ public class Catalogue {
 			if (compteur == 0) {
 				throw new ArticleInexistantException();
 			}
-			catalogue.remove(articleASupprimer);
+			articles.remove(articleASupprimer);
 		} catch (ArticleInexistantException e) {
 			System.out.println(e.getMessage());
 		}

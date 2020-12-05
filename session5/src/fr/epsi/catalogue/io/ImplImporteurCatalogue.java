@@ -13,10 +13,16 @@ import fr.epsi.catalogue.Film;
 import fr.epsi.catalogue.SerieTV;
 import fr.epsi.catalogue.NiveauPEGI.Niveaux;
 
-public class ImportCatalogue implements ImporteurCatalogue {
+public class ImplImporteurCatalogue implements ImporteurCatalogue {
+	
+	private String nomFichier;
+	
+	public ImplImporteurCatalogue(String nomFichier) {
+		this.nomFichier = nomFichier;
+	}
 
 	@Override
-	public Catalogue importer(String nomFichier) throws IOException, NullPointerException {
+	public Catalogue importer() throws IOException, NullPointerException {
 		
 		try {
 			
@@ -47,7 +53,7 @@ public class ImportCatalogue implements ImporteurCatalogue {
 					throw new IOException("Le type de contenu n'est pas reconnu.");
 				}
 			}
-			System.out.println("Le catalogue a été correctement importé :");
+			System.out.println("Le catalogue a été correctement importé.");
 			return catalogue;
 			
 		} catch (IOException e) {
