@@ -57,7 +57,7 @@ public class ImplImporteurCatalogue implements ImporteurCatalogue {
 			return catalogue;
 			
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			System.out.println("Il y a une erreur dans le fichier à importer.");
 			return null;
 		} catch (NullPointerException e) {
 			System.out.println(e.getMessage());

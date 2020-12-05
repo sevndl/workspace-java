@@ -1,4 +1,5 @@
 package fr.epsi.catalogue.io;
+
 import fr.epsi.catalogue.JeuVideo;
 
 public class ExporteurJeu implements ExporteurArticle {

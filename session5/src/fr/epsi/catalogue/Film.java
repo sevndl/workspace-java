@@ -1,5 +1,6 @@
 package fr.epsi.catalogue;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Film extends Article {
@@ -7,7 +8,7 @@ public class Film extends Article {
 	private String realisateur; 
 	private URL affiche;
 
-	public Film(String code, String titre, int noteMetascore, String realisateur, URL affiche) {
+	public Film(String code, String titre, int noteMetascore, String realisateur, URL affiche) throws MalformedURLException {
 
 		super.setCode(code);
 		super.setTitre(titre);
@@ -21,7 +22,7 @@ public class Film extends Article {
 		return this.affiche;
 	}
 
-	public void setAffiche(URL affiche) {
+	public void setAffiche(URL affiche) throws MalformedURLException {
 		this.affiche = affiche;
 	}
 

@@ -1,0 +1,3 @@
+F0001;Les sept samourais;98;film;Akira Kurosawa;tps://static.cotecine.fr/tb/Affiches/450x450/ffffff/LES+7+SAMOURAIS.JPG
+S0012;The Strain;70;serie;FX;4
+JV010;Mass effect;89;jeu;Bioware;PEGI18
