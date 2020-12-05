@@ -47,6 +47,7 @@ public class ImportCatalogue implements ImporteurCatalogue {
 					throw new IOException("Le type de contenu n'est pas reconnu.");
 				}
 			}
+			System.out.println("Le catalogue a été correctement importé :");
 			return catalogue;
 			
 		} catch (IOException e) {
