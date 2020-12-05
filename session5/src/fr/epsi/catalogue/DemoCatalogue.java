@@ -13,14 +13,14 @@ public class DemoCatalogue {
 		
 		ImportCatalogue nouveauCatalogue = new ImportCatalogue();
 		try {
-			nouveauCatalogue.importer("catalogue.txt");
+			nouveauCatalogue.importer("C:/Users/nandi/Desktop/Code/EPSI/B3/workspace-java/session5/src/fr/epsi/catalogue/catalogue.txt");
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 		
 //		Catalogue catalogue = new Catalogue();
 //		catalogue.lire();
-
+//
 //		Article MarioBros = new JeuVideo("code pour tester", "Mario Bros", -27, "studio pour tester", Niveaux.PEGI16);
 //		Article Perdida = new SerieTV("code pour tester", "Perdida", 27, "distributeur pour tester", 3);
 //		Article AgeDeGlace = new Film("code pour tester", "L'âge de Glace", 27, "realisateur pour tester", new URL("http://test.test"));

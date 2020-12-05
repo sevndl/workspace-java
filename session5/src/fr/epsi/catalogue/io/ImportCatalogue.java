@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import fr.epsi.catalogue.Article;
 import fr.epsi.catalogue.Catalogue;
 import fr.epsi.catalogue.JeuVideo;
 import fr.epsi.catalogue.Film;
@@ -16,9 +15,11 @@ import fr.epsi.catalogue.NiveauPEGI.Niveaux;
 
 public class ImportCatalogue implements ImporteurCatalogue {
 
+	@Override
 	public Catalogue importer(String nomFichier) throws IOException {
 			
-		Path fichier = Paths.get("C:/Users/nandi/Desktop/Code/EPSI/B3/workspace-java/session5/src/fr/epsi/catalogue/" + nomFichier);
+		Path fichier = Paths.get(nomFichier);
+		// exception à gérer si le fichier n'est pas reconnu
 		List<String> contenu = Files.readAllLines(fichier);
 		Catalogue catalogue = new Catalogue();
 		
@@ -27,15 +28,15 @@ public class ImportCatalogue implements ImporteurCatalogue {
 			int noteMetascore = Integer.parseInt(contenuLigne[2]);
 			switch (contenuLigne[3]) {
 				case "jeu":
-					Article jeuVideo = new JeuVideo(contenuLigne[0], contenuLigne[1], noteMetascore, contenuLigne[4], Niveaux.valueOf(contenuLigne[5]));
+					JeuVideo jeuVideo = new JeuVideo(contenuLigne[0], contenuLigne[1], noteMetascore, contenuLigne[4], Niveaux.valueOf(contenuLigne[5]));
 					catalogue.ajouterArticle(jeuVideo);
 					break;
 				case "serie":
-					Article serieTV = new SerieTV(contenuLigne[0], contenuLigne[1], noteMetascore, contenuLigne[4], Integer.parseInt(contenuLigne[5]));
+					SerieTV serieTV = new SerieTV(contenuLigne[0], contenuLigne[1], noteMetascore, contenuLigne[4], Integer.parseInt(contenuLigne[5]));
 					catalogue.ajouterArticle(serieTV);
 					break;
 				case "film":
-					Article film = new Film(contenuLigne[0], contenuLigne[1], noteMetascore, contenuLigne[4], new URL(contenuLigne[5]));
+					Film film = new Film(contenuLigne[0], contenuLigne[1], noteMetascore, contenuLigne[4], new URL(contenuLigne[5]));
 					catalogue.ajouterArticle(film);
 					break;
 				default:
