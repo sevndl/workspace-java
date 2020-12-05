@@ -7,7 +7,7 @@ public class Film extends Article {
 	private String realisateur; 
 	private URL affiche;
 
-	public Film(String realisateur, URL affiche, String code, String titre, int noteMetascore) {
+	public Film(String code, String titre, int noteMetascore, String realisateur, URL affiche) {
 
 		super.setCode(code);
 		super.setTitre(titre);

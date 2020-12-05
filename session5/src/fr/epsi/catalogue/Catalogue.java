@@ -12,7 +12,7 @@ public class Catalogue {
 			System.out.println("Le catalogue est vide ! Vous pouvez lui ajouter des articles.");
 		} else {
 			for (Article article : catalogue) {
-				System.out.println(article.getTitre());
+				System.out.println(article.getTitre() + ", " + article.getNoteMetascore());
 			}			
 		}
 	}

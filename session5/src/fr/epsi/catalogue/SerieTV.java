@@ -5,7 +5,7 @@ public class SerieTV extends Article {
 	private String distributeur;
 	private int nombreDeSaisons;
 
-	public SerieTV(String distributeur, int nombreDeSaisons, String code, String titre, int noteMetascore) {
+	public SerieTV(String code, String titre, int noteMetascore, String distributeur, int nombreDeSaisons) {
 		
 		super.setCode(code);
 		super.setTitre(titre);

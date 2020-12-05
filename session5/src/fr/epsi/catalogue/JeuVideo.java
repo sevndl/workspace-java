@@ -7,7 +7,7 @@ public class JeuVideo extends Article {
 	private Niveaux niveauPEGI;
 	private String studioDeDeveloppement;
 
-	public JeuVideo(Niveaux niveauPEGI, String studioDeDeveloppement, String code, String titre, int noteMetascore) {
+	public JeuVideo(String code, String titre, int noteMetascore, String studioDeDeveloppement, Niveaux niveauPEGI) {
 		
 		super.setCode(code);
 		super.setTitre(titre);
