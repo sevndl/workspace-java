@@ -58,7 +58,6 @@ public class ExporteurCatalogueHtml implements ExporteurCatalogue {
 		FileWriter fw = new FileWriter(file.getAbsoluteFile());
 		BufferedWriter bw = new BufferedWriter(fw);
 		bw.write(catalogueHtml);
-		System.out.println(catalogueHtml);
 		bw.close();
 		
 		System.out.println("Le ficher .html a été correctement exporté à : " + file);
