@@ -32,7 +32,7 @@ public class ExporteurCatalogueHtml implements ExporteurCatalogue {
 
 		String catalogueHtml = "<html lang=\"fr\">\r\n"
 				+ "<head>\r\n"
-				+ "  <meta charset=\"utf-8\">\r\n"
+				+ "  <meta content=\"text/html; charset=UTF-8\">\r\n"
 				+ "  <title>Catalogue</title>\r\n"
 				+ "</head>\r\n"
 				+ "<body>\r\n"
@@ -58,6 +58,7 @@ public class ExporteurCatalogueHtml implements ExporteurCatalogue {
 		FileWriter fw = new FileWriter(file.getAbsoluteFile());
 		BufferedWriter bw = new BufferedWriter(fw);
 		bw.write(catalogueHtml);
+		System.out.println(catalogueHtml);
 		bw.close();
 		
 		System.out.println("Le ficher .html a été correctement exporté à : " + file);
