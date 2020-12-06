@@ -27,9 +27,12 @@ public class DemoCatalogue {
 			ImplImporteurCatalogue nouveauCatalogue = new ImplImporteurCatalogue(nomFichier);
 			Catalogue catalogue = nouveauCatalogue.importer();
 			
-			ExporteurCatalogueHtml exporteurHtml = new ExporteurCatalogueHtml(pathDestination);
-			exporteurHtml.exporter(catalogue);
-			
+			if (catalogue == null) {
+				main(args);
+			} else {
+				ExporteurCatalogueHtml exporteurHtml = new ExporteurCatalogueHtml(pathDestination);
+				exporteurHtml.exporter(catalogue);								
+			}
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 			main(args);
