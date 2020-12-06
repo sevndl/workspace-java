@@ -24,8 +24,7 @@ public class DemoCatalogue {
 		// C:/Users/nandi/Desktop/
 		
 		try {
-			ImplImporteurCatalogue nouveauCatalogue = new ImplImporteurCatalogue(nomFichier);
-			Catalogue catalogue = nouveauCatalogue.importer();
+			Catalogue catalogue = new ImplImporteurCatalogue(nomFichier).importer();
 			
 			if (catalogue == null) {
 				main(args);
