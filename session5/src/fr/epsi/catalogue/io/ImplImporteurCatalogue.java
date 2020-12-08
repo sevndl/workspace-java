@@ -22,14 +22,11 @@ public class ImplImporteurCatalogue implements ImporteurCatalogue {
 	}
 
 	@Override
-	public Catalogue importer() throws IOException, NullPointerException {
+	public Catalogue importer() throws IOException {
 		
 		try {
 			
 			Path fichier = Paths.get(nomFichier);
-			if (!Files.exists(fichier)) {
-				throw new NullPointerException("Le fichier n'existe pas.");
-			}
 			List<String> contenu = Files.readAllLines(fichier);
 			Catalogue catalogue = new Catalogue();
 			
@@ -58,8 +55,6 @@ public class ImplImporteurCatalogue implements ImporteurCatalogue {
 			
 		} catch (IOException e) {
 			System.out.println("Il y a une erreur dans le fichier à importer.");
-		} catch (NullPointerException e) {
-			System.out.println(e.getMessage());
 		}
 		return null;
 	}

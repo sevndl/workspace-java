@@ -5,6 +5,6 @@ import fr.epsi.catalogue.Catalogue;
 
 public interface ImporteurCatalogue {
 
-	Catalogue importer() throws IOException, NullPointerException;
+	Catalogue importer() throws IOException;
 
 }
