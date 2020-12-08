@@ -23,6 +23,7 @@ public class Animal {
 	private Regime regime;
 	
 	@ManyToOne
+	@JoinColumn(name = "espece_id")
 	private Espece espece;
 
 	public Long getId() {
