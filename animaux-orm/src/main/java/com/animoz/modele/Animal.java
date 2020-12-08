@@ -6,6 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Animal {
@@ -19,6 +21,9 @@ public class Animal {
 	
 	@Enumerated(EnumType.STRING)
 	private Regime regime;
+	
+	@ManyToOne
+	private Espece espece;
 
 	public Long getId() {
 		return this.id;
@@ -58,6 +63,10 @@ public class Animal {
 
 	public void setRegime(Regime regime) {
 		this.regime = regime;
+	}
+	
+	public Espece getEspece() {
+		return this.espece;
 	}
 
 }
