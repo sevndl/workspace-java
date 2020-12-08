@@ -68,5 +68,9 @@ public class Animal {
 	public Espece getEspece() {
 		return this.espece;
 	}
+	
+	public void setEspece(Espece espece) {
+		this.espece = espece;
+	}
 
 }
