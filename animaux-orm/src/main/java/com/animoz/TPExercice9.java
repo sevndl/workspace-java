@@ -1,5 +1,7 @@
 package com.animoz;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -14,8 +16,10 @@ public class TPExercice9 {
 		
 		try {
 			
-			Animal animal = em.find(Animal.class, 1L);
-			System.out.println(animal.getEspece().getNom());
+			List<Animal> animaux = em.createQuery("select a from Animal a where a.espece.nom = 'Artiodactyla'").getResultList();
+			for (Animal animal : animaux) {
+				System.out.println(animal.getNom());
+			}
 			
 		} finally {
 			em.close();
