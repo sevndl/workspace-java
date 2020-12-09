@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html id="commandePage">
+  <head>
+  	<meta charset="UTF-8">
+    <title>Pizza EE</title>
+    <link rel="stylesheet" href="../static/style.css" data-th-href="@{/style.css}">
+  </head>
+  <body>
+	<nav id="menu">
+		<ul>
+			<li><a href="accueil.html" data-th-href="@{/accueil}">Accueil</a></li>
+			<li><a href="commande-form.html" data-th-href="@{/commande}">Commander</a></li>
+			<li><a href="commandes.html" data-th-href="@{/commandes}">Préparer</a></li>
+		</ul>
+	</nav>
+
+	<form action="./commande-recap.html" method="post" accept-charset="utf-8" data-th-action="@{/commande}" data-th-object="${commandeInfo}">
+		<div>
+			<label for="pizza.id">Pizza : </label>
+			<select data-th-field="*{pizza.id}">
+				<option value="">-- Choisissez --</option>
+				<option data-th-each="p : ${pizzas}" data-th-value="${p.id}" data-th-text="${p.nom}">Magherita</option>
+			</select>
+			<span id="erreurPizza" class="error" data-th-if="${#fields.hasErrors('pizza.id')}" data-th-errors="*{pizza.id}"></span>
+		</div>
+		<div>
+			<label for="nom">Nom&nbsp;: </label>
+			<input type="text" data-th-field="*{nom}">
+			<span id="erreurNom" class="error" data-th-if="${#fields.hasErrors('nom')}" data-th-errors="*{nom}"></span>
+		</div>
+		<div>
+			<label for="telephone">Téléphone&nbsp;: </label>
+			<input type="text" data-th-field="*{telephone}">
+			<span id="erreurTelephone" class="error" data-th-if="${#fields.hasErrors('telephone')}" data-th-errors="*{telephone}"></span>
+		</div>
+		<div>
+			<button type="submit">Commander</button>
+		</div>
+	</form>
+
+  </body>
+</html>

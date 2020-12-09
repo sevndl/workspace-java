@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html id="commandePage">
+  <head>
+  	<meta charset="UTF-8">
+    <title>Pizza EE</title>
+    <link rel="stylesheet" href="../static/style.css" data-th-href="@{/style.css}">
+  </head>
+  <body>
+	<nav id="menu">
+		<ul>
+			<li><a href="accueil.html" data-th-href="@{/accueil}">Accueil</a></li>
+			<li><a href="commande-form.html" data-th-href="@{/commande}">Commander</a></li>
+			<li><a href="commandes.html" data-th-href="@{/commandes}">Préparer</a></li>
+		</ul>
+	</nav>
+
+	<p>Votre commande a bien été prise en compte !</p>
+	<p>Nous avons enregistré la commande d'une pizza <span id="pizzaCommande" data-th-text="${commande.pizza.nom}">Magherita</span>
+	   pour <span id="nomCommande" data-th-text="${commande.nom}">Maurice</span>.</p>
+	<p>Date et heure de la commande&nbsp;: 
+	   <time id="dateCommande" data-th-datetime="${commande.creation}" data-th-text="${{commande.creation}}">01/02/2020</time>
+	</p>
+	<form action="./commande-form.html" data-th-action="@{/commande}" method="get">
+		<button type="submit">Nouvelle commande</button>
+	</form>
+
+  </body>
+</html>

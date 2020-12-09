@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html id="commandePage">
+  <head>
+  	<meta charset="UTF-8">
+    <title>Pizza EE</title>
+    <link rel="stylesheet" href="../static/style.css" data-th-href="@{/style.css}">
+  </head>
+  <body>
+	<nav id="menu">
+		<ul>
+			<li><a href="accueil.html" data-th-href="@{/accueil}">Accueil</a></li>
+			<li><a href="commande-form.html" data-th-href="@{/commande}">Commander</a></li>
+			<li><a href="commandes.html" data-th-href="@{/commandes}">Préparer</a></li>
+		</ul>
+	</nav>
+
+	<div data-th-object="${commande}">
+	  	<div>
+	  		Commande du
+			<time data-th-datetime="${commande.creation}" data-th-text="${{commande.creation}}">01/02/2020</time>
+			 pour <span data-th-text="*{nom}">Maurice</span>.
+		</div>
+		<div>
+			Pizza : <span data-th-text="${commande.pizza.nom}">Margherita</span>
+			(base <span data-th-text="#{${'pizza.base.' + commande.pizza.base}}">tomate</span>)
+		</div>
+		<div>
+			Composition : 
+			<ul data-th-each="i: ${commande.pizza.ingredients}">
+				<li data-th-text="${i.nom}">Mozzarella</li>
+			</ul>
+		</div>
+		<form method="post" action="commandes.html" data-th-action="@{${'/commandes/' + commande.id}}">
+			<button type="submit">Pizza prête</button>
+		</form>
+	</div>
+  </body>
+</html>

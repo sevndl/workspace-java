@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html id="commandePage">
+  <head>
+  	<meta charset="UTF-8">
+    <title>Pizza EE</title>
+    <link rel="stylesheet" href="../static/style.css" data-th-href="@{/style.css}">
+  </head>
+  <body>
+	<nav id="menu">
+		<ul>
+			<li><a href="accueil.html" data-th-href="@{/accueil}">Accueil</a></li>
+			<li><a href="commande-form.html" data-th-href="@{/commande}">Commander</a></li>
+			<li><a href="commandes.html" data-th-href="@{/commandes}">Préparer</a></li>
+		</ul>
+	</nav>
+	
+	<div class="message" data-th-if="${message}" data-th-text="#{${message}}">
+		Un message d'information ici.
+	</div>
+
+	<table>
+		<caption>Commandes en attente</caption>
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+	  		<tr data-th-each="commande : ${commandes}" data-th-object="${commande}">
+	  			<td data-th-text="*{nom}">Maurice</td>
+	  			<td><time data-th-datetime="*{creation}" data-th-text="*{{creation}}">01/02/2020</time></td>
+	  		</tr>
+		</tbody>
+		<tfoot data-th-if="${commandes.empty}">
+			<tr>
+				<td colspan="2">Aucune commande en attente pour l'instant</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<form action="./commande-suivante.html" method="get" data-th-action="@{/commandes/suivante}" data-th-if="${not commandes.empty}">
+		<button type="submit">Commande suivante</button>
+	</form>
+
+  </body>
+</html>
