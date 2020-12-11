@@ -16,7 +16,7 @@ public class Espece {
 	private Long id;
 	private String nom;
 	
-	@OneToMany(mappedBy = "espece")
+	@OneToMany(mappedBy = "especeId")
 	private List<Animal> animaux;
 	
 	public List<Animal> getAnimaux() {
