@@ -24,7 +24,7 @@ import dev.gayerie.tuto.pizza.service.CommandeService;
 @Controller
 public class CommandeController {
 	
-	@Autowired
+	@Autowired // permet de faire une injection de dépendance à la place du constructeur
 	private CommandeService commandeService;
 
 	@GetMapping("/commande")
