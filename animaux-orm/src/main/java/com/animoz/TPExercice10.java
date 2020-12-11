@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 
 import com.animoz.modele.Animal;
@@ -22,6 +23,10 @@ public class TPExercice10 {
 		String nomAnimal = scanner.next();
 		System.out.println("Entrez maintenant le nombre d'individus de cette population :");
 		Long nbIndividus = scanner.nextLong();
+		if (nbIndividus < 0 ) {
+			scanner.close();
+			throw new IllegalArgumentException();
+		}
 		
 		try {
 			
@@ -37,6 +42,12 @@ public class TPExercice10 {
 			em.persist(population);
 			em.getTransaction().commit();
 			
+		} catch (NoResultException e) {
+			System.out.println("L'animal demandé n'existe pas dans la base de données.");
+			main(args);
+		} catch (IllegalArgumentException e) {
+			System.out.println("Le nombre d'individus ne peut pas être négatif.");
+			main(args);
 		} finally {
 			em.close();
 			emf.close();
