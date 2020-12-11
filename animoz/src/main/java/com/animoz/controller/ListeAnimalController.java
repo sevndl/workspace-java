@@ -1,16 +1,27 @@
 package com.animoz.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.animoz.modele.Animal;
+import com.animoz.service.AnimalService;
+
 @Controller
 public class ListeAnimalController {
+	
+	@Autowired
+	private AnimalService animalService;
 
-	@GetMapping(path = "/animaux") // anotation qui permet de dire que c'est une méthode HTTP GET
+	@GetMapping("/animaux")
 	public String afficherListeAnimaux(Model model) {
-		model.addAttribute("leNombre", 42); // avec thymeleaf on peut dynamiser la page
-		return "listeAnimaux"; // listeAnimaux est le nom de la vue, du template (la page html avec des instructions dynamiques)
+		model.addAttribute("leNombre", 42);
+		List<Animal> animaux = animalService.getListeAnimaux();
+		model.addAttribute("listeAnimaux", animaux);
+		return "listeAnimaux";
 	}
 
 }

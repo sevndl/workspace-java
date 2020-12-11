@@ -3,9 +3,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Animoz</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			margin: 5px 5px;
+			padding: 5px 5px;
+		}
+	</style>
 </head>
 <body>
 	<p>Avec thymeleaf on peut faire le lien avec le controller pour rendre notre vue dynamique, grâce au model et à l'attribut de la balise ci-dessous</p>
 	<h3 data-th-text="${leNombre}"></h3>
+	<table>
+	  <thead>
+	    <tr>
+	      <th>Nom</th>
+	      <th>Espece</th>
+	      <th>Régime</th>
+	   </tr>
+	  </thead>
+	  <tbody>
+	    <tr data-th-each="a : ${listeAnimaux}">
+	      <td data-th-text="${a.nom}"></td>
+	      <td data-th-text="${a.espece}"></td>
+	      <td data-th-text="${a.regime}"></td>
+	    </tr>
+	  </tbody>
+	</table>
 </body>
 </html>
