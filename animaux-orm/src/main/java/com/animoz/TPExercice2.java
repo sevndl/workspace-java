@@ -21,11 +21,15 @@ public class TPExercice2 {
 		try {
 			
 			Animal animal = em.find(Animal.class, id);
-			System.out.println(animal.getId());
-			System.out.println(animal.getNom());
-			System.out.println(animal.getOrigine());
-			System.out.println(animal.getDescription());
-			System.out.println(animal.getRegime());
+			if (animal == null) {
+				System.out.println("L'id ne correspond à aucun animal en base.");
+			} else {
+				System.out.println(animal.getId());
+				System.out.println(animal.getNom());
+				System.out.println(animal.getOrigine());
+				System.out.println(animal.getDescription());
+				System.out.println(animal.getRegime());				
+			}
 			
 		} finally {
 			em.close();
