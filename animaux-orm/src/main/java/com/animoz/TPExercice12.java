@@ -26,7 +26,11 @@ public class TPExercice12 {
 			Long nbIndividusTotal = em.createQuery("select sum(p.nombreIndividus) from Population p join p.animalId a join a.especeId e where lower(e.nom) = lower(:nom)", Long.class)
 									  .setParameter("nom", nomEspece)
 									  .getSingleResult();
-			System.out.println("L'espèce " + nomEspece + " a une population de " + nbIndividusTotal + " individus.");
+			if (nbIndividusTotal == null) {
+				System.out.println("L'espèce demandée n'existe pas en base ou n'a pas de population attribuée.");
+			} else {
+				System.out.println("L'espèce " + nomEspece + " a une population de " + nbIndividusTotal + " individus");
+			}
 			
 		} finally {
 			em.close();
