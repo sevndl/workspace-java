@@ -16,7 +16,6 @@ public class TPExercice4 {
 		
 		try {
 			
-			// il faut voir ça côté objet et pas côté SQL
 			List<Espece> especes = em.createQuery("select e from Espece e order by e.nom", Espece.class).getResultList();
 			for (Espece e : especes) {
 				System.out.println(e.getNom());
