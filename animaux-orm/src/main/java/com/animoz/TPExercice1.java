@@ -15,14 +15,14 @@ public class TPExercice1 {
 		EntityManager em = emf.createEntityManager();
 		
 		Scanner in = new Scanner(System.in);
-		System.out.print("Nom de l'espèce : ");
+		System.out.print("Nom de l'espèce à ajouter à la base de données : ");
 		String nom = in.nextLine();
 
 		try {
 			
-			em.getTransaction().begin();
 			Espece espece = new Espece();
 			espece.setNom(nom);
+			em.getTransaction().begin();
 			em.persist(espece);
 			em.getTransaction().commit();
 			
