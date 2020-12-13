@@ -16,7 +16,6 @@ public class TPExercice5 {
 		
 		try {
 			
-			// il faut voir ça côté objet et pas côté SQL
 			List<Animal> animal = em.createQuery("select a from Animal a where a.regime = 'carnivore'", Animal.class).getResultList();
 			for (Animal a : animal) {
 				System.out.println(a.getNom());
