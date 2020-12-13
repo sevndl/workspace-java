@@ -16,7 +16,7 @@ public class TPExercice9 {
 		
 		try {
 			
-			List<Animal> animaux = em.createQuery("select a from Animal a where a.espece.nom = 'Artiodactyla'", Animal.class).getResultList();
+			List<Animal> animaux = em.createQuery("select a from Animal a where a.especeId.nom = 'Artiodactyla'", Animal.class).getResultList();
 			for (Animal animal : animaux) {
 				System.out.println(animal.getNom());
 			}
