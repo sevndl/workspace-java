@@ -13,7 +13,7 @@ import com.animoz.modele.Animal;
 public class AnimalRepository {
 
 	@Autowired
-	private EntityManager em; // Spring fait tout pour nous (ouvrir, fermer, etc)
+	private EntityManager em;
 	
 	public List<Animal> getListeAnimaux() {
 		return em.createQuery("select a from Animal a", Animal.class)
