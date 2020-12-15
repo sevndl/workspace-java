@@ -20,7 +20,7 @@
 		<li><a data-th-href="@{/soigneurs}">Les soigneurs</a></li>
 	</ul>
 	<!-- form associé à l'objet => DTO, * => relatif à l'objet de dto -->
-	<form method="post" data-th-object="${animal}" data-th-action="@{/animal}">
+	<form method="post" accept-charset="utf-8" data-th-object="${animal}" data-th-action="@{/animal}">
 		<label>Nom</label>
 		<input type="text" placeholder="Nom de l'animal" data-th-field="*{nom}">
 		
