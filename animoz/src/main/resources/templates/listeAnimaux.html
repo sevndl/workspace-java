@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Animoz</title>
+	<title>Animoz - animaux</title>
 	<style>
 		table, th, td {
 			border: 1px solid black;
@@ -12,8 +12,13 @@
 	</style>
 </head>
 <body>
-	<p>Avec thymeleaf on peut faire le lien avec le controller pour rendre notre vue dynamique, grâce au model et à l'attribut de la balise ci-dessous</p>
-	<h3 data-th-text="${leNombre}"></h3>
+	<h2>Liste des animaux</h2>
+	<ul>
+		<li><a data-th-href="@{/}">Accueil</a></li>
+		<li><a data-th-href="@{/animaux}">Les animaux</a></li>
+		<li><a data-th-href="@{/animal}">Ajouter un animal</a></li>
+		<li><a data-th-href="@{/soigneurs}">Les soigneurs</a></li>
+	</ul>
 	<table>
 	  <thead>
 	    <tr>
@@ -25,8 +30,8 @@
 	  <tbody>
 	    <tr data-th-each="a : ${listeAnimaux}">
 	      <td data-th-text="${a.nom}"></td>
-	      <td data-th-text="${a.espece}"></td>
-	      <td data-th-text="${a.regime}"></td>
+	      <td data-th-text="${a.espece?.nom}"></td>
+	      <td data-th-text="${a?.regime}"></td>
 	    </tr>
 	  </tbody>
 	</table>
