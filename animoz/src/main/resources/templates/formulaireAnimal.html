@@ -8,6 +8,7 @@
 			border: 1px solid black;
 			margin: 5px 5px;
 			padding: 5px 5px;
+			text-align: center;
 		}
 	</style>
 </head>
@@ -23,6 +24,7 @@
 	<form method="post" accept-charset="utf-8" data-th-object="${animal}" data-th-action="@{/animal}">
 		<label>Nom</label>
 		<input type="text" placeholder="Nom de l'animal" data-th-field="*{nom}">
+		<span data-th-errors="*{nom}"></span>
 		
 		<input type="submit" value="Ajouter">
 	</form>

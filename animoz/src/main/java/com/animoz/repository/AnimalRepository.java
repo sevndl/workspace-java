@@ -16,7 +16,7 @@ public class AnimalRepository {
 	private EntityManager em;
 	
 	public List<Animal> getListeAnimaux() {
-		return em.createQuery("select a from Animal a", Animal.class)
+		return em.createQuery("select a from Animal a order by a.nom asc", Animal.class)
 				 .getResultList();
 	}
 

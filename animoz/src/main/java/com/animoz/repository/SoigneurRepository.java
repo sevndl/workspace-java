@@ -16,7 +16,7 @@ public class SoigneurRepository {
 	private EntityManager em;
 	
 	public List<Soigneur> getListeSoigneurs() {
-		return em.createQuery("select s from Soigneur s", Soigneur.class)
+		return em.createQuery("select s from Soigneur s order by s.nom asc", Soigneur.class)
 				 .getResultList();
 	}
 
