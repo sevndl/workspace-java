@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Animoz - animaux</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			margin: 5px 5px;
+			padding: 5px 5px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Ajouter un animal</h2>
+	<ul>
+		<li><a data-th-href="@{/}">Accueil</a></li>
+		<li><a data-th-href="@{/animaux}">Les animaux</a></li>
+		<li><a data-th-href="@{/animal}">Ajouter un animal</a></li>
+		<li><a data-th-href="@{/soigneurs}">Les soigneurs</a></li>
+	</ul>
+	<!-- form associé à l'objet => DTO, * => relatif à l'objet de dto -->
+	<form method="post" data-th-object="${animal}" data-th-action="@{/animal}">
+		<label>Nom</label>
+		<input type="text" placeholder="Nom de l'animal" data-th-field="*{nom}">
+		
+		<input type="submit" value="Ajouter">
+	</form>
+</body>
+</html>
