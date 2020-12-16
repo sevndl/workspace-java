@@ -10,6 +10,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.animoz.modele.Animal;
 import com.animoz.service.AnimalService;
@@ -22,15 +24,20 @@ public class ListeAnimalController {
 
 	@GetMapping("/animaux")
 	public String afficherListeAnimaux(Model model) {
-		List<Animal> animaux = animalService.getListeAnimaux();
+		List<Animal> animaux = animalService.getListeAnimaux();	
+		model.addAttribute("listeAnimaux", animaux);
+		return "listeAnimaux";
+	}
+	
+	@RequestMapping("/animaux")
+	public String afficherListeAnimauxRecherches(Model model, @RequestParam(name = "recherche") String recherche) {
+		List<Animal> animaux = animalService.getListeAnimauxRecherches(recherche);
 		model.addAttribute("listeAnimaux", animaux);
 		return "listeAnimaux";
 	}
 	
 	@GetMapping("/animal")
-	// demande à Spring un param de type AnimalDto -> @ModelAttribute c'est un truc qui doit être dans le model, s'il n'y est pas crée-le
 	public String afficherFormulaireAnimal(@ModelAttribute("animal") AnimalDto animal) {
-//		animal.setNom("sev"); // on peut ainsi pré-remplir le formulaire
 		return "formulaireAnimal";
 	}
 	
@@ -39,8 +46,6 @@ public class ListeAnimalController {
 		if (bindingResult.hasErrors()) {
 			return afficherFormulaireAnimal(animal);
 		}
-		// TODO traiter le formulaire => appeler le service pour 
-//		return "succesCreationAnimal"; // à créer
 		
 		System.out.println(animal.getNom());
 		return "formulaireAnimal"; // test

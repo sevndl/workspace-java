@@ -10,16 +10,18 @@
 			padding: 5px 5px;
 			text-align: center;
 		}
+		a {
+			margin: 10px 10px;
+		}
 	</style>
 </head>
 <body>
 	<h2>Liste des soigneurs</h2>
-	<ul>
-		<li><a data-th-href="@{/}">Accueil</a></li>
-		<li><a data-th-href="@{/animaux}">Les animaux</a></li>
-		<li><a data-th-href="@{/animal}">Ajouter un animal</a></li>
-		<li><a data-th-href="@{/soigneurs}">Les soigneurs</a></li>
-	</ul>
+	<a data-th-href="@{/}">Accueil</a>
+	<a data-th-href="@{/animaux}">Les animaux</a>
+	<a data-th-href="@{/animal}">Ajouter un animal</a>
+	<a data-th-href="@{/soigneurs}">Les soigneurs</a>
+	<hr>
 	<table>
 	  <thead>
 	    <tr>

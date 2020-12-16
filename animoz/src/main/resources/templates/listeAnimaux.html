@@ -10,23 +10,30 @@
 			padding: 5px 5px;
 			text-align: center;
 		}
+		a {
+			margin: 10px 10px;
+		}
 	</style>
 </head>
 <body>
 	<h2>Liste des animaux</h2>
-	<ul>
-		<li><a data-th-href="@{/}">Accueil</a></li>
-		<li><a data-th-href="@{/animaux}">Les animaux</a></li>
-		<li><a data-th-href="@{/animal}">Ajouter un animal</a></li>
-		<li><a data-th-href="@{/soigneurs}">Les soigneurs</a></li>
-	</ul>
+	<a data-th-href="@{/}">Accueil</a>
+	<a data-th-href="@{/animaux}">Les animaux</a>
+	<a data-th-href="@{/animal}">Ajouter un animal</a>
+	<a data-th-href="@{/soigneurs}">Les soigneurs</a>
+	<hr>
+  <form method="get" accept-charset="utf-8" data-th-action="@{/animaux}">
+  	<label>Rechercher un animal : </label>
+  	<input type="text" name="recherche" placeholder="Nom d'un animal">
+  	<input type="submit" value="Rechercher">
+  </form>
 	<table>
 	  <thead>
 	    <tr>
 	      <th>Nom</th>
 	      <th>Espece</th>
 	      <th>Régime</th>
-	   </tr>
+	  	</tr>
 	  </thead>
 	  <tbody>
 	    <tr data-th-each="a : ${listeAnimaux}">

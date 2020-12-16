@@ -17,5 +17,9 @@ public class AnimalService {
 	public List<Animal> getListeAnimaux() {
 		return animalRepository.getListeAnimaux();
 	}
+	
+	public List<Animal> getListeAnimauxRecherches(String recherche) {
+		return animalRepository.getListeAnimauxRecherches(recherche);
+	}
 
 }
