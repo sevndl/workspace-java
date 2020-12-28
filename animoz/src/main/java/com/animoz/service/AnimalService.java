@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.animoz.modele.Animal;
 import com.animoz.repository.AnimalRepository;
@@ -20,6 +21,11 @@ public class AnimalService {
 	
 	public List<Animal> getListeAnimauxRecherches(String recherche) {
 		return animalRepository.getListeAnimauxRecherches(recherche);
+	}
+	
+	@Transactional
+	public void addAnimal(String nomAnimal) {
+		animalRepository.addAnimal(nomAnimal);
 	}
 
 }
