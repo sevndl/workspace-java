@@ -23,16 +23,12 @@ public class ListeAnimalController {
 	private AnimalService animalService;
 
 	@GetMapping("/animaux")
-	public String afficherListeAnimaux(Model model) {
-		List<Animal> animaux = animalService.getListeAnimaux();	
-		model.addAttribute("listeAnimaux", animaux);
-		return "listeAnimaux";
-	}
-	
-	@RequestMapping("/animaux")
-	public String afficherListeAnimauxRecherches(Model model, @RequestParam(name = "recherche") String recherche) {
-		List<Animal> animaux = animalService.getListeAnimauxRecherches(recherche);
-		model.addAttribute("listeAnimaux", animaux);
+	public String afficherListeAnimaux(Model model, String recherche) {
+		if (recherche == null || recherche == "") {
+			model.addAttribute("listeAnimaux", animalService.getListeAnimaux());			
+		} else {
+			model.addAttribute("listeAnimaux", animalService.getListeAnimauxRecherches(recherche));
+		}
 		return "listeAnimaux";
 	}
 	
