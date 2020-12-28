@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.animoz.modele.Animal;
 
@@ -25,6 +26,12 @@ public class AnimalRepository {
 //		return em.createQuery("select a from Animal a where lower(a.nom) = lower(:nom)", Animal.class)				
 				 .setParameter("nom", recherche)
 				 .getResultList();
+	}
+	
+	public void addAnimal(String nomAnimal) {
+		Animal newAnimal = new Animal();
+		newAnimal.setNom(nomAnimal);
+		em.persist(newAnimal);
 	}
 
 }
