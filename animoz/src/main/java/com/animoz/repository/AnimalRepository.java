@@ -22,8 +22,7 @@ public class AnimalRepository {
 	}
 	
 	public List<Animal> getListeAnimauxRecherches(String recherche) {
-		return em.createQuery("select a from Animal a where lower(a.nom) like concat('%',:nom,'%') order by a.nom asc", Animal.class)
-//		return em.createQuery("select a from Animal a where lower(a.nom) = lower(:nom)", Animal.class)				
+		return em.createQuery("select a from Animal a where lower(a.nom) like concat('%',:nom,'%') order by a.nom asc", Animal.class)	
 				 .setParameter("nom", recherche)
 				 .getResultList();
 	}
@@ -31,7 +30,7 @@ public class AnimalRepository {
 	public void addAnimal(String nomAnimal, String descriptionAnimal) {
 		Animal newAnimal = new Animal();
 		newAnimal.setNom(nomAnimal);
-		newAnimal.setDescription(descriptionAnimal);
+		if (descriptionAnimal != "") { newAnimal.setDescription(descriptionAnimal); }
 		em.persist(newAnimal);
 	}
 
