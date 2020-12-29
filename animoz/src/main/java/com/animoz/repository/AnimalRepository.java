@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.animoz.modele.Animal;
+import com.animoz.modele.Espece;
 
 @Repository
 public class AnimalRepository {
@@ -27,10 +28,17 @@ public class AnimalRepository {
 				 .getResultList();
 	}
 	
-	public void addAnimal(String nomAnimal, String descriptionAnimal) {
+	public void addAnimal(String nomAnimal, String descriptionAnimal, Long especeIdAnimal) {
 		Animal newAnimal = new Animal();
 		newAnimal.setNom(nomAnimal);
 		if (descriptionAnimal != "") { newAnimal.setDescription(descriptionAnimal); }
+		if (especeIdAnimal != null) { 
+			Espece espece = em.createQuery("select e from Espece e where e.id = :id", Espece.class)
+								.setParameter("id", especeIdAnimal)
+								.getSingleResult();
+			Espece especeId = em.getReference(Espece.class, espece.getId());
+			newAnimal.setEspece(especeId); 
+		}
 		em.persist(newAnimal);
 	}
 

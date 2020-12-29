@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.animoz.service.AnimalService;
+import com.animoz.service.EspeceService;
 
 @Controller
 public class ListeAnimalController {
 	
 	@Autowired
 	private AnimalService animalService;
+	@Autowired
+	private EspeceService especeService;
 
 	@GetMapping("/animaux")
 	public String afficherListeAnimaux(Model model, String recherche) {
@@ -28,16 +31,17 @@ public class ListeAnimalController {
 	}
 	
 	@GetMapping("/animal")
-	public String afficherFormulaireAnimal(@ModelAttribute("animal") AnimalDto animal) {
+	public String afficherFormulaireAnimal(@ModelAttribute("animal") AnimalDto animal, Model model) {
+		model.addAttribute("listeEspeces", especeService.getListeEspeces());
 		return "formulaireAnimal";
 	}
 	
 	@PostMapping("/animal")
-	public String traiterFormulaireAnimal(@Validated @ModelAttribute("animal") AnimalDto animal, BindingResult bindingResult) {
+	public String traiterFormulaireAnimal(@Validated @ModelAttribute("animal") AnimalDto animal, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return afficherFormulaireAnimal(animal);
+			return afficherFormulaireAnimal(animal, model);
 		}
-		animalService.addAnimal(animal.getNom(), animal.getDescription());
+		animalService.addAnimal(animal.getNom(), animal.getDescription(), animal.getEspece());
 		return "redirect:/animaux";
 	}
 

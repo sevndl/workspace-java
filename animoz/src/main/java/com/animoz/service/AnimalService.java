@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.animoz.modele.Animal;
+import com.animoz.modele.Espece;
 import com.animoz.repository.AnimalRepository;
 
 @Service
@@ -24,8 +25,8 @@ public class AnimalService {
 	}
 	
 	@Transactional
-	public void addAnimal(String nomAnimal, String descriptionAnimal) {
-		animalRepository.addAnimal(nomAnimal, descriptionAnimal);
+	public void addAnimal(String nomAnimal, String descriptionAnimal, Long especeAnimal) {
+		animalRepository.addAnimal(nomAnimal, descriptionAnimal, especeAnimal);
 	}
 
 }

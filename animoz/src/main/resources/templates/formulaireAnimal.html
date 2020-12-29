@@ -32,6 +32,13 @@
 		<input type="text" placeholder="Description de l'animal" data-th-field="*{description}">
 		<br>
 		
+		<label>Espèce</label>
+		<select data-th-field="*{espece}">
+			<option value="">-- Choisissez --</option>
+			<option data-th-each="e : ${listeEspeces}" data-th-value="${e.id}" data-th-text="${e.nom}"></option>
+		</select>
+		<br>
+		
 		<input type="submit" value="Ajouter">
 	</form>
 </body>
