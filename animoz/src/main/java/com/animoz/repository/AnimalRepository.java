@@ -22,7 +22,7 @@ public class AnimalRepository {
 	}
 	
 	public List<Animal> getListeAnimauxRecherches(String recherche) {
-		return em.createQuery("select a from Animal a where lower(a.nom) like concat('%',:nom,'%')", Animal.class)
+		return em.createQuery("select a from Animal a where lower(a.nom) like concat('%',:nom,'%') order by a.nom asc", Animal.class)
 //		return em.createQuery("select a from Animal a where lower(a.nom) = lower(:nom)", Animal.class)				
 				 .setParameter("nom", recherche)
 				 .getResultList();
