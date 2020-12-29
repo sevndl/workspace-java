@@ -24,8 +24,8 @@ public class AnimalService {
 	}
 	
 	@Transactional
-	public void addAnimal(String nomAnimal) {
-		animalRepository.addAnimal(nomAnimal);
+	public void addAnimal(String nomAnimal, String descriptionAnimal) {
+		animalRepository.addAnimal(nomAnimal, descriptionAnimal);
 	}
 
 }

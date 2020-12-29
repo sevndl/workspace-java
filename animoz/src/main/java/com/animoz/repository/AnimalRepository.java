@@ -28,9 +28,10 @@ public class AnimalRepository {
 				 .getResultList();
 	}
 	
-	public void addAnimal(String nomAnimal) {
+	public void addAnimal(String nomAnimal, String descriptionAnimal) {
 		Animal newAnimal = new Animal();
 		newAnimal.setNom(nomAnimal);
+		newAnimal.setDescription(descriptionAnimal);
 		em.persist(newAnimal);
 	}
 
