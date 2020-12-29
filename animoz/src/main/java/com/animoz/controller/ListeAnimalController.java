@@ -38,7 +38,6 @@ public class ListeAnimalController {
 			return afficherFormulaireAnimal(animal);
 		}
 		animalService.addAnimal(animal.getNom());
-		System.out.println(animal.getNom());
 		return "redirect:/animaux";
 	}
 
