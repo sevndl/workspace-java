@@ -44,7 +44,6 @@ public class AnimalRepository {
 		Long verificationAnimalExiste = (Long) em.createQuery("select count(a) from Animal a where a.nom = :nom")
 												 .setParameter("nom", nomAnimal)
 												 .getSingleResult();
-		System.out.println(verificationAnimalExiste);
 		if (verificationAnimalExiste < 1) {
 			em.persist(newAnimal);
 		}
