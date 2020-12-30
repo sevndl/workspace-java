@@ -38,7 +38,7 @@
 	  </thead>
 	  <tbody>
 	    <tr data-th-each="a : ${listeAnimaux}">
-	      <td data-th-text="${a.nom}"></td>
+	      <td> <a data-th-href="@{/animal/{id}(id=${a.id})}" data-th-text="${a.nom}"></a></td>
 	      <td data-th-text="${a.espece?.nom}"></td>
 	      <td data-th-text="${a?.regime}"></td>
 	    </tr>
