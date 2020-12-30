@@ -12,7 +12,7 @@ public class TPExercice7 {
 		
 		try {
 			
-			long nbSoigneurs = (Long) em.createQuery("select count(s) from Soigneur s").getSingleResult();
+			Long nbSoigneurs = (Long) em.createQuery("select count(s) from Soigneur s").getSingleResult();
 			System.out.println("Il y a " + nbSoigneurs + " soigneurs");
 			
 		} finally {
