@@ -24,7 +24,7 @@
 	<a data-th-href="@{/soigneur}">Ajouter un soigneur</a>
 	<hr>
 	<form method="post" accept-charset="utf-8" data-th-object="${animal}" data-th-action="@{/animal}">
-		<label>Nom</label>
+		<label>Nom*</label>
 		<input type="text" placeholder="Nom de l'animal" data-th-field="*{nom}">
 		<span data-th-errors="*{nom}"></span>
 		<br>
@@ -33,7 +33,7 @@
 		<input type="text" placeholder="Description de l'animal" data-th-field="*{description}">
 		<br>
 		
-		<label>Régime alimentaire</label>
+		<label>Régime alimentaire*</label>
 		<select data-th-field="*{regimeAlimentaire}">
 			<option value="">-- Régime alimentaire --</option>
 			<option data-th-each="r : ${T(com.animoz.modele.Regime).values()}" data-th-value="${(r)}" data-th-text="${(r)}"></option>
@@ -41,7 +41,7 @@
 		<span data-th-errors="*{regimeAlimentaire}"></span>
 		<br>
 		
-		<label>Espèce</label>
+		<label>Espèce*</label>
 		<select data-th-field="*{espece}">
 			<option value="">-- Espèce --</option>
 			<option data-th-each="e : ${listeEspeces}" data-th-value="${e.id}" data-th-text="${e.nom}"></option>

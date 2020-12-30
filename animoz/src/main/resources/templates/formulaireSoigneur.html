@@ -24,17 +24,17 @@
 	<a data-th-href="@{/soigneur}">Ajouter un soigneur</a>
 	<hr>
 	<form method="post" accept-charset="utf-8" data-th-object="${soigneur}" data-th-action="@{/soigneur}">
-		<label>Nom</label>
+		<label>Nom*</label>
 		<input type="text" placeholder="Nom du soigneur" data-th-field="*{nom}">
 		<span data-th-errors="*{nom}"></span>
 		<br>
 		
-		<label>Numéro</label>
+		<label>Numéro*</label>
 		<input type="text" placeholder="Numéro du soigneur" data-th-field="*{numero}">
 		<span data-th-errors="*{numero}"></span>
 		<br>
 		
-		<label>Date de recrutement</label>
+		<label>Date de recrutement*</label>
 		<input type="date" data-th-field="*{dateRecrutement}">
 		<span data-th-errors="*{dateRecrutement}"></span>
 		<br>
