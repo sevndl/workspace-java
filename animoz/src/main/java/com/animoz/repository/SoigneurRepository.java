@@ -42,10 +42,15 @@ public class SoigneurRepository {
 					em.persist(newSoigneur);
 				}
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public List<Soigneur> getByAnimalId(Long idAnimal) {
+		return em.createQuery("select s from Soigneur s join s.animaux a where a.id = :id order by s.nom asc", Soigneur.class)
+				 .setParameter("id", idAnimal)
+				 .getResultList();
 	}
 
 }

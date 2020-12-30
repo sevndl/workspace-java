@@ -30,4 +30,7 @@ public class AnimalService {
 		animalRepository.addAnimal(nomAnimal, descriptionAnimal, especeAnimal, regimeAlimentaireAnimal);
 	}
 
+	public Animal getById(Long idAnimal) {
+		return animalRepository.getById(idAnimal);
+	}
 }

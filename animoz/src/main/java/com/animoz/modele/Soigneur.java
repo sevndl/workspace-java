@@ -1,12 +1,17 @@
 package com.animoz.modele;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -22,6 +27,12 @@ public class Soigneur {
 	@Temporal(TemporalType.DATE)
 	@Column(updatable=false)
 	private Date dateRecrutement;
+	
+	@ManyToMany
+	@JoinTable(name = "populationsoigneur",
+			   joinColumns = @JoinColumn(name = "soigneur_id"),
+			   inverseJoinColumns = @JoinColumn(name = "animal_id"))
+	private List<Animal> animaux = new ArrayList<>();
 	
 	public Long getId() {
 		return this.id;

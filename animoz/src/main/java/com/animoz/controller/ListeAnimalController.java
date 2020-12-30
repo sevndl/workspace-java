@@ -7,10 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.animoz.modele.Animal;
 import com.animoz.service.AnimalService;
 import com.animoz.service.EspeceService;
+import com.animoz.service.SoigneurService;
 
 @Controller
 public class ListeAnimalController {
@@ -19,6 +22,8 @@ public class ListeAnimalController {
 	private AnimalService animalService;
 	@Autowired
 	private EspeceService especeService;
+	@Autowired
+	private SoigneurService soigneurService;
 
 	@GetMapping("/animaux")
 	public String afficherListeAnimaux(Model model, String recherche) {
@@ -34,6 +39,13 @@ public class ListeAnimalController {
 	public String afficherFormulaireAnimal(@ModelAttribute("animal") AnimalDto animal, Model model) {
 		model.addAttribute("listeEspeces", especeService.getListeEspeces());
 		return "formulaireAnimal";
+	}
+	
+	@GetMapping("/animal/{idAnimal}")
+	public String afficherDetailAnimal(@PathVariable Long idAnimal, Model model) {
+		model.addAttribute("animal", animalService.getById(idAnimal));
+		model.addAttribute("soigneurs", soigneurService.getByAnimalId(idAnimal));
+		return "detailAnimal";
 	}
 	
 	@PostMapping("/animal")

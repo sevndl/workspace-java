@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Animoz - animaux</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			margin: 5px 5px;
+			padding: 5px 5px;
+			text-align: center;
+		}
+		a {
+			margin: 10px 10px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Détail</h2>
+	<a data-th-href="@{/}">Accueil</a>
+	<a data-th-href="@{/animaux}">Les animaux</a>
+	<a data-th-href="@{/animal}">Ajouter un animal</a>
+	<a data-th-href="@{/soigneurs}">Les soigneurs</a>
+	<a data-th-href="@{/soigneur}">Ajouter un soigneur</a>
+	<hr>
+	<h2><span id="nomAnimal" data-th-text="${animal.nom}"></span></h2>
+	<h3>Nom de l'espèce :</h3>
+	<p><span id="especeAnimal" data-th-text="${animal.espece.nom}"></span></p>
+	<h3>Régime alimentaire :</h3>
+	<p><span id="regimeAlimentaireAnimal" data-th-text="${animal.regime}"></span></p>
+	<h3>Description :</h3>
+	<p><span id="descriptionAnimal" data-th-text="${animal.description}"></span></p>
+	<h3>Liste des soigneurs attribués :</h3>
+	<table>
+	  <thead>
+	    <tr>
+	      <th>Nom</th>
+	      <th>Numéro</th>
+	      <th>Date de recrutement</th>
+	   </tr>
+	  </thead>
+	  <tbody>
+	    <tr data-th-each="s : ${soigneurs}">
+	      <td data-th-text="${s.nom}"></td>
+	      <td data-th-text="${s.numero}"></td>
+	      <td data-th-text="${#dates.format(s?.dateRecrutement, 'dd-MM-YYYY')}"></td>
+	    </tr>
+	  </tbody>
+	</table>
+</body>
+</html>

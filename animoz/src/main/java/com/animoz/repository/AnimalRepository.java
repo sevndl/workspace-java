@@ -48,5 +48,11 @@ public class AnimalRepository {
 			em.persist(newAnimal);
 		}
 	}
+	
+	public Animal getById(Long idAnimal) {
+		return em.createQuery("select a from Animal a where a.id = :id", Animal.class)
+				 .setParameter("id", idAnimal)
+				 .getSingleResult();
+	}
 
 }

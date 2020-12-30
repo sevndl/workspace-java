@@ -1,5 +1,8 @@
 package com.animoz.modele;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -25,6 +30,12 @@ public class Animal {
 	@ManyToOne
 	@JoinColumn(name = "espece_id")
 	private Espece espece;
+	
+	@ManyToMany
+	@JoinTable(name = "populationsoigneur",
+			   joinColumns = @JoinColumn(name = "animal_id"),
+			   inverseJoinColumns = @JoinColumn(name = "soigneur_id"))
+	private List<Soigneur> soigneurs = new ArrayList<>();
 
 	public Long getId() {
 		return this.id;

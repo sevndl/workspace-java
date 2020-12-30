@@ -1,13 +1,11 @@
 package com.animoz.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.animoz.modele.Regime;
 import com.animoz.modele.Soigneur;
 import com.animoz.repository.SoigneurRepository;
 
@@ -26,4 +24,7 @@ public class SoigneurService {
 		soigneurRepository.addSoigneur(nomSoigneur, numeroSoigneur, dateRecrutement);
 	}
 
+	public List<Soigneur> getByAnimalId(Long idAnimal) {
+		return soigneurRepository.getByAnimalId(idAnimal);
+	}
 }
