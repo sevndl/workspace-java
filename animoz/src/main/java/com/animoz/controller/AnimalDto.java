@@ -1,16 +1,19 @@
 package com.animoz.controller;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.animoz.modele.Regime;
 
 public class AnimalDto {
 
-	@NotBlank(message="Le nom ne peut pas être nul")
+	@NotBlank(message = "Requis")
 	private String nom;
 	private String description;
-	private Long especeId;
+	@NotNull(message = "Requis")
 	private Regime regimeAlimentaire;
+	@NotNull(message = "Requis")
+	private Long espece;
 
 	public String getNom() {
 		return this.nom;
@@ -29,11 +32,11 @@ public class AnimalDto {
 	}
 
 	public Long getEspece() {
-		return this.especeId;
+		return this.espece;
 	}
 
 	public void setEspece(Long especeId) {
-		this.especeId = especeId;
+		this.espece = especeId;
 	}
 
 	public Regime getRegimeAlimentaire() {

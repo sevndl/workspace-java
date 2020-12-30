@@ -34,16 +34,18 @@
 		
 		<label>Régime alimentaire</label>
 		<select data-th-field="*{regimeAlimentaire}">
-			<option value="">-- Choisissez --</option>
+			<option value="">-- Régime alimentaire --</option>
 			<option data-th-each="r : ${T(com.animoz.modele.Regime).values()}" data-th-value="${(r)}" data-th-text="${(r)}"></option>
 		</select>
+		<span data-th-errors="*{regimeAlimentaire}"></span>
 		<br>
 		
 		<label>Espèce</label>
 		<select data-th-field="*{espece}">
-			<option value="">-- Choisissez --</option>
+			<option value="">-- Espèce --</option>
 			<option data-th-each="e : ${listeEspeces}" data-th-value="${e.id}" data-th-text="${e.nom}"></option>
 		</select>
+		<span data-th-errors="*{espece}"></span>
 		<br>
 		
 		<input type="submit" value="Ajouter">
