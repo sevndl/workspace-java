@@ -1,5 +1,8 @@
 package com.animoz.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.animoz.modele.Regime;
 import com.animoz.service.AnimalService;
 import com.animoz.service.EspeceService;
 
@@ -41,7 +45,7 @@ public class ListeAnimalController {
 		if (bindingResult.hasErrors()) {
 			return afficherFormulaireAnimal(animal, model);
 		}
-		animalService.addAnimal(animal.getNom(), animal.getDescription(), animal.getEspece());
+		animalService.addAnimal(animal.getNom(), animal.getDescription(), animal.getEspece(), animal.getRegimeAlimentaire());
 		return "redirect:/animaux";
 	}
 

@@ -2,7 +2,7 @@ package com.animoz.controller;
 
 import javax.validation.constraints.NotBlank;
 
-import com.animoz.modele.Espece;
+import com.animoz.modele.Regime;
 
 public class AnimalDto {
 
@@ -10,6 +10,7 @@ public class AnimalDto {
 	private String nom;
 	private String description;
 	private Long especeId;
+	private Regime regimeAlimentaire;
 
 	public String getNom() {
 		return this.nom;
@@ -33,5 +34,13 @@ public class AnimalDto {
 
 	public void setEspece(Long especeId) {
 		this.especeId = especeId;
+	}
+
+	public Regime getRegimeAlimentaire() {
+		return this.regimeAlimentaire;
+	}
+
+	public void setRegimeAlimentaire(Regime regimeAlimentaire) {
+		this.regimeAlimentaire = regimeAlimentaire;
 	}
 }

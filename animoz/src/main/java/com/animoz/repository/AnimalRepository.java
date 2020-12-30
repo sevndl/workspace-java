@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.animoz.modele.Animal;
 import com.animoz.modele.Espece;
+import com.animoz.modele.Regime;
 
 @Repository
 public class AnimalRepository {
@@ -28,7 +29,7 @@ public class AnimalRepository {
 				 .getResultList();
 	}
 	
-	public void addAnimal(String nomAnimal, String descriptionAnimal, Long especeIdAnimal) {
+	public void addAnimal(String nomAnimal, String descriptionAnimal, Long especeIdAnimal, Regime regimeAlimentaireAnimal) {
 		Animal newAnimal = new Animal();
 		newAnimal.setNom(nomAnimal);
 		if (descriptionAnimal != "") { newAnimal.setDescription(descriptionAnimal); }
@@ -39,6 +40,7 @@ public class AnimalRepository {
 			Espece especeId = em.getReference(Espece.class, espece.getId());
 			newAnimal.setEspece(especeId); 
 		}
+		if (regimeAlimentaireAnimal != null) { newAnimal.setRegime(regimeAlimentaireAnimal); }
 		em.persist(newAnimal);
 	}
 

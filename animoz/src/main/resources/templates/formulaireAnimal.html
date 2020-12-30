@@ -32,6 +32,13 @@
 		<input type="text" placeholder="Description de l'animal" data-th-field="*{description}">
 		<br>
 		
+		<label>Régime alimentaire</label>
+		<select data-th-field="*{regimeAlimentaire}">
+			<option value="">-- Choisissez --</option>
+			<option data-th-each="r : ${T(com.animoz.modele.Regime).values()}" data-th-value="${(r)}" data-th-text="${(r)}"></option>
+		</select>
+		<br>
+		
 		<label>Espèce</label>
 		<select data-th-field="*{espece}">
 			<option value="">-- Choisissez --</option>
