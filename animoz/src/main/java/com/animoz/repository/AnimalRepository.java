@@ -30,21 +30,21 @@ public class AnimalRepository {
 	}
 	
 	public void addAnimal(String nomAnimal, String descriptionAnimal, Long especeIdAnimal, Regime regimeAlimentaireAnimal) {
-		Animal newAnimal = new Animal();
-		newAnimal.setNom(nomAnimal);
-		if (descriptionAnimal != "") { newAnimal.setDescription(descriptionAnimal); }
-		if (especeIdAnimal != null) { 
-			Espece espece = em.createQuery("select e from Espece e where e.id = :id", Espece.class)
-								.setParameter("id", especeIdAnimal)
-								.getSingleResult();
-			Espece especeId = em.getReference(Espece.class, espece.getId());
-			newAnimal.setEspece(especeId); 
-		}
-		if (regimeAlimentaireAnimal != null) { newAnimal.setRegime(regimeAlimentaireAnimal); }
 		Long verificationAnimalExiste = (Long) em.createQuery("select count(a) from Animal a where a.nom = :nom")
-												 .setParameter("nom", nomAnimal)
-												 .getSingleResult();
+				.setParameter("nom", nomAnimal)
+				.getSingleResult();
 		if (verificationAnimalExiste < 1) {
+			Animal newAnimal = new Animal();
+			newAnimal.setNom(nomAnimal);
+			if (descriptionAnimal != "") { newAnimal.setDescription(descriptionAnimal); }
+			if (especeIdAnimal != null) { 
+				Espece espece = em.createQuery("select e from Espece e where e.id = :id", Espece.class)
+						.setParameter("id", especeIdAnimal)
+						.getSingleResult();
+				Espece especeId = em.getReference(Espece.class, espece.getId());
+				newAnimal.setEspece(especeId); 
+			}
+			if (regimeAlimentaireAnimal != null) { newAnimal.setRegime(regimeAlimentaireAnimal); }
 			em.persist(newAnimal);
 		}
 	}
