@@ -1,7 +1,5 @@
 package com.animoz.controller;
 
-import java.util.Date;
-
 import javax.validation.constraints.NotBlank;
 
 public class SoigneurDto {

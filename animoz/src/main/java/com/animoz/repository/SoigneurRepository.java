@@ -37,13 +37,14 @@ public class SoigneurRepository {
 			Date nouvelleDateRecrutement;
 			try {
 				nouvelleDateRecrutement = new SimpleDateFormat("yyyy-MM-dd").parse(dateRecrutement);
-				System.out.println(nouvelleDateRecrutement);
-				newSoigneur.setDateRecrutement(nouvelleDateRecrutement);
+				if (new Date().after(nouvelleDateRecrutement)) { 
+					newSoigneur.setDateRecrutement(nouvelleDateRecrutement); 
+					em.persist(newSoigneur);
+				}
 			} catch (ParseException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			em.persist(newSoigneur);
 		}
 	}
 
