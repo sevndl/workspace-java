@@ -41,7 +41,13 @@ public class AnimalRepository {
 			newAnimal.setEspece(especeId); 
 		}
 		if (regimeAlimentaireAnimal != null) { newAnimal.setRegime(regimeAlimentaireAnimal); }
-		em.persist(newAnimal);
+		Long verificationAnimalExiste = (Long) em.createQuery("select count(a) from Animal a where a.nom = :nom")
+												 .setParameter("nom", nomAnimal)
+												 .getSingleResult();
+		System.out.println(verificationAnimalExiste);
+		if (verificationAnimalExiste < 1) {
+			em.persist(newAnimal);
+		}
 	}
 
 }
