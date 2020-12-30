@@ -1,10 +1,6 @@
 package com.animoz.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.animoz.modele.Animal;
 import com.animoz.modele.Soigneur;
-import com.animoz.service.AnimalService;
 import com.animoz.service.SoigneurService;
 
 @Controller
