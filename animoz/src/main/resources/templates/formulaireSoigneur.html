@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Animoz - soigneurs</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			margin: 5px 5px;
+			padding: 5px 5px;
+			text-align: center;
+		}
+		a {
+			margin: 10px 10px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Ajouter un soigneur</h2>
+	<a data-th-href="@{/}">Accueil</a>
+	<a data-th-href="@{/animaux}">Les animaux</a>
+	<a data-th-href="@{/animal}">Ajouter un animal</a>
+	<a data-th-href="@{/soigneurs}">Les soigneurs</a>
+	<a data-th-href="@{/soigneur}">Ajouter un soigneur</a>
+	<hr>
+	<form method="post" accept-charset="utf-8" data-th-object="${soigneur}" data-th-action="@{/soigneur}">
+		<label>Nom</label>
+		<input type="text" placeholder="Nom du soigneur" data-th-field="*{nom}">
+		<span data-th-errors="*{nom}"></span>
+		<br>
+		
+		<label>Numéro</label>
+		<input type="text" placeholder="Numéro du soigneur" data-th-field="*{numero}">
+		<span data-th-errors="*{numero}"></span>
+		<br>
+		
+		<label>Date de recrutement</label>
+		<input type="date" data-th-field="*{dateRecrutement}">
+		<span data-th-errors="*{dateRecrutement}"></span>
+		<br>
+		
+		<input type="submit" value="Ajouter">
+	</form>
+</body>
+</html>
