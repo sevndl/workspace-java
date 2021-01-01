@@ -48,6 +48,12 @@ public class ListeAnimalController {
 		return "detailAnimal";
 	}
 	
+	@PostMapping("/animal/{idAnimal}/{idSoigneur}")
+	public String supprimerSoigneurAnimal(@PathVariable Long idAnimal, @PathVariable Long idSoigneur, Model model) {
+		soigneurService.removeSoigneur(idAnimal, idSoigneur);
+		return "redirect:/animal/" + idAnimal;
+	}
+	
 	@PostMapping("/animal")
 	public String traiterFormulaireAnimal(@Validated @ModelAttribute("animal") AnimalDto animal, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {

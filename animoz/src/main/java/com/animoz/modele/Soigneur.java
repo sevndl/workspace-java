@@ -1,8 +1,8 @@
 package com.animoz.modele;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class Soigneur {
 	@JoinTable(name = "populationsoigneur",
 			   joinColumns = @JoinColumn(name = "soigneur_id"),
 			   inverseJoinColumns = @JoinColumn(name = "animal_id"))
-	private List<Animal> animaux = new ArrayList<>();
+	private Set<Animal> animaux = new HashSet<Animal>();
 	
 	public Long getId() {
 		return this.id;

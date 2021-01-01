@@ -27,4 +27,9 @@ public class SoigneurService {
 	public List<Soigneur> getByAnimalId(Long idAnimal) {
 		return soigneurRepository.getByAnimalId(idAnimal);
 	}
+
+	@Transactional
+	public void removeSoigneur(Long idAnimal, Long idSoigneur) {
+		soigneurRepository.removeSoigneur(idAnimal, idSoigneur);
+	}
 }

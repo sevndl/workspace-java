@@ -37,6 +37,7 @@
 	      <th>Nom</th>
 	      <th>Numéro</th>
 	      <th>Date de recrutement</th>
+	      <th>Action</th>
 	   </tr>
 	  </thead>
 	  <tbody>
@@ -44,6 +45,11 @@
 	      <td data-th-text="${s.nom}"></td>
 	      <td data-th-text="${s.numero}"></td>
 	      <td data-th-text="${#dates.format(s?.dateRecrutement, 'dd-MM-YYYY')}"></td>
+	      <td>
+	      	<form method="post" data-th-action="@{/animal/{idAnimal}/{idSoigneur}(idAnimal=${animal.id}, idSoigneur=${s.id})}">
+	      		<input type="submit" value="Supprimer"/>
+	      	</form>
+	      </td>
 	    </tr>
 	  </tbody>
 	</table>
