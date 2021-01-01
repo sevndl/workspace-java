@@ -37,6 +37,18 @@ public class Animal {
 			   inverseJoinColumns = @JoinColumn(name = "soigneur_id"))
 	private Set<Soigneur> soigneurs = new HashSet<Soigneur>();
 
+	public Set<Soigneur> getSoigneurs() {
+		return this.soigneurs;
+	}
+	
+	public void addSoigneur(Soigneur soigneur) {
+		this.soigneurs.add(soigneur);
+	}
+	
+	public void removeSoigneur(Soigneur soigneur) {
+		this.soigneurs.remove(soigneur);
+	}
+	
 	public Long getId() {
 		return this.id;
 	}

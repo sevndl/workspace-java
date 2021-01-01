@@ -53,17 +53,14 @@ public class SoigneurRepository {
 				 .getResultList();
 	}
 
-	public void removeSoigneur(Long idAnimal, Long idSoigneur) {
-		Long verificationNbSoigneurs= em.createQuery("select count(s) from Soigneur s join s.animaux a where a.id = :id", Long.class)
+	public void removeAnimal(Long idAnimal, Long idSoigneur) {
+		Long verificationNbSoigneurs = em.createQuery("select count(s) from Soigneur s join s.animaux a where a.id = :id", Long.class)
 									    .setParameter("id", idAnimal)
 									    .getSingleResult();
-		System.out.println(verificationNbSoigneurs);
-		System.out.println("id animal : " + idAnimal + ", id soigneur : " + idSoigneur);
 		if (verificationNbSoigneurs > 1) {
-			em.createQuery("delete from Animal a join a.soigneurs s where a.id = :idAnimal and s.id = :idSoigneur")
-			  .setParameter("idAnimal", idAnimal)
-			  .setParameter("idSoigneur", idSoigneur)
-			  .executeUpdate();
+			Animal animal = em.find(Animal.class, idAnimal);
+			Soigneur soigneur = em.find(Soigneur.class, idSoigneur);
+			soigneur.removeAnimal(animal);			
 		}
 	}
 

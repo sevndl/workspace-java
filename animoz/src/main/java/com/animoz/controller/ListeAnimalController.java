@@ -50,7 +50,7 @@ public class ListeAnimalController {
 	
 	@PostMapping("/animal/{idAnimal}/{idSoigneur}")
 	public String supprimerSoigneurAnimal(@PathVariable Long idAnimal, @PathVariable Long idSoigneur, Model model) {
-		soigneurService.removeSoigneur(idAnimal, idSoigneur);
+		soigneurService.removeAnimal(idAnimal, idSoigneur);
 		return "redirect:/animal/" + idAnimal;
 	}
 	

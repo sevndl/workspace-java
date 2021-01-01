@@ -29,7 +29,7 @@ public class SoigneurService {
 	}
 
 	@Transactional
-	public void removeSoigneur(Long idAnimal, Long idSoigneur) {
-		soigneurRepository.removeSoigneur(idAnimal, idSoigneur);
+	public void removeAnimal(Long idAnimal, Long idSoigneur) {
+		soigneurRepository.removeAnimal(idAnimal, idSoigneur);
 	}
 }
