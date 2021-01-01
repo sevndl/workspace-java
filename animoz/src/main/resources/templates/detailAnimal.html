@@ -25,11 +25,11 @@
 	<hr>
 	<h2><span id="nomAnimal" data-th-text="${animal.nom}"></span></h2>
 	<h3>Nom de l'espèce :</h3>
-	<p><span id="especeAnimal" data-th-text="${animal.espece.nom}"></span></p>
+	<p><span id="especeAnimal" data-th-text="${animal.espece?.nom}"></span></p>
 	<h3>Régime alimentaire :</h3>
-	<p><span id="regimeAlimentaireAnimal" data-th-text="${animal.regime}"></span></p>
+	<p><span id="regimeAlimentaireAnimal" data-th-text="${animal?.regime}"></span></p>
 	<h3>Description :</h3>
-	<p><span id="descriptionAnimal" data-th-text="${animal.description}"></span></p>
+	<p><span id="descriptionAnimal" data-th-text="${animal?.description}"></span></p>
 	<h3>Liste des soigneurs attribués :</h3>
 	<table>
 	  <thead>
