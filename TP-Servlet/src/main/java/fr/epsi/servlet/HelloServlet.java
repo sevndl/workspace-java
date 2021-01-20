@@ -11,15 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 public class HelloServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	        PrintWriter out = resp.getWriter();
-	        out.write("<html>");
-	        out.write("<head>");
-	        out.write("<title>Web app</title>");
-	        out.write("</head>");
-	        out.write("<body>");
-	        out.write("<h3 style='color:red'>Titre</h3>");
-	        out.write("</body>");
-	        out.write("</html>");
+		int idClient = Integer.parseInt(req.getParameter("id"));
+		System.out.println(idClient);
+		
+        PrintWriter out = resp.getWriter();
+        out.write("<html>");
+        out.write("<head>");
+        out.write("<title>Web app</title>");
+        out.write("</head>");
+        out.write("<body>");
+        out.write("<h3 style='color:red'>Titre</h3>");
+        out.write("<p>Bonjour client n°" + idClient + "</p>");
+        out.write("</body>");
+        out.write("</html>");
 	}
 	
 }
