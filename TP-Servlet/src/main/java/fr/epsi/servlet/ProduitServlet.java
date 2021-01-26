@@ -1,8 +1,8 @@
 package fr.epsi.servlet;
 
 import java.io.IOException;
-import java.net.http.HttpClient.Redirect;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,12 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.epsi.entite.Produit;
+import fr.epsi.service.ProduitService;
 
 @WebServlet("/produit")
 public class ProduitServlet extends HttpServlet {
-
+	
+	@EJB
+	private ProduitService service;
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/formProduct.jsp").forward(req, resp);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/FormProduct.jsp").forward(req, resp);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,8 +30,7 @@ public class ProduitServlet extends HttpServlet {
 		p.setNom(nomProduit);
 		p.setCodeBarre(cbProduit);
 		
-		System.out.println(p.getNom());
-		System.out.println(p.getCodeBarre());
+		service.createProduit(p);
 	}
 	
 }
