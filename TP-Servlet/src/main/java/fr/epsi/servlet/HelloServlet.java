@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class HelloServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("client", "sev");
+		String[] clients = {"sev", "mae", "buck"};
+		req.setAttribute("clients", clients);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/hello.jsp").forward(req, resp);
 	}
 	

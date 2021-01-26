@@ -9,6 +9,14 @@
 </head>
 <body>
 	<h3 style='color:red'>Titre</h3>
-	<p>Bonjour <c:out value = "${client}"/></p>
+	<p>Bonjour</p>
+	<table>
+		<tr>Noms</tr>
+		<c:forEach items="${clients}" var="client">
+			<tr>
+				<td><c:out value="${client}"/></td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>
