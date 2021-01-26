@@ -6,7 +6,7 @@
 	version="2.5">
   <display-name>TP-Servlet</display-name>
   
-  <servlet>
+  <!-- <servlet>
   	<servlet-name>HelloServlet</servlet-name>
   	<servlet-class>fr.epsi.servlet.HelloServlet</servlet-class>
   </servlet>
@@ -14,5 +14,5 @@
   <servlet-mapping>
   	<servlet-name>HelloServlet</servlet-name>
   	<url-pattern>/hello</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 </web-app>
