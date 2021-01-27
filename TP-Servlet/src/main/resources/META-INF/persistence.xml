@@ -7,6 +7,8 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	
 	<persistence-unit name="PU">
 		<jta-data-source>java:/DSProduit</jta-data-source>
+		<!-- cette option permet de créer les tables automatiquement -->
+		<!-- par contre ça efface le contenu à chaque lancement de l'appli -->
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 		</properties>
