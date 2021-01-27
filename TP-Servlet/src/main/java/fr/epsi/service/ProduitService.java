@@ -1,15 +1,19 @@
 package fr.epsi.service;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import fr.epsi.entite.Produit;
 
 @Stateless
 public class ProduitService implements IProduitService {
 
+	@PersistenceContext
+	private EntityManager em;
+	
 	public void createProduit(Produit p) {
-		System.out.println(p.getNom());
-		System.out.println(p.getCodeBarre());
+		em.persist(p);
 	}
 
 }
