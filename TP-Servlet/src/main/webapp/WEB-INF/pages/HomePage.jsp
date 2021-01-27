@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,5 +12,6 @@
 		<li><a href="produit">Ajouter un produit</a></li>
 	</ul>
 	<hr>
+	<h2>Home</h2>
 </body>
 </html>
