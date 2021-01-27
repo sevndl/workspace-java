@@ -13,8 +13,8 @@
 	</ul>
 	<hr>
 	<form action="produit" method="post">
-		<label for="nomProduit">Nom produit</label> <input type="text" name="nomProduit">
-		<label for="cbProduit">Code barre</label> <input type="text" name="cbProduit">
+		<label for="nomProduit">Nom produit</label> <input type="text" name="nomProduit"><br>
+		<label for="cbProduit">Code barre</label> <input type="text" name="cbProduit"><br>
 		<input type="submit" value="Valider">
 	</form>
 </body>
