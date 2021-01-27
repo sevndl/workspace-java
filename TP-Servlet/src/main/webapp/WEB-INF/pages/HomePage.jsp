@@ -5,12 +5,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Home</title>
+<style>
+	a {
+		margin: 10px 10px;
+	}
+</style>
 </head>
 <body>
-	<ul>
-		<li><a href="home">Home</a></li>
-		<li><a href="produit">Ajouter un produit</a></li>
-	</ul>
+	<a href="home">Home</a>
+	<a href="produit">Ajouter un produit</a>
 	<hr>
 	<h2>Home</h2>
 </body>

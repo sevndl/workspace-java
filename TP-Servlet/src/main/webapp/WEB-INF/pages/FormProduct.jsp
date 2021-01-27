@@ -5,12 +5,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Web app</title>
+<style>
+	a {
+		margin: 10px 10px;
+	}
+</style>
 </head>
 <body>
-	<ul>
-		<li><a href="home">Home</a></li>
-		<li><a href="produit">Ajouter un produit</a></li>
-	</ul>
+	<a href="home">Home</a>
+	<a href="produit">Ajouter un produit</a>
 	<hr>
 	<form action="produit" method="post">
 		<label for="nomProduit">Nom produit</label> <input type="text" name="nomProduit"><br>
