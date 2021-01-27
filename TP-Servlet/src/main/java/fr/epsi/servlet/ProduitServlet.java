@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.epsi.entite.Produit;
-import fr.epsi.service.ProduitService;
+import fr.epsi.service.IProduitService;
 
 @WebServlet("/produit")
 public class ProduitServlet extends HttpServlet {
 	
 	@EJB
-	private ProduitService service;
+	private IProduitService service;
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/FormProduct.jsp").forward(req, resp);
