@@ -1,9 +1,15 @@
 package fr.epsi.service;
 
+import javax.ejb.Stateless;
+
 import fr.epsi.entite.Produit;
 
-public interface ProduitService {
+@Stateless
+public class ProduitService implements IProduitService {
 
-	void createProduit(Produit p);
-	
+	public void createProduit(Produit p) {
+		System.out.println(p.getNom());
+		System.out.println(p.getCodeBarre());
+	}
+
 }
