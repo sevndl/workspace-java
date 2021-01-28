@@ -10,8 +10,10 @@
 		margin: 10px 10px;
 	}
 </style>
+<%@include file="commons/header.jsp" %>
 </head>
 <body>
+<div class="container">
 	<a href="home">Home</a>
 	<a href="produit">Ajouter un produit</a>
 	<hr>
@@ -20,5 +22,6 @@
 		<label for="cbProduit">Code barre</label> <input type="text" name="cbProduit"><br>
 		<input type="submit" value="Valider">
 	</form>
+</div>
 </body>
 </html>

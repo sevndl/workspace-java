@@ -10,11 +10,14 @@
 		margin: 10px 10px;
 	}
 </style>
+<%@include file="commons/header.jsp" %>
 </head>
 <body>
+<div class="container">
 	<a href="home">Home</a>
 	<a href="produit">Ajouter un produit</a>
 	<hr>
 	<h2>Home</h2>
+</div>
 </body>
 </html>
