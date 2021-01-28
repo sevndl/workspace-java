@@ -25,12 +25,12 @@ public class ProduitServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String nomProduit = req.getParameter("nomProduit");
 		String cbProduit = req.getParameter("cbProduit");
-		
 		Produit p = new Produit();
+		
 		p.setNom(nomProduit);
 		p.setCodeBarre(cbProduit);
-		
 		service.createProduit(p);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/HomePage.jsp").forward(req, resp);
 	}
 	
 }
