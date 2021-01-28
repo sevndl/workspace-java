@@ -3,3 +3,8 @@
 <!DOCTYPE html>
 
 <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
+<style>
+	a {
+		margin: 10px 10px;
+	}
+</style>
