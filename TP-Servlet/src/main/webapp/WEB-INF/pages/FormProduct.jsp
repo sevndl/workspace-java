@@ -10,7 +10,7 @@
 <body>
 <div class="container">
 	<%@include file="commons/nav.jsp" %>
-	<form action="produit" method="post">
+	<form action="produits" method="post">
 		<label for="nomProduit">Nom produit</label> <input type="text" name="nomProduit"><br>
 		<label for="cbProduit">Code barre</label> <input type="text" name="cbProduit"><br>
 		<input type="hidden" name="actionPost" value="formCreate">
