@@ -22,7 +22,6 @@ public class ClientsServlet extends HttpServlet {
 		Client c1 = new Client();
 		c1.setAdresse("adresse 1");
 		c1.setNom("client 1");
-		c1.setAnimaux(null);
 		this.clientService.add(c1);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clients.jsp").forward(req, resp);

@@ -1,5 +1,8 @@
 package fr.epsi.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -18,6 +21,12 @@ public class ArticleRepository implements IArticleRepository {
 	public ArticleRepository(EntityManager em, UserTransaction utx) {
 		this.em = em;
 		this.utx = utx;
+	}
+
+	public List<Article> getAllArticles() {
+		List<Article> articles = new ArrayList<Article>();
+		articles = em.createQuery("select a from Article a", Article.class).getResultList();
+		return articles;
 	}
 	
 	public void add(Article article) {

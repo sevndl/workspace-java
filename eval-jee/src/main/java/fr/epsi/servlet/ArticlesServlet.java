@@ -21,9 +21,11 @@ public class ArticlesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Article a1 = new Article();
 		a1.setNom("article 1");
-		a1.setPrix((double) 10);
+		a1.setPrix((double) 20);
 		a1.setLignesFacture(null);
 		articleService.add(a1);
+		
+		req.setAttribute("articles", articleService.getAllArticles());
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/articles.jsp").forward(req, resp);
 	}

@@ -1,5 +1,7 @@
 package fr.epsi.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -22,9 +24,15 @@ public class ArticleService implements IArticleService {
 	@Resource
 	private UserTransaction utx;
 	
+
+	public List<Article> getAllArticles() {
+		IArticleRepository dao = new ArticleRepository(em, utx);
+		return dao.getAllArticles();
+	}	
+	
 	public void add(Article article) {
 		IArticleRepository dao = new ArticleRepository(em, utx);
 		dao.add(article);
-	}	
+	}
 
 }
