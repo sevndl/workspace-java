@@ -22,7 +22,6 @@ public class Facture {
 	private Double prix;
 	
 	@ManyToOne
-	@JoinColumn(name = "client_id")
 	private Client client;
 	
 	@OneToMany(mappedBy = "facture")

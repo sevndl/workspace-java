@@ -17,11 +17,9 @@ public class LigneFacture {
 	private Double prix;
 	
 	@ManyToOne
-	@JoinColumn(name = "facture_id")
 	private Facture facture;
 	
 	@ManyToOne
-	@JoinColumn(name = "article_id")
 	private Article article;
 	
 	public Long getQte() {

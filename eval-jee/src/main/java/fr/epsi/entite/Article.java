@@ -17,7 +17,7 @@ public class Article {
 	private String nom;
 	private Double prix;
 	
-	@OneToMany(mappedBy = "article_id")
+	@OneToMany(mappedBy = "article")
 	private List<LigneFacture> lignesFacture;
 	
 	public String getNom() {
