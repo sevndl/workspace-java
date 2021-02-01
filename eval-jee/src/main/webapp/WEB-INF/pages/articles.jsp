@@ -7,7 +7,7 @@
 <%@include file="commons/title.jsp"%>
 </head>
 <body>
-	<h2>Facturation</h2>
+	<h2>Articles</h2>
 	<%@include file="commons/header.jsp"%>
 </body>
 </html>
