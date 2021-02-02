@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix = "fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
 		<c:forEach items="${factures}" var="facture">
 			<tr>
 				<td><c:out value="${facture.getNumero()}"/></td>
-				<td><c:out value="${facture.getDate()}"/></td>
+				<td><fmt:formatDate pattern = "dd/MM/yyyy" value="${facture.getDate()}"/></td>
 				<td><c:out value="${facture.getPrix()}"/></td>
 			</tr>
 		</c:forEach>

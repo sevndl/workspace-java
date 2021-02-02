@@ -30,14 +30,22 @@ public class ClientsServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String nom = req.getParameter("nom");
-		String adresse= req.getParameter("adresse");
-		
-		Client nouveauClient = new Client();
-		nouveauClient.setNom(nom);
-		nouveauClient.setAdresse(adresse);
-		clientService.add(nouveauClient);
-		resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/clients?action=liste");
+		try {
+			String nom = req.getParameter("nom");
+			String adresse= req.getParameter("adresse");
+			
+			if (!adresse.matches("^[0-9]{1,4}\\ [\\ \\-a-zA-Z]+[0-9]{5}\\ [\\ \\-a-zA-Z]+$")) {
+				throw new IllegalArgumentException();
+			}
+			
+			Client nouveauClient = new Client();
+			nouveauClient.setNom(nom);
+			nouveauClient.setAdresse(adresse);
+			clientService.add(nouveauClient);			
+			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/clients?action=liste");	
+		} catch (IllegalArgumentException e) {
+			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/clients?action=ajouter");			
+		}
 	}
 	
 }

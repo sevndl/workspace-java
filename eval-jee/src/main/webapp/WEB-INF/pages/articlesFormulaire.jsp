@@ -11,7 +11,7 @@
 	<%@include file="commons/header.jsp"%>
 	<form action="articles?action=ajouter" method="post">
 		<input type="text" name="nom" placeholder="Nom de l'article"/>
-		<input type="text" name="prix" placeholder="Prix de l'article"/>
+		<input type="number" name="prix" placeholder="Prix de l'article"/>
 		<br>
 		<input type="submit" value="Ajouter"/>
 	</form>

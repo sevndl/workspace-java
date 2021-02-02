@@ -34,22 +34,34 @@ public class FacturesServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH);
 		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH);
 			Facture nouvelleFacture = new Facture();
 			String numero = req.getParameter("numero");
 			Double prix = Double.parseDouble(req.getParameter("prix"));
 			String dateStr = req.getParameter("dateStr");
 			Date date = formatter.parse(dateStr);
+			
+			if (!date.after(new Date(System.currentTimeMillis()-24*60*60*1000))) {
+				throw new IllegalArgumentException();
+			}
+			
+			if (prix < 0) {
+				throw new IllegalArgumentException();
+			}
+			
 			nouvelleFacture.setNumero(numero);
 			nouvelleFacture.setDate(date);
 			nouvelleFacture.setPrix(prix);
 			factureService.add(nouvelleFacture);
+			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=liste");			
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}		
+			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=ajouter");			
+		} catch (IllegalArgumentException e) {
+			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=ajouter");			
+		}
 		
-		resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=liste");
 	}
 	
 }
