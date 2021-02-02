@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import fr.epsi.entite.Article;
 import fr.epsi.entite.Client;
 import fr.epsi.entite.Facture;
+import fr.epsi.entite.LigneFacture;
 import fr.epsi.service.IArticleService;
 import fr.epsi.service.IClientService;
 import fr.epsi.service.IFactureService;
+import fr.epsi.service.ILigneFactureService;
 
 @WebServlet("/factures")
 public class FacturesServlet extends HttpServlet {
@@ -32,6 +34,9 @@ public class FacturesServlet extends HttpServlet {
 	
 	@EJB
 	private IArticleService articleService;
+	
+	@EJB
+	private ILigneFactureService ligneFactureService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,6 +58,10 @@ public class FacturesServlet extends HttpServlet {
 			String numero = req.getParameter("numero");
 			Double prix = (double) 0;
 			List<Facture> allFactures = factureService.getAllFactures();
+			LigneFacture lf1 = new LigneFacture();
+			LigneFacture lf2 = new LigneFacture();
+			LigneFacture lf3 = new LigneFacture();
+			LigneFacture lf4 = new LigneFacture();
 			
 			if (numero.isEmpty()) {
 				throw new IllegalArgumentException();
@@ -85,49 +94,65 @@ public class FacturesServlet extends HttpServlet {
 			String article1 = req.getParameter("article1");
 			String qte1Str = req.getParameter("qte1");
 			if (qte1Str.isEmpty()) { qte1Str = "1"; }
-			if (Integer.parseInt(qte1Str) < 0) {
+			Long qte1 = Long.parseLong(qte1Str);
+			if (qte1 < 0) {
 				throw new IllegalArgumentException();
 			} 
-			int qte1 = Integer.parseInt(qte1Str);
 			if (!article1.isEmpty()) {
 				Article a = articleService.getArticleById(Long.parseLong(article1));
 				prix += a.getPrix() * qte1;
+				lf1.setFacture(nouvelleFacture);
+				lf1.setArticle(a);
+				lf1.setQte(qte1);
+				lf1.setPrix(a.getPrix() * qte1);
 			}			
 			
 			String article2 = req.getParameter("article2");
 			String qte2Str = req.getParameter("qte2");
 			if (qte2Str.isEmpty()) { qte2Str = "1"; }
-			if (Integer.parseInt(qte2Str) < 0) {
+			Long qte2 = Long.parseLong(qte2Str);
+			if (qte2 < 0) {
 				throw new IllegalArgumentException();
 			} 
-			int qte2 = Integer.parseInt(qte2Str);
 			if (!article2.isEmpty()) {
 				Article a = articleService.getArticleById(Long.parseLong(article2));
 				prix += a.getPrix() * qte2;
+				lf2.setFacture(nouvelleFacture);
+				lf2.setArticle(a);
+				lf2.setQte(qte2);
+				lf2.setPrix(a.getPrix() * qte2);
 			}			
 			
 			String article3 = req.getParameter("article3");
 			String qte3Str = req.getParameter("qte3");
 			if (qte3Str.isEmpty()) { qte3Str = "1"; }
-			if (Integer.parseInt(qte3Str) < 0) {
+			Long qte3 = Long.parseLong(qte3Str);
+			if (qte3 < 0) {
 				throw new IllegalArgumentException();
 			} 
-			int qte3 = Integer.parseInt(qte3Str);
 			if (!article3.isEmpty()) {
 				Article a = articleService.getArticleById(Long.parseLong(article3));
 				prix += a.getPrix() * qte3;
+				lf3.setFacture(nouvelleFacture);
+				lf3.setArticle(a);
+				lf3.setQte(qte3);
+				lf3.setPrix(a.getPrix() * qte3);
 			}			
 			
 			String article4 = req.getParameter("article4");
 			String qte4Str = req.getParameter("qte4");
 			if (qte4Str.isEmpty()) { qte4Str = "1"; }
+			Long qte4 = Long.parseLong(qte4Str);
 			if (Integer.parseInt(qte4Str) < 0) {
 				throw new IllegalArgumentException();
 			} 
-			int qte4 = Integer.parseInt(qte4Str);
 			if (!article4.isEmpty()) {
 				Article a = articleService.getArticleById(Long.parseLong(article4));
 				prix += a.getPrix() * qte4;
+				lf4.setFacture(nouvelleFacture);
+				lf4.setArticle(a);
+				lf4.setQte(qte4);
+				lf4.setPrix(a.getPrix() * qte4);
 			}
 			
 			if (qte1Str.isEmpty() && qte2Str.isEmpty() && qte3Str.isEmpty() && qte4Str.isEmpty()) {
@@ -137,6 +162,12 @@ public class FacturesServlet extends HttpServlet {
 			nouvelleFacture.setNumero(numero);
 			nouvelleFacture.setPrix(prix);
 			factureService.add(nouvelleFacture);
+			
+			if (!qte1Str.isEmpty() && !article1.isEmpty()) { ligneFactureService.add(lf1); }
+			if (!qte2Str.isEmpty() && !article2.isEmpty()) { ligneFactureService.add(lf2); }
+			if (!qte3Str.isEmpty() && !article3.isEmpty()) { ligneFactureService.add(lf3); }
+			if (!qte4Str.isEmpty() && !article4.isEmpty()) { ligneFactureService.add(lf4); }
+			
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=liste");			
 		} catch (ParseException e) {
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=ajouter");			
