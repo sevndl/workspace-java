@@ -1,5 +1,7 @@
 package fr.epsi.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -42,9 +44,9 @@ public class LigneFactureRepository implements ILigneFactureRepository {
 		}
 	}
 
-	public LigneFacture getLigneFactureByFactureId(Long id) {
-		return em.createQuery("select lf from LigneFacture lf where lf.facture = :id", LigneFacture.class)
+	public List<LigneFacture> getLigneFactureByFactureId(Long id) {
+		return em.createQuery("select lf from LigneFacture lf join lf.facture f where f.id = :id", LigneFacture.class)
 				 .setParameter("id", id)
-				 .getSingleResult();
+				 .getResultList();
 	}
 }

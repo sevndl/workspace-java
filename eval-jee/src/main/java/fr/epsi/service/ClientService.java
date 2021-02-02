@@ -40,4 +40,9 @@ public class ClientService implements IClientService {
 		dao.add(client);
 	}
 
+	public Client getClientByFactureId(Long id) {
+		IClientRepository dao = new ClientRepository(em, utx);
+		return dao.getClientByFactureId(id);
+	}
+
 }

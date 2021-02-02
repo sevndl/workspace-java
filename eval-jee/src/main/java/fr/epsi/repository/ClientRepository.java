@@ -55,4 +55,10 @@ public class ClientRepository implements IClientRepository {
 		}
 	}
 
+	public Client getClientByFactureId(Long id) {
+		return em.createQuery("select c from Client c join c.factures f where f.id = :id", Client.class)
+				 .setParameter("id", id)
+				 .getSingleResult();
+	}
+
 }

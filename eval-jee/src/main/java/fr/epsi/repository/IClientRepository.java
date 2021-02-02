@@ -8,6 +8,7 @@ import fr.epsi.entite.Facture;
 public interface IClientRepository {
 	
 	Client getClientById(Long id);
+	Client getClientByFactureId(Long id);
 	List<Client> getAllClients();
 	void add(Client client);
 

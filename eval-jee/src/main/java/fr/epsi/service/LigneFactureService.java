@@ -1,5 +1,7 @@
 package fr.epsi.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -27,7 +29,7 @@ public class LigneFactureService implements ILigneFactureService {
 		dao.add(ligneFacture);
 	}	
 
-	public LigneFacture getLigneFactureByFactureId(Long id) {
+	public List<LigneFacture> getLigneFactureByFactureId(Long id) {
 		ILigneFactureRepository dao = new LigneFactureRepository(em, utx);
 		return dao.getLigneFactureByFactureId(id);
 	}

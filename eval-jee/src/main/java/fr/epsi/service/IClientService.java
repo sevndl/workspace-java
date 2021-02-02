@@ -9,6 +9,7 @@ public interface IClientService {
 	
 	List<Client> getAllClients();
 	Client getClientById(Long id);
+	Client getClientByFactureId(Long id);
 	void add(Client client);
 
 }
