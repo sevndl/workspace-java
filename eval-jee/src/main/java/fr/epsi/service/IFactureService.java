@@ -7,6 +7,7 @@ import fr.epsi.entite.Facture;
 public interface IFactureService {
 	
 	List<Facture> getAllFactures();
+	Facture getFactureById(Long id);
 	void add(Facture facture);
 
 }

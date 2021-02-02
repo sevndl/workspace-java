@@ -35,6 +35,11 @@ public class FactureService implements IFactureService {
 	public void add(Facture facture) {
 		IFactureRepository dao = new FactureRepository(em, utx);
 		dao.add(facture);
+	}
+
+	public Facture getFactureById(Long id) {
+		IFactureRepository dao = new FactureRepository(em, utx);
+		return dao.getFactureById(id);
 	}	
 
 }

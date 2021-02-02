@@ -47,6 +47,10 @@ public class FacturesServlet extends HttpServlet {
 			req.setAttribute("clients", clientService.getAllClients());
 			req.setAttribute("articles", articleService.getAllArticles());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/facturesFormulaire.jsp").forward(req, resp);	
+		} else if (req.getParameter("action").equals("detail")) {
+			Long id = Long.parseLong(req.getParameter("id"));
+			req.setAttribute("facture", factureService.getFactureById(id));
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/factureDetail.jsp").forward(req, resp);
 		}
 	}
 	

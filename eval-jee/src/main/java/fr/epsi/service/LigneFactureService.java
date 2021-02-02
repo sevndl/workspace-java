@@ -27,4 +27,9 @@ public class LigneFactureService implements ILigneFactureService {
 		dao.add(ligneFacture);
 	}	
 
+	public LigneFacture getLigneFactureByFactureId(Long id) {
+		ILigneFactureRepository dao = new LigneFactureRepository(em, utx);
+		return dao.getLigneFactureByFactureId(id);
+	}
+	
 }

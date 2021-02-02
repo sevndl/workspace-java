@@ -47,4 +47,10 @@ public class FactureRepository implements IFactureRepository {
 			e.printStackTrace();
 		}
 	}
+
+	public Facture getFactureById(Long id) {
+		return em.createQuery("select f from Facture f where f.id = :id", Facture.class)
+				 .setParameter("id", id)
+				 .getSingleResult();
+	}
 }

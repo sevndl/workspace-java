@@ -41,4 +41,10 @@ public class LigneFactureRepository implements ILigneFactureRepository {
 			e.printStackTrace();
 		}
 	}
+
+	public LigneFacture getLigneFactureByFactureId(Long id) {
+		return em.createQuery("select lf from LigneFacture lf where lf.facture = :id", LigneFacture.class)
+				 .setParameter("id", id)
+				 .getSingleResult();
+	}
 }
