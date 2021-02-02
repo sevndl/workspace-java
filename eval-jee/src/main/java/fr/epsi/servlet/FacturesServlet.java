@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.epsi.entite.Article;
 import fr.epsi.entite.Client;
 import fr.epsi.entite.Facture;
+import fr.epsi.service.IArticleService;
 import fr.epsi.service.IClientService;
 import fr.epsi.service.IFactureService;
 
@@ -27,6 +29,9 @@ public class FacturesServlet extends HttpServlet {
 	
 	@EJB
 	private IClientService clientService;
+	
+	@EJB
+	private IArticleService articleService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +40,7 @@ public class FacturesServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/factures.jsp").forward(req, resp);			
 		} else if (req.getParameter("action").equals("ajouter")) {
 			req.setAttribute("clients", clientService.getAllClients());
+			req.setAttribute("articles", articleService.getAllArticles());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/facturesFormulaire.jsp").forward(req, resp);	
 		}
 	}
@@ -45,24 +51,47 @@ public class FacturesServlet extends HttpServlet {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH);
 			Facture nouvelleFacture = new Facture();
 			String numero = req.getParameter("numero");
-			Double prix = Double.parseDouble(req.getParameter("prix"));
-			if (!req.getParameter("client").equals(null)) {
+			Double prix = (double) 0;
+			
+			if (!req.getParameter("client").equals("")) {
 				Client client = clientService.getClientById(Long.parseLong(req.getParameter("client")));
 				nouvelleFacture.setClient(client);				
 			}
+			
 			String dateStr = req.getParameter("dateStr");
-			Date date = formatter.parse(dateStr);
+			if (!dateStr.isEmpty()) {
+				Date date = formatter.parse(dateStr);				
+				if (!date.after(new Date(System.currentTimeMillis()-24*60*60*1000))) {
+					throw new IllegalArgumentException();
+				}
+				nouvelleFacture.setDate(date);
+			}			
 			
-			if (!date.after(new Date(System.currentTimeMillis()-24*60*60*1000))) {
-				throw new IllegalArgumentException();
-			}
+			String article1 = req.getParameter("article1");
+			if (!article1.isEmpty()) {
+				Article a = articleService.getArticleById(Long.parseLong(article1));
+				prix += a.getPrix();
+			}			
 			
-			if (prix < 0) {
-				throw new IllegalArgumentException();
+			String article2 = req.getParameter("article2");
+			if (!article2.isEmpty()) {
+				Article a = articleService.getArticleById(Long.parseLong(article2));
+				prix += a.getPrix();
+			}			
+			
+			String article3 = req.getParameter("article3");
+			if (!article3.isEmpty()) {
+				Article a = articleService.getArticleById(Long.parseLong(article3));
+				prix += a.getPrix();
+			}			
+			
+			String article4 = req.getParameter("article4");
+			if (!article4.isEmpty()) {
+				Article a = articleService.getArticleById(Long.parseLong(article4));
+				prix += a.getPrix();
 			}
 			
 			nouvelleFacture.setNumero(numero);
-			nouvelleFacture.setDate(date);
 			nouvelleFacture.setPrix(prix);
 			factureService.add(nouvelleFacture);
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=liste");			

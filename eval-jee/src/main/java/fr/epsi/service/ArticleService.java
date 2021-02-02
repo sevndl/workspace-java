@@ -24,7 +24,11 @@ public class ArticleService implements IArticleService {
 	@Resource
 	private UserTransaction utx;
 	
-
+	public Article getArticleById(Long id) {
+		IArticleRepository dao = new ArticleRepository(em, utx);
+		return dao.getArticleById(id);
+	}
+	
 	public List<Article> getAllArticles() {
 		IArticleRepository dao = new ArticleRepository(em, utx);
 		return dao.getAllArticles();

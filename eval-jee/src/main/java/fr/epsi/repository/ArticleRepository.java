@@ -22,6 +22,12 @@ public class ArticleRepository implements IArticleRepository {
 		this.em = em;
 		this.utx = utx;
 	}
+	
+	public Article getArticleById(Long id) {
+		return em.createQuery("select a from Article a where a.id = :id", Article.class)
+				 .setParameter("id", id)
+				 .getSingleResult();
+	}
 
 	public List<Article> getAllArticles() {
 		List<Article> articles = new ArrayList<Article>();
