@@ -53,7 +53,7 @@ public class FacturesServlet extends HttpServlet {
 			String numero = req.getParameter("numero");
 			Double prix = (double) 0;
 			
-			if (!req.getParameter("client").equals("")) {
+			if (!req.getParameter("client").isEmpty()) {
 				Client client = clientService.getClientById(Long.parseLong(req.getParameter("client")));
 				nouvelleFacture.setClient(client);				
 			}
@@ -68,27 +68,51 @@ public class FacturesServlet extends HttpServlet {
 			}			
 			
 			String article1 = req.getParameter("article1");
+			String qte1Str = req.getParameter("qte1");
+			if (qte1Str.isEmpty()) { qte1Str = "1"; }
+			if (Integer.parseInt(qte1Str) < 0) {
+				throw new IllegalArgumentException();
+			} 
+			int qte1 = Integer.parseInt(qte1Str);
 			if (!article1.isEmpty()) {
 				Article a = articleService.getArticleById(Long.parseLong(article1));
-				prix += a.getPrix();
+				prix += a.getPrix() * qte1;
 			}			
 			
 			String article2 = req.getParameter("article2");
+			String qte2Str = req.getParameter("qte2");
+			if (qte2Str.isEmpty()) { qte2Str = "1"; }
+			if (Integer.parseInt(qte2Str) < 0) {
+				throw new IllegalArgumentException();
+			} 
+			int qte2 = Integer.parseInt(qte2Str);
 			if (!article2.isEmpty()) {
 				Article a = articleService.getArticleById(Long.parseLong(article2));
-				prix += a.getPrix();
+				prix += a.getPrix() * qte2;
 			}			
 			
 			String article3 = req.getParameter("article3");
+			String qte3Str = req.getParameter("qte3");
+			if (qte3Str.isEmpty()) { qte3Str = "1"; }
+			if (Integer.parseInt(qte3Str) < 0) {
+				throw new IllegalArgumentException();
+			} 
+			int qte3 = Integer.parseInt(qte3Str);
 			if (!article3.isEmpty()) {
 				Article a = articleService.getArticleById(Long.parseLong(article3));
-				prix += a.getPrix();
+				prix += a.getPrix() * qte3;
 			}			
 			
 			String article4 = req.getParameter("article4");
+			String qte4Str = req.getParameter("qte4");
+			if (qte4Str.isEmpty()) { qte4Str = "1"; }
+			if (Integer.parseInt(qte4Str) < 0) {
+				throw new IllegalArgumentException();
+			} 
+			int qte4 = Integer.parseInt(qte4Str);
 			if (!article4.isEmpty()) {
 				Article a = articleService.getArticleById(Long.parseLong(article4));
-				prix += a.getPrix();
+				prix += a.getPrix() * qte4;
 			}
 			
 			nouvelleFacture.setNumero(numero);
