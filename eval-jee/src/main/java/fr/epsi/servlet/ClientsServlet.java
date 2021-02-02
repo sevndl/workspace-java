@@ -34,6 +34,10 @@ public class ClientsServlet extends HttpServlet {
 			String nom = req.getParameter("nom");
 			String adresse= req.getParameter("adresse");
 			
+			if (nom.isEmpty()) {
+				throw new IllegalArgumentException();
+			}
+			
 			if (!adresse.matches("^[0-9]{1,4}\\ [\\ \\-a-zA-Z]+[0-9]{5}\\ [\\ \\-a-zA-Z]+$")) {
 				throw new IllegalArgumentException();
 			}

@@ -6,8 +6,8 @@ import fr.epsi.entite.Article;
 
 public interface IArticleService {
 	
-	List<Article> getAllArticles();
 	void add(Article article);
+	List<Article> getAllArticles();
 	Article getArticleById(Long parseLong);
 
 }

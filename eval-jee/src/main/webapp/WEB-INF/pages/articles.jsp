@@ -21,6 +21,13 @@
 				<td><c:out value="${article.getId()}"/></td>
 				<td><c:out value="${article.getNom()}"/></td>
 				<td><c:out value="${article.getPrix()}"/></td>
+				<!-- TODO : supprimer en cascade -->
+				<%-- <td>
+	      	<form method="post" action="articles?action=supprimer">
+	      		<input type="hidden" name="idArticle" value="<c:out value="${article.getId()}"/>"/>
+	      		<input type="submit" value="Supprimer"/>
+	      	</form>
+				</td> --%>
 			</tr>
 		</c:forEach>
 	</table>

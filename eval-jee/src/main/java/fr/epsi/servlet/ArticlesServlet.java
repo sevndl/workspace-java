@@ -30,21 +30,27 @@ public class ArticlesServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			String nom = req.getParameter("nom");
-			Double prix = Double.parseDouble(req.getParameter("prix"));
-			
-			if (prix < 0) {
-				throw new IllegalArgumentException();
-			}
-			
-			Article nouvelArticle = new Article();
-			nouvelArticle.setNom(nom);
-			nouvelArticle.setPrix(prix);
-			articleService.add(nouvelArticle);
-			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/articles?action=liste");
-		} catch(IllegalArgumentException e) {
-			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/articles?action=ajouter");
+		if (req.getParameter("action").equals("ajouter")) {
+			try {
+				String nom = req.getParameter("nom");
+				Double prix = Double.parseDouble(req.getParameter("prix"));
+				
+				if (nom.isEmpty()) {
+					throw new IllegalArgumentException();
+				}
+				
+				if (prix < 0) {
+					throw new IllegalArgumentException();
+				}
+				
+				Article nouvelArticle = new Article();
+				nouvelArticle.setNom(nom);
+				nouvelArticle.setPrix(prix);
+				articleService.add(nouvelArticle);
+				resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/articles?action=liste");
+			} catch(IllegalArgumentException e) {
+				resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/articles?action=ajouter");
+			}			
 		}
 	}
 	

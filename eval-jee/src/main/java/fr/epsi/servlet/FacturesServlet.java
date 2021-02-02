@@ -53,9 +53,15 @@ public class FacturesServlet extends HttpServlet {
 			String numero = req.getParameter("numero");
 			Double prix = (double) 0;
 			
+			if (numero.isEmpty()) {
+				throw new IllegalArgumentException();
+			}
+			
 			if (!req.getParameter("client").isEmpty()) {
 				Client client = clientService.getClientById(Long.parseLong(req.getParameter("client")));
 				nouvelleFacture.setClient(client);				
+			} else {
+				throw new IllegalArgumentException();
 			}
 			
 			String dateStr = req.getParameter("dateStr");
@@ -65,7 +71,9 @@ public class FacturesServlet extends HttpServlet {
 					throw new IllegalArgumentException();
 				}
 				nouvelleFacture.setDate(date);
-			}			
+			} else {
+				throw new IllegalArgumentException();
+			}
 			
 			String article1 = req.getParameter("article1");
 			String qte1Str = req.getParameter("qte1");
@@ -115,12 +123,15 @@ public class FacturesServlet extends HttpServlet {
 				prix += a.getPrix() * qte4;
 			}
 			
+			if (qte1Str.isEmpty() && qte2Str.isEmpty() && qte3Str.isEmpty() && qte4Str.isEmpty()) {
+				throw new IllegalArgumentException();
+			}
+			
 			nouvelleFacture.setNumero(numero);
 			nouvelleFacture.setPrix(prix);
 			factureService.add(nouvelleFacture);
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=liste");			
 		} catch (ParseException e) {
-			e.printStackTrace();
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=ajouter");			
 		} catch (IllegalArgumentException e) {
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=ajouter");			

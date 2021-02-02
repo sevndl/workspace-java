@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Facture {
@@ -20,11 +21,15 @@ public class Facture {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Temporal(TemporalType.DATE)
+	@NotNull(message = "Champ obligatoire")
 	private Date date;
+	@NotNull(message = "Champ obligatoire")
 	private String numero;
+	@NotNull(message = "Champ obligatoire")
 	private Double prix;
 	
 	@ManyToOne
+	@NotNull(message = "Champ obligatoire")
 	private Client client;
 	
 	@OneToMany(mappedBy = "facture")
