@@ -1,6 +1,7 @@
 package fr.epsi.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -33,9 +34,16 @@ public class ClientsServlet extends HttpServlet {
 		try {
 			String nom = req.getParameter("nom");
 			String adresse= req.getParameter("adresse");
+			List<Client> allClients = clientService.getAllClients();
 			
 			if (nom.isEmpty()) {
 				throw new IllegalArgumentException();
+			}
+			
+			for (Client c : allClients) {
+				if (nom.equals(c.getNom())) {
+					throw new IllegalArgumentException();
+				}
 			}
 			
 			if (!adresse.matches("^[0-9]{1,4}\\ [\\ \\-a-zA-Z]+[0-9]{5}\\ [\\ \\-a-zA-Z]+$")) {

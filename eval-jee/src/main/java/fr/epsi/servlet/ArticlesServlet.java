@@ -1,6 +1,7 @@
 package fr.epsi.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -34,9 +35,16 @@ public class ArticlesServlet extends HttpServlet {
 			try {
 				String nom = req.getParameter("nom");
 				Double prix = Double.parseDouble(req.getParameter("prix"));
+				List<Article> allArticles = articleService.getAllArticles();
 				
 				if (nom.isEmpty()) {
 					throw new IllegalArgumentException();
+				}
+				
+				for (Article a : allArticles) {
+					if (nom.equals(a.getNom())) {
+						throw new IllegalArgumentException();
+					}					
 				}
 				
 				if (prix < 0) {

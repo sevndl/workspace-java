@@ -52,9 +52,16 @@ public class FacturesServlet extends HttpServlet {
 			Facture nouvelleFacture = new Facture();
 			String numero = req.getParameter("numero");
 			Double prix = (double) 0;
+			List<Facture> allFactures = factureService.getAllFactures();
 			
 			if (numero.isEmpty()) {
 				throw new IllegalArgumentException();
+			}
+			
+			for (Facture f : allFactures) {
+				if (numero.equals(f.getNumero())) {
+					throw new IllegalArgumentException();
+				}
 			}
 			
 			if (!req.getParameter("client").isEmpty()) {
