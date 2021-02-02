@@ -11,6 +11,7 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import fr.epsi.entite.Client;
+import fr.epsi.entite.Facture;
 
 public class ClientRepository implements IClientRepository {
 	
@@ -24,6 +25,12 @@ public class ClientRepository implements IClientRepository {
 
 	public List<Client> getAllClients() {
 		return em.createQuery("select c from Client c", Client.class).getResultList();
+	}
+	
+	public Client getClientById(Long id) {
+		return em.createQuery("select c from Client c where c.id = :id", Client.class)
+				 .setParameter("id", id)
+				 .getSingleResult();
 	}
 
 	public void add(Client client) {

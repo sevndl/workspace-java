@@ -15,12 +15,14 @@
 		<tr>
 			<td>N°</td>
 			<td>Date</td>
+			<td>Client</td>
 			<td>Prix (en euros)</td>
 		</tr>
 		<c:forEach items="${factures}" var="facture">
 			<tr>
 				<td><c:out value="${facture.getNumero()}"/></td>
 				<td><fmt:formatDate pattern = "dd/MM/yyyy" value="${facture.getDate()}"/></td>
+				<td><c:out value="${facture.getClient().getNom()}"/></td>
 				<td><c:out value="${facture.getPrix()}"/></td>
 			</tr>
 		</c:forEach>

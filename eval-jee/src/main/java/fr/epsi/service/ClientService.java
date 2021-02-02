@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 
 import fr.epsi.entite.Client;
+import fr.epsi.entite.Facture;
 import fr.epsi.repository.ClientRepository;
 import fr.epsi.repository.IClientRepository;
 
@@ -24,6 +25,11 @@ public class ClientService implements IClientService {
 	@Resource
 	private UserTransaction utx;
 
+	public Client getClientById(Long id) {
+		IClientRepository dao = new ClientRepository(em, utx);
+		return dao.getClientById(id);
+	}
+	
 	public List<Client> getAllClients() {
 		IClientRepository dao = new ClientRepository(em, utx);
 		return dao.getAllClients();
