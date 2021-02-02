@@ -1,5 +1,7 @@
 package fr.epsi.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -18,6 +20,10 @@ public class ClientRepository implements IClientRepository {
 	public ClientRepository(EntityManager em, UserTransaction utx) {
 		this.em = em;
 		this.utx = utx;
+	}
+
+	public List<Client> getAllClients() {
+		return em.createQuery("select c from Client c", Client.class).getResultList();
 	}
 
 	public void add(Client client) {

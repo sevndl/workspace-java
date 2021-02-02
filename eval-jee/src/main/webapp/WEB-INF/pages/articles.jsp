@@ -24,5 +24,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<hr>
+	<a href="articles?action=ajouter">Ajouter un article</a>
 </body>
 </html>

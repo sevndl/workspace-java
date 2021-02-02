@@ -1,5 +1,7 @@
 package fr.epsi.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -8,6 +10,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import fr.epsi.entite.Client;
 import fr.epsi.entite.Facture;
 
 public class FactureRepository implements IFactureRepository {
@@ -17,6 +20,10 @@ public class FactureRepository implements IFactureRepository {
 	public FactureRepository(EntityManager em, UserTransaction utx) {
 		this.em = em;
 		this.utx = utx;
+	}
+
+	public List<Facture> getAllFactures() {
+		return em.createQuery("select f from Facture f", Facture.class).getResultList();
 	}
 	
 	public void add(Facture facture) {

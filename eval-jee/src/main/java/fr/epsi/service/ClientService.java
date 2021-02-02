@@ -1,5 +1,7 @@
 package fr.epsi.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -21,10 +23,15 @@ public class ClientService implements IClientService {
 
 	@Resource
 	private UserTransaction utx;
+
+	public List<Client> getAllClients() {
+		IClientRepository dao = new ClientRepository(em, utx);
+		return dao.getAllClients();
+	}
 	
 	public void add(Client client) {
 		IClientRepository dao = new ClientRepository(em, utx);
 		dao.add(client);
-	}	
+	}
 
 }

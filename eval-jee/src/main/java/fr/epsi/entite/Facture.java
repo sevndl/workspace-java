@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Facture {
@@ -17,6 +19,7 @@ public class Facture {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	private String numero;
 	private Double prix;
@@ -26,6 +29,10 @@ public class Facture {
 	
 	@OneToMany(mappedBy = "facture")
 	private List<LigneFacture> lignesfacture;
+	
+	public Long getId() {
+		return this.id;
+	}
 	
 	public String getNumero() {
 		return this.numero;
@@ -39,7 +46,7 @@ public class Facture {
 		return this.prix;
 	}
 	
-	public void setprix(Double prix) {
+	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
 

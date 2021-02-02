@@ -20,6 +20,10 @@ public class Client {
 	@OneToMany(mappedBy = "client")
 	private List<Facture> factures;
 	
+	public Long getId() {
+		return this.id;
+	}
+	
 	public String getNom() {
 		return this.nom;
 	}
@@ -40,7 +44,7 @@ public class Client {
 		return this.factures;
 	}
 	
-	public void setAnimaux(List<Facture> factures) {
+	public void setFactures(List<Facture> factures) {
 		this.factures = factures;
 	}
 

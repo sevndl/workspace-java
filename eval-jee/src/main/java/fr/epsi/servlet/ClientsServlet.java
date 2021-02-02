@@ -17,14 +17,27 @@ public class ClientsServlet extends HttpServlet {
 
 	@EJB
 	private IClientService clientService;
-	
+
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Client c1 = new Client();
-		c1.setAdresse("adresse 1");
-		c1.setNom("client 1");
-		this.clientService.add(c1);
+		if (req.getParameter("action").equals("liste")) {
+			req.setAttribute("clients", clientService.getAllClients());
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clients.jsp").forward(req, resp);			
+		} else if (req.getParameter("action").equals("ajouter")) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clientsFormulaire.jsp").forward(req, resp);	
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String nom = req.getParameter("nom");
+		String adresse= req.getParameter("adresse");
 		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clients.jsp").forward(req, resp);
+		Client nouveauClient = new Client();
+		nouveauClient.setNom(nom);
+		nouveauClient.setAdresse(adresse);
+		clientService.add(nouveauClient);
+		resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/clients?action=liste");
 	}
 	
 }
