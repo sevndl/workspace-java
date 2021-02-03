@@ -6,32 +6,39 @@
 <head>
 <meta charset="ISO-8859-1">
 <%@include file="commons/title.jsp"%>
+<%@include file="commons/style.jsp"%>
 </head>
 <body>
-	<h2>Articles</h2>
 	<%@include file="commons/header.jsp"%>
-	<table>
-		<tr>
-			<td>N°</td>
-			<td>Nom</td>
-			<td>Prix (en euros)</td>
-		</tr>
-		<c:forEach items="${articles}" var="article">
-			<tr>
-				<td><c:out value="${article.getId()}"/></td>
-				<td><c:out value="${article.getNom()}"/></td>
-				<td><c:out value="${article.getPrix()}"/></td>
-				<!-- TODO : supprimer en cascade -->
-				<%-- <td>
-	      	<form method="post" action="articles?action=supprimer">
-	      		<input type="hidden" name="idArticle" value="<c:out value="${article.getId()}"/>"/>
-	      		<input type="submit" value="Supprimer"/>
-	      	</form>
-				</td> --%>
-			</tr>
-		</c:forEach>
-	</table>
-	<hr>
-	<a href="articles?action=ajouter">Ajouter un article</a>
+	<h2>Articles</h2>
+	<div class="container">
+		<table class="centered">
+			<thead>
+				<tr>
+					<th>N°</th>
+					<th>Nom</th>
+					<th>Prix (en euros)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${articles}" var="article">
+					<tr>
+						<td><c:out value="${article.getId()}"/></td>
+						<td><c:out value="${article.getNom()}"/></td>
+						<td><c:out value="${article.getPrix()}"/></td>
+						<!-- TODO : supprimer en cascade -->
+						<%-- <td>
+			      	<form method="post" action="articles?action=supprimer">
+			      		<input type="hidden" name="idArticle" value="<c:out value="${article.getId()}"/>"/>
+			      		<input type="submit" value="Supprimer"/>
+			      	</form>
+						</td> --%>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<br>
+		<a class="waves-effect waves-light btn right" href="articles?action=ajouter">Ajouter un article</a>
+	</div>
 </body>
 </html>
