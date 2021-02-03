@@ -12,12 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.epsi.entite.Client;
 import fr.epsi.service.IClientService;
+import fr.epsi.service.IFactureService;
 
 @WebServlet("/clients")
 public class ClientsServlet extends HttpServlet {
 
 	@EJB
 	private IClientService clientService;
+	
+	@EJB
+	private IFactureService factureService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,6 +30,11 @@ public class ClientsServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clients.jsp").forward(req, resp);			
 		} else if (req.getParameter("action").equals("ajouter")) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clientsFormulaire.jsp").forward(req, resp);	
+		} else if (req.getParameter("action").equals("detail")) {
+			Long id = Long.parseLong(req.getParameter("id"));
+			req.setAttribute("client", clientService.getClientById(id));
+			req.setAttribute("factures", factureService.getFactureByClientId(id));
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clientDetail.jsp").forward(req, resp);	
 		}
 	}
 	

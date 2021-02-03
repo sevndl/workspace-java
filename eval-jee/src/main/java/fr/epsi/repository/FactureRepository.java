@@ -53,4 +53,10 @@ public class FactureRepository implements IFactureRepository {
 				 .setParameter("id", id)
 				 .getSingleResult();
 	}
+
+	public List<Facture> getFactureByClientId(Long id) {
+		return em.createQuery("select f from Facture f join f.client c where c.id = :id", Facture.class)
+				 .setParameter("id", id)
+				 .getResultList();
+	}
 }

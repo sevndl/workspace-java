@@ -9,13 +9,13 @@
 <%@include file="commons/title.jsp"%>
 </head>
 <body>
-	<h2>Factures</h2>
+	<h2>Détail d'une facture</h2>
 	<%@include file="commons/header.jsp"%>
 	<h4>Date de facturation : <fmt:formatDate pattern="dd/MM/yyyy" value="${facture.getDate()}"/></h4>
 	<h4>Numéro de la facture : <c:out value="${facture.getNumero()}"/></h4>
 	<h3>Coût total : <c:out value="${facture.getPrix()}"/></h3>
 	
-	<h4>Client : <c:out value="${client.getNom()}"/></h4>
+	<h4>Client : <a href="clients?action=detail&id=${client.getId()}"><c:out value="${client.getNom()}"/></a></h4>
 	<h4>Adresse : <c:out value="${client.getAdresse()}"/></h4>
 	<hr>
 	<table>

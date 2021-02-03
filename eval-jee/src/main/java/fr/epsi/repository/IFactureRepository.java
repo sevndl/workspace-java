@@ -8,6 +8,7 @@ public interface IFactureRepository {
 	
 	List<Facture> getAllFactures();
 	Facture getFactureById(Long id);
+	List<Facture> getFactureByClientId(Long id);
 	void add(Facture facture);
 
 }
