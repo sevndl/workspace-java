@@ -19,6 +19,7 @@
 		<c:forEach items="${clients}" var="client">
 			<tr>
 				<td><c:out value="${client.getId()}"/></td>
+				<!-- je passe l'id en paramètre pour le récupérer dans la servlet et le passer aux méthodes des services -->
 				<td><a href="clients?action=detail&id=${client.getId()}"><c:out value="${client.getNom()}"/></a></td>
 				<td><c:out value="${client.getAdresse()}"/></td>
 			</tr>

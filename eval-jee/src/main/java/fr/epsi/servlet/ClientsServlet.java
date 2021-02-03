@@ -26,15 +26,24 @@ public class ClientsServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getParameter("action").equals("liste")) {
+			
+			// je récupère la liste des clients
 			req.setAttribute("clients", clientService.getAllClients());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clients.jsp").forward(req, resp);			
+			
 		} else if (req.getParameter("action").equals("ajouter")) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clientsFormulaire.jsp").forward(req, resp);	
+			
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clientsFormulaire.jsp").forward(req, resp);
+			
 		} else if (req.getParameter("action").equals("detail")) {
+
+			// je récupère seulement le client à l'id voulu
+			// ainsi que la liste des factures qui lui sont attribuées
 			Long id = Long.parseLong(req.getParameter("id"));
 			req.setAttribute("client", clientService.getClientById(id));
 			req.setAttribute("factures", factureService.getFactureByClientId(id));
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/clientDetail.jsp").forward(req, resp);	
+			
 		}
 	}
 	
@@ -62,9 +71,14 @@ public class ClientsServlet extends HttpServlet {
 			Client nouveauClient = new Client();
 			nouveauClient.setNom(nom);
 			nouveauClient.setAdresse(adresse);
-			clientService.add(nouveauClient);			
+			clientService.add(nouveauClient);		
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/clients?action=liste");	
 		} catch (IllegalArgumentException e) {
+			// si une exception est levée, je renvoie sur le formulaire vide sans faire l'ajout
+			// une exception est levée si :
+			// 		- le nom est vide
+			// 		- le nom existe déjà dans la base -> d'où la récupération de tous les clients
+			//  	- l'adresse ne respecte pas le format 
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/clients?action=ajouter");			
 		}
 	}

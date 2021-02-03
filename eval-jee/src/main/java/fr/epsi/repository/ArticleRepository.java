@@ -1,6 +1,5 @@
 package fr.epsi.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,9 +29,7 @@ public class ArticleRepository implements IArticleRepository {
 	}
 
 	public List<Article> getAllArticles() {
-		List<Article> articles = new ArrayList<Article>();
-		articles = em.createQuery("select a from Article a", Article.class).getResultList();
-		return articles;
+		return em.createQuery("select a from Article a", Article.class).getResultList();
 	}
 	
 	public void add(Article article) {

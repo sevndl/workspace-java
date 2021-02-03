@@ -22,6 +22,7 @@
 		</tr>
 		<c:forEach items="${factures}" var="facture">
 			<tr>
+				<!-- je passe l'id en paramètre pour le récupérer dans la servlet et le passer aux méthodes des services -->
 				<td><a href='factures?action=detail&id=${facture.getId()}'><c:out value="${facture.getNumero()}"/></a></td>
 				<td><fmt:formatDate pattern="dd/MM/yyyy" value="${facture.getDate()}"/></td>
 				<td><c:out value="${facture.getPrix()}"/></td>

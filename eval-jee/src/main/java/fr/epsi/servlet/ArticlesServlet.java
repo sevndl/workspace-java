@@ -22,10 +22,15 @@ public class ArticlesServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getParameter("action").equals("liste")) {
+			
+			// je récupère la liste des articles
 			req.setAttribute("articles", articleService.getAllArticles());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/articles.jsp").forward(req, resp);			
+			
 		} else if (req.getParameter("action").equals("ajouter")) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/articlesFormulaire.jsp").forward(req, resp);	
+			
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/articlesFormulaire.jsp").forward(req, resp);
+
 		}
 	}
 	
@@ -57,6 +62,11 @@ public class ArticlesServlet extends HttpServlet {
 				articleService.add(nouvelArticle);
 				resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/articles?action=liste");
 			} catch(IllegalArgumentException e) {
+				// si une exception est levée, je renvoie sur le formulaire vide sans faire l'ajout
+				// une exception est levée si :
+				// 		- le nom est vide
+				// 		- le nom existe déjà dans la base -> d'où la récupération de tous les articles
+				//  	- le prix est négatif
 				resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/articles?action=ajouter");
 			}			
 		}

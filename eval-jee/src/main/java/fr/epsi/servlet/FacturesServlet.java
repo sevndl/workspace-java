@@ -41,18 +41,30 @@ public class FacturesServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getParameter("action").equals("liste")) {
+			
+			// je récupère la liste des factures
 			req.setAttribute("factures", factureService.getAllFactures());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/factures.jsp").forward(req, resp);			
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/factures.jsp").forward(req, resp);		
+			
 		} else if (req.getParameter("action").equals("ajouter")) {
+			
+			// je récupère la liste des clients et dse articles pour alimenter les dropdowns
+			// de cette manière, l'utilisateur n'a le choix qu'entre les données présentes dans la base
+			// sans possibilité d'ajouter des données erronées ou non acceptables
 			req.setAttribute("clients", clientService.getAllClients());
 			req.setAttribute("articles", articleService.getAllArticles());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/facturesFormulaire.jsp").forward(req, resp);	
+			
 		} else if (req.getParameter("action").equals("detail")) {
+			
+			// je récupère l'id de la facture pour aller la chercher en base
+			// je récupère le client associé, ainsi que toutes les lignes de la facture à cet id
 			Long id = Long.parseLong(req.getParameter("id"));
 			req.setAttribute("facture", factureService.getFactureById(id));
 			req.setAttribute("client", clientService.getClientByFactureId(id));
 			req.setAttribute("lignes", ligneFactureService.getLigneFactureByFactureId(id));
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/factureDetail.jsp").forward(req, resp);
+			
 		}
 	}
 	
@@ -88,7 +100,7 @@ public class FacturesServlet extends HttpServlet {
 			
 			String dateStr = req.getParameter("dateStr");
 			if (!dateStr.isEmpty()) {
-				Date date = formatter.parse(dateStr);				
+				Date date = formatter.parse(dateStr);		
 				if (!date.after(new Date(System.currentTimeMillis()-24*60*60*1000))) {
 					throw new IllegalArgumentException();
 				}
@@ -169,6 +181,7 @@ public class FacturesServlet extends HttpServlet {
 			nouvelleFacture.setPrix(prix);
 			factureService.add(nouvelleFacture);
 			
+			// j'ajoute à ligneFacture seulement les champs article_n sélectionnés
 			if (!qte1Str.isEmpty() && !article1.isEmpty()) { ligneFactureService.add(lf1); }
 			if (!qte2Str.isEmpty() && !article2.isEmpty()) { ligneFactureService.add(lf2); }
 			if (!qte3Str.isEmpty() && !article3.isEmpty()) { ligneFactureService.add(lf3); }
@@ -176,8 +189,19 @@ public class FacturesServlet extends HttpServlet {
 			
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=liste");			
 		} catch (ParseException e) {
+			// si une exception est levée, je renvoie sur le formulaire vide sans faire l'ajout
+			// une exception est levée si :
+			// 		- le numéro est vide
+			// 		- le numéro existe déjà dans la base -> d'où la récupération de tous les articles
+			//  	- le nom du client est vide
+			//  	- aucun article n'est sélectionné
+			//  	- la date sélectionnée est passée ou vide
+			//  	- la quantité sélectionnée pour un article est négative
+			
+			// si le champ quantité n'est pas modifié, sa valeur par défaut est définie à 1
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=ajouter");			
 		} catch (IllegalArgumentException e) {
+			// idem ici
 			resp.sendRedirect("http://localhost:8080/eval-jee-0.0.1-SNAPSHOT/factures?action=ajouter");			
 		}
 		
