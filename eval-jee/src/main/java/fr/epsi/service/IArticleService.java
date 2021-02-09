@@ -8,6 +8,6 @@ public interface IArticleService {
 	
 	void add(Article article);
 	List<Article> getAllArticles();
-	Article getArticleById(Long parseLong);
+	Article getArticleById(Long id);
 
 }
