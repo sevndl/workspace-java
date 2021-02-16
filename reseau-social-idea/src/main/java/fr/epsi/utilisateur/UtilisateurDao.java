@@ -45,7 +45,7 @@ public class UtilisateurDao implements IUtilisateurDao {
 	public List<Utilisateur> get(String mail, String password) {
 		return em.createQuery("select u from Utilisateur u where u.mail = :mail and u.password = :password", Utilisateur.class)
 				 .setParameter("mail", mail)
-				 .setParameter("password", password)
+				 .setParameter("password", String.valueOf(password.hashCode()))
 				 .getResultList();
 	}
 

@@ -49,8 +49,8 @@ public class UtilisateurServlet extends HttpServlet {
 					Utilisateur u = new Utilisateur();
 					u.setUsername(username);
 					u.setMail(mail);
-					u.setPassword(password);
-					// u.setPassword(String.valueOf(password.hashCode()));
+					//u.setPassword(password);
+					u.setPassword(String.valueOf(password.hashCode()));
 					u.setDateCreation(new Date());
 					utilisateurService.add(u);
 					
