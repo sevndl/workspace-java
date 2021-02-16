@@ -1,4 +1,4 @@
-package fr.epsi.servlet;
+package fr.epsi.idee;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

@@ -1,4 +1,4 @@
-package fr.epsi.entite;
+package fr.epsi.idee;
 
 import java.util.List;
 
@@ -10,6 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import fr.epsi.entite.Categorie;
+import fr.epsi.entite.Commentaire;
+import fr.epsi.entite.Vote;
+import fr.epsi.utilisateur.Utilisateur;
 
 @Entity
 public class Idee {

@@ -1,4 +1,4 @@
-package fr.epsi.entite;
+package fr.epsi.utilisateur;
 
 import java.util.Date;
 import java.util.List;
@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import fr.epsi.idee.Idee;
 
 @Entity
 public class Utilisateur {
