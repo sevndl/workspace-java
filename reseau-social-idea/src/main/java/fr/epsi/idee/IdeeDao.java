@@ -22,10 +22,10 @@ public class IdeeDao implements IIdeeDao {
 		this.utx = utx;
 	}
 
-	public void add(Utilisateur u) {
+	public void add(Idee i) {
 		try {
 			utx.begin();
-			em.persist(u);
+			em.persist(i);
 			utx.commit();
 		} catch (NotSupportedException e) {
 			e.printStackTrace();
@@ -44,8 +44,8 @@ public class IdeeDao implements IIdeeDao {
 		}
 	}
 
-	public List<Utilisateur> get() {
-		return em.createQuery("select u from Utilisateur u", Utilisateur.class).getResultList();
+	public List<Idee> get() {
+		return em.createQuery("select i from Idee i", Idee.class).getResultList();
 	}
 
 }

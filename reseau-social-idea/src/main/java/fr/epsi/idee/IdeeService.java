@@ -10,8 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 
-import fr.epsi.utilisateur.Utilisateur;
-
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)
 public class IdeeService implements IIdeeService {
@@ -22,12 +20,12 @@ public class IdeeService implements IIdeeService {
 	@Resource
 	private UserTransaction utx;
 
-	public void add(Utilisateur u) {
+	public void add(Idee i) {
 		IIdeeDao dao = new IdeeDao(em, utx);
-		dao.add(u);
+		dao.add(i);
 	}
 
-	public List<Utilisateur> get() {
+	public List<Idee> get() {
 		IIdeeDao dao = new IdeeDao(em, utx);
 		return dao.get();
 	}
