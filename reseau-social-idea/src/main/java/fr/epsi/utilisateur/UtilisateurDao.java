@@ -42,8 +42,23 @@ public class UtilisateurDao implements IUtilisateurDao {
 		}
 	}
 
-	public List<Utilisateur> get() {
-		return em.createQuery("select u from Utilisateur u", Utilisateur.class).getResultList();
+	public List<Utilisateur> get(String mail, String password) {
+		return em.createQuery("select u from Utilisateur u where u.mail = :mail and u.password = :password", Utilisateur.class)
+				 .setParameter("mail", mail)
+				 .setParameter("password", password)
+				 .getResultList();
+	}
+
+	public List<Utilisateur> checkMail(String mail) {
+		return em.createQuery("select u from Utilisateur u where u.mail = :mail", Utilisateur.class)
+				 .setParameter("mail", mail)
+				 .getResultList();
+	}
+
+	public List<Utilisateur> checkUsername(String username) {
+		return em.createQuery("select u from Utilisateur u where u.username = :username", Utilisateur.class)
+				 .setParameter("username", username)
+				 .getResultList();
 	}
 
 }

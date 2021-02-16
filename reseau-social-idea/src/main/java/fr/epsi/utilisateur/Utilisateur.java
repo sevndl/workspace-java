@@ -20,7 +20,7 @@ public class Utilisateur {
 	private String username;
 	private Date dateCreation;
 	private String mail;
-	private String motDePasse;
+	private String password;
 	
 	@OneToMany(mappedBy = "utilisateur")
 	private List<Idee> idees;
@@ -53,12 +53,12 @@ public class Utilisateur {
 		this.mail = mail;
 	}
 
-	public String getMotDePasse() {
-		return this.motDePasse;
+	public String getPassword() {
+		return this.password;
 	}
 
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	public List<Idee> getIdees() {

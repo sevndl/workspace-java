@@ -25,9 +25,19 @@ public class UtilisateurService implements IUtilisateurService {
 		dao.add(u);
 	}
 
-	public List<Utilisateur> get() {
+	public List<Utilisateur> get(String mail, String password) {
 		IUtilisateurDao dao = new UtilisateurDao(em, utx);
-		return dao.get();
+		return dao.get(mail, password);
+	}
+
+	public List<Utilisateur> checkMail(String mail) {
+		IUtilisateurDao dao = new UtilisateurDao(em, utx);
+		return dao.checkMail(mail);
+	}
+
+	public List<Utilisateur> checkUsername(String username) {
+		IUtilisateurDao dao = new UtilisateurDao(em, utx);
+		return dao.checkUsername(username);
 	}
 
 }

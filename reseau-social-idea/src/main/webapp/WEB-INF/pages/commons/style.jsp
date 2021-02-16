@@ -6,6 +6,10 @@
 		text-align: center;
 	}
 	
+	.erreur {
+		color: red;
+	}
+	
 	.container {
 		text-align: center;
 	}
