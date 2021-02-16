@@ -48,4 +48,10 @@ public class IdeeDao implements IIdeeDao {
 		return em.createQuery("select i from Idee i", Idee.class).getResultList();
 	}
 
+	public Idee getById(Long id) {
+		return em.createQuery("select i from Idee i where i.id = :id", Idee.class)
+				 .setParameter("id", id)
+				 .getSingleResult();
+	}
+
 }

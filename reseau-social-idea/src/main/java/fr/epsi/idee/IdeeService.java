@@ -30,4 +30,9 @@ public class IdeeService implements IIdeeService {
 		return dao.get();
 	}
 
+	public Idee getById(Long id) {
+		IIdeeDao dao = new IdeeDao(em, utx);
+		return dao.getById(id);
+	}
+
 }

@@ -1,5 +1,6 @@
 package fr.epsi.idee;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -25,6 +26,7 @@ public class Idee {
 	private String titre;
 	private String description;
 	private String image;
+	private Date date;
 	@Enumerated
 	@ElementCollection(targetClass = Vote.class)
 	private List<Vote> vote;
@@ -78,8 +80,20 @@ public class Idee {
 		return this.categorie;
 	}
 	
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+	
 	public List<Commentaire> getCommentaires() {
 		return this.commentaires;
+	}
+
+	public Date getDate() {
+		return this.date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }

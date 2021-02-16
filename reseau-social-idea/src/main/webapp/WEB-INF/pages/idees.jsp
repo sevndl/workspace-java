@@ -13,18 +13,20 @@
 	<h2>Feed d'idées</h2>
 	<div class="container">
 		<a class="waves-effect waves-light btn" href="idee?action=ajouter">Publier une idée</a>
+	</div>
+	<div class="row s12">
 		<c:forEach items="${idees}" var="i">
-		  <div class="row">
+		  <div class="col s6">
 	      <div class="card">
 	        <div class="card-image">
-						<img alt="<c:out value="${i.getTitre()}"/>" src="<c:out value="${i.getImage()}"/>">
+						<img style="object-fit: cover;" alt="<c:out value="${i.getTitre()}"/>" src="<c:out value="${i.getImage()}"/>">
 	          <span class="card-title"><c:out value="${i.getTitre()}"/></span>
 	        </div>
 	        <div class="card-content">
 	          <p><c:out value="${i.getDescription()}"/></p>
 	        </div>
 	        <div class="card-action">
-	          <a href="idee?action=detail">En savoir plus...</a>
+	          <a href="idee?action=detail&id=<c:out value="${i.getId()}"/>">En savoir plus...</a>
 	        </div>
 	      </div>
 		  </div>

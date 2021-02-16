@@ -6,5 +6,6 @@ public interface IIdeeDao {
 	
 	void add(Idee u);
 	List<Idee> get();
+	Idee getById(Long id);
 
 }
