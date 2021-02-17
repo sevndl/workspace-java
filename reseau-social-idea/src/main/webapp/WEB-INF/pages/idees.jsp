@@ -17,20 +17,23 @@
 	<div class="row s12">
 		<c:forEach items="${idees}" var="i">
 		  <div class="col s6">
-	      <div class="card">
-	        <div class="card-image">
-						<img style="object-fit: cover;" alt="<c:out value="${i.getTitre()}"/>" src="<c:out value="${i.getImage()}"/>">
-	          <span class="card-title"><c:out value="${i.getTitre()}"/></span>
-	        </div>
-	        <div class="card-content">
-	          <p>Description : <c:out value="${i.getDescription()}"/></p>
-	          <c:if test="${idee.getCategorie()}"><p>Catégorie : <c:out value="${i.getCategorie().getNom()}"/></p></c:if>
-	          <c:if test="${!idee.getCategorie()}"><p>Catégorie : aucune</p></c:if>
-	        </div>
-	        <div class="card-action">
-	          <a href="idee?action=detail&id=<c:out value="${i.getId()}"/>">En savoir plus...</a>
-	        </div>
-	      </div>
+		      <div class="card">
+		        <div class="card-image">
+							<img style="object-fit: cover;" alt="<c:out value="${i.getTitre()}"/>" src="<c:out value="${i.getImage()}"/>">
+		          <span class="card-title"><c:out value="${i.getTitre()}"/></span>
+		        </div>
+		        <div class="card-content">
+		          	<p>Description : <c:out value="${i.getDescription()}"/></p>
+		          	<p>
+		          		Catégorie : <c:out value="${i.getCategorie().getNom()}"/>
+<%-- 		          		<c:if test="${i.getCategorie()}"><c:out value="${i.getCategorie().getNom()}"/></c:if> --%>
+<%-- 		          		<c:if test="${!i.getCategorie()}"> aucune</c:if> --%>
+          			</p>
+		        </div>
+		        <div class="card-action">
+		          <a href="idee?action=detail&id=<c:out value="${i.getId()}"/>">En savoir plus...</a>
+		        </div>
+		      </div>
 		  </div>
 		</c:forEach>
 	</div>
