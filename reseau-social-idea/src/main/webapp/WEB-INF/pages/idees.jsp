@@ -23,7 +23,8 @@
 	          <span class="card-title"><c:out value="${i.getTitre()}"/></span>
 	        </div>
 	        <div class="card-content">
-	          <p><c:out value="${i.getDescription()}"/></p>
+	          <p>Description : <c:out value="${i.getDescription()}"/></p>
+	          <p>Catégorie : <c:out value="${i.getCategorie().getNom()}"/></p>
 	        </div>
 	        <div class="card-action">
 	          <a href="idee?action=detail&id=<c:out value="${i.getId()}"/>">En savoir plus...</a>

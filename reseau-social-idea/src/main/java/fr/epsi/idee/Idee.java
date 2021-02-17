@@ -12,10 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import fr.epsi.entite.Categorie;
-import fr.epsi.entite.Commentaire;
-import fr.epsi.entite.Vote;
+import fr.epsi.categorie.Categorie;
+import fr.epsi.commentaire.Commentaire;
 import fr.epsi.utilisateur.Utilisateur;
+import fr.epsi.vote.Vote;
 
 @Entity
 public class Idee {

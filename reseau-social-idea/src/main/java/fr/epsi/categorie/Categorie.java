@@ -1,4 +1,4 @@
-package fr.epsi.entite;
+package fr.epsi.categorie;
 
 import java.util.Date;
 import java.util.List;

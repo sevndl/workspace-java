@@ -1,4 +1,4 @@
-package fr.epsi.entite;
+package fr.epsi.vote;
 
 public enum Vote {
 	

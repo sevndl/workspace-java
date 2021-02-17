@@ -9,13 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.epsi.entite.Categorie;
+import fr.epsi.categorie.Categorie;
+import fr.epsi.categorie.ICategorieService;
 
 @WebServlet("/idee")
 public class IdeeServlet extends HttpServlet {
 
 	@EJB
 	private IIdeeService ideeService;
+	
+	@EJB
+	private ICategorieService categorieService;
+	
 	private Boolean erreur = false;
 
 	public Boolean getErreur() {
@@ -32,6 +37,7 @@ public class IdeeServlet extends HttpServlet {
 			req.setAttribute("idees", ideeService.get());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/idees.jsp").forward(req, resp);			
 		} else if (req.getParameter("action").equals("ajouter")) {
+			req.setAttribute("categories", categorieService.get());
 			if (this.getErreur().equals(false)) {
 				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ajouterIdee.jsp").forward(req, resp);
 			} else {
@@ -58,9 +64,8 @@ public class IdeeServlet extends HttpServlet {
 					i.setTitre(titre);
 					i.setDescription(description);
 					if (!image.isBlank()) { i.setImage(image); } else { i.setImage(imageParDefaut);	}
-					if (!categorie.isBlank()) { 
-						Categorie c = new Categorie();
-						c.setNom(categorie);
+					if (!categorie.isBlank()) {
+						Categorie c = categorieService.getById(Long.parseLong(categorie));
 						i.setCategorie(c);
 					}
 					
