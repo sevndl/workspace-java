@@ -24,6 +24,10 @@ public class UtilisateurServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/inscription.jsp").forward(req, resp);			
 		} else if (req.getParameter("action").equals("connexion")) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connexion.jsp").forward(req, resp);			
+		} else if (req.getParameter("action").equals("deconnexion")) {
+			HttpSession session = req.getSession(true);
+			session.invalidate();
+			resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/home");
 		}
 	}
 	
@@ -70,7 +74,6 @@ public class UtilisateurServlet extends HttpServlet {
 			if (!mail.isBlank() && !password.isBlank()) {
 				Utilisateur user = utilisateurService.get(mail, password);
 				if (user != null) {
-					System.out.println(user);
 					HttpSession session = req.getSession(true);
 					session.setAttribute("utilisateur", user);
 					resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/home");				
@@ -80,7 +83,6 @@ public class UtilisateurServlet extends HttpServlet {
 			} else {
 				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connexionFail.jsp").forward(req, resp);	
 			}
-			
 		}
 	}
 
