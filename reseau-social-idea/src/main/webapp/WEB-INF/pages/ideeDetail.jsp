@@ -59,13 +59,21 @@
 	    		<br><br>
 	    	</c:forEach>
 	    </div>
-	    <div>
-	    	<form action="idee?action=commentaire" method="post">
-	    		<textarea name="commentaire" rows="2" cols="120" placeholder="Commentaire..."></textarea>
-	    		<input type="hidden" name="id" value="${idee.getId()}"/>
-	    		<button class="btn waves-effect waves-light right" type="submit">Envoyer</button>
-	    	</form>
-    	</div>
+	    <c:if test="<%= user != null %>">
+		    <div>
+		    	<form action="idee?action=commentaire" method="post">
+		    		<textarea name="commentaire" rows="2" cols="120" placeholder="Commentaire..."></textarea>
+		    		<input type="hidden" name="id" value="${idee.getId()}"/>
+		    		<button class="btn waves-effect waves-light right" type="submit">Envoyer</button>
+		    	</form>
+	    	</div>
+    	</c:if>
+    	<c:if test="<%= user == null %>">
+    		<h6>Vous devez être connecté pour pouvoir poster un commentaire.</h6>
+    		<a href="utilisateur?action=connexion">Se connecter</a>
+    		<br>
+    		<a href="utilisateur?action=inscription">S'inscrire</a>
+    	</c:if>
 	</div>
 </body>
 </html>
