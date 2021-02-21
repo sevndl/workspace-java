@@ -126,9 +126,6 @@ public class IdeeServlet extends HttpServlet {
 			} else if (vote.equals(Vote.flop.toString())) {
 				ideeService.addFlopById(Long.parseLong(id));
 			}
-
-			HttpSession session = req.getSession();
-			session.setAttribute("voted", true);
 			resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/idee?action=detail&id=" + id);
 		}
 	}
