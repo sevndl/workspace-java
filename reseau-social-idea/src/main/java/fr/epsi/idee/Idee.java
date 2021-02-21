@@ -76,6 +76,10 @@ public class Idee {
 		return this.utilisateur;
 	}
 	
+	public void setUtilisateur(Utilisateur u) {
+		this.utilisateur = u;
+	}
+	
 	public Categorie getCategorie() {
 		return this.categorie;
 	}

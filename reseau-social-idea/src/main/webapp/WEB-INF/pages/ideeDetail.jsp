@@ -18,7 +18,7 @@
 		    <p><c:out value="${idee.getDescription()}"/></p>
 		    <h6>
 		    	Publiée par 
-		    	<c:if test="${idee.getUtilisateur() != null}"><c:out value="${idee.getUtilisateur()}"/></c:if>
+		    	<c:if test="${idee.getUtilisateur() != null}"><c:out value="${idee.getUtilisateur().getUsername()}"/></c:if>
 		    	<c:if test="${idee.getUtilisateur() == null}">anonyme</c:if>
 		    </h6>
 		    <h6>
@@ -32,7 +32,7 @@
 	    	<c:forEach items="${commentaires}" var="commentaire">
 	    		<h5>
 	    			Posté par 
-	    				<c:if test="${commentaire.getAuteur() != null}"><c:out value="${commentaire.getAuteur()}"/>,</c:if>
+	    				<c:if test="${commentaire.getAuteur() != null}"><c:out value="${commentaire.getAuteur().getUsername()}"/>,</c:if>
 	    				<c:if test="${commentaire.getAuteur() == null}">anonyme,</c:if>
 	    				<c:if test="${commentaire.getDateCreation() != null}">le <c:out value="${commentaire.getDateCreation()}"/>.</c:if>
 	    				<c:if test="${commentaire.getDateCreation() == null}">on ne sait pas quand :(</c:if>

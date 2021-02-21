@@ -42,11 +42,16 @@ public class UtilisateurDao implements IUtilisateurDao {
 		}
 	}
 
-	public List<Utilisateur> get(String mail, String password) {
-		return em.createQuery("select u from Utilisateur u where u.mail = :mail and u.password = :password", Utilisateur.class)
+	public Utilisateur get(String mail, String password) {
+		List<Utilisateur> users = em.createQuery("select u from Utilisateur u where u.mail = :mail and u.password = :password", Utilisateur.class)
 				 .setParameter("mail", mail)
 				 .setParameter("password", String.valueOf(password.hashCode()))
 				 .getResultList();
+		if (users.size() > 0) {
+			return users.get(0);
+		} else {
+			return null;
+		}
 	}
 
 	public List<Utilisateur> checkMail(String mail) {

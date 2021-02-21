@@ -1,5 +1,6 @@
 package fr.epsi.utilisateur;
 
+import java.util.List;
 import java.io.IOException;
 import java.util.Date;
 
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/utilisateur")
 public class UtilisateurServlet extends HttpServlet {
@@ -54,7 +56,7 @@ public class UtilisateurServlet extends HttpServlet {
 					u.setDateCreation(new Date());
 					utilisateurService.add(u);
 					
-					resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/home");
+					resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/utilisateur?action=connexion");
 				} else {
 					throw new IllegalArgumentException();
 				}				
@@ -66,7 +68,11 @@ public class UtilisateurServlet extends HttpServlet {
 			String password = req.getParameter("password");
 			
 			if (!mail.isBlank() && !password.isBlank()) {
-				if (!utilisateurService.get(mail, password).isEmpty()) {
+				Utilisateur user = utilisateurService.get(mail, password);
+				if (user != null) {
+					System.out.println(user);
+					HttpSession session = req.getSession(true);
+					session.setAttribute("utilisateur", user);
 					resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/home");				
 				} else {
 					this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connexionFail.jsp").forward(req, resp);	

@@ -1,6 +1,6 @@
 package fr.epsi.idee;
 
-import java.awt.List;
+import java.util.List;
 import java.io.IOException;
 import java.util.Date;
 
@@ -10,11 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.epsi.categorie.Categorie;
 import fr.epsi.categorie.ICategorieService;
 import fr.epsi.commentaire.Commentaire;
 import fr.epsi.commentaire.ICommentaireService;
+import fr.epsi.utilisateur.Utilisateur;
 
 @WebServlet("/idee")
 public class IdeeServlet extends HttpServlet {
@@ -70,6 +72,8 @@ public class IdeeServlet extends HttpServlet {
 			
 			try {
 				if (!titre.isBlank() && !description.isBlank()) {
+					HttpSession session = req.getSession();
+					Utilisateur userConnect = (Utilisateur) session.getAttribute("utilisateur");
 					Idee i = new Idee();
 					i.setTitre(titre);
 					i.setDescription(description);
@@ -78,6 +82,9 @@ public class IdeeServlet extends HttpServlet {
 					if (!categorie.isBlank()) {
 						Categorie c = categorieService.getById(Long.parseLong(categorie));
 						i.setCategorie(c);
+					}
+					if (!userConnect.equals(null)) {
+						i.setUtilisateur(userConnect);
 					}
 					
 					ideeService.add(i);
@@ -97,7 +104,13 @@ public class IdeeServlet extends HttpServlet {
 			Idee idee = ideeService.getById(Long.parseLong(id));
 			
 			if (!commentaire.isBlank()) {
+				HttpSession session = req.getSession();
+				Utilisateur userConnect = (Utilisateur) session.getAttribute("utilisateur");
+				
 				Commentaire c = new Commentaire();
+				if (!userConnect.equals(null)) {
+					c.setAuteur(userConnect);
+				}
 				c.setIdee(idee);
 				c.setContenu(commentaire);
 				c.setDateCreation(new Date());	

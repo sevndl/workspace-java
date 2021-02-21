@@ -25,7 +25,7 @@ public class UtilisateurService implements IUtilisateurService {
 		dao.add(u);
 	}
 
-	public List<Utilisateur> get(String mail, String password) {
+	public Utilisateur get(String mail, String password) {
 		IUtilisateurDao dao = new UtilisateurDao(em, utx);
 		return dao.get(mail, password);
 	}
