@@ -45,13 +45,61 @@ public class IdeeDao implements IIdeeDao {
 	}
 
 	public List<Idee> get() {
-		return em.createQuery("select i from Idee i", Idee.class).getResultList();
+		return em.createQuery("select i from Idee i order by i.date desc", Idee.class).getResultList();
 	}
 
 	public Idee getById(Long id) {
 		return em.createQuery("select i from Idee i where i.id = :id", Idee.class)
 				 .setParameter("id", id)
 				 .getSingleResult();
+	}
+
+	public void addTopById(Long id) {
+		try {
+			utx.begin();
+			em.createQuery("update Idee i set i.nbTop = i.nbTop + 1L where i.id = :id")
+			  .setParameter("id", id)
+			  .executeUpdate();
+			utx.commit();
+		} catch (NotSupportedException e) {
+			e.printStackTrace();
+		} catch (SystemException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (RollbackException e) {
+			e.printStackTrace();
+		} catch (HeuristicMixedException e) {
+			e.printStackTrace();
+		} catch (HeuristicRollbackException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void addFlopById(Long id) {
+		try {
+			utx.begin();
+			em.createQuery("update Idee i set i.nbFlop = i.nbFlop + 1L where i.id = :id")
+			  .setParameter("id", id)
+			  .executeUpdate();
+			utx.commit();
+		} catch (NotSupportedException e) {
+			e.printStackTrace();
+		} catch (SystemException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (RollbackException e) {
+			e.printStackTrace();
+		} catch (HeuristicMixedException e) {
+			e.printStackTrace();
+		} catch (HeuristicRollbackException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

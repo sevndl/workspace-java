@@ -26,6 +26,8 @@ public class Idee {
 	private String titre;
 	private String description;
 	private String image;
+	private Long nbTop;
+	private Long nbFlop;
 	private Date date;
 	@Enumerated
 	@ElementCollection(targetClass = Vote.class)
@@ -39,6 +41,11 @@ public class Idee {
 	
 	@OneToMany(mappedBy = "idee")
 	private List<Commentaire> commentaires;
+	
+	public Idee() {
+		this.nbTop = 0L;
+		this.nbFlop = 0L;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -98,6 +105,22 @@ public class Idee {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Long getNbTop() {
+		return this.nbTop;
+	}
+
+	public void addTop() {
+		this.nbTop = this.nbTop + 1L;
+	}
+
+	public Long getNbFlop() {
+		return this.nbFlop;
+	}
+
+	public void addFlop() {
+		this.nbFlop = this.nbFlop + 1L;
 	}
 	
 }

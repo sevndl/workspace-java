@@ -35,4 +35,14 @@ public class IdeeService implements IIdeeService {
 		return dao.getById(id);
 	}
 
+	public void addTopById(Long id) {
+		IIdeeDao dao = new IdeeDao(em, utx);
+		dao.addTopById(id);
+	}
+
+	public void addFlopById(Long id) {
+		IIdeeDao dao = new IdeeDao(em, utx);
+		dao.addFlopById(id);
+	}
+
 }

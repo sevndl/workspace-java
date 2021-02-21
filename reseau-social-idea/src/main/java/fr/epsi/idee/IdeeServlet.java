@@ -1,6 +1,5 @@
 package fr.epsi.idee;
 
-import java.util.List;
 import java.io.IOException;
 import java.util.Date;
 
@@ -17,6 +16,7 @@ import fr.epsi.categorie.ICategorieService;
 import fr.epsi.commentaire.Commentaire;
 import fr.epsi.commentaire.ICommentaireService;
 import fr.epsi.utilisateur.Utilisateur;
+import fr.epsi.vote.Vote;
 
 @WebServlet("/idee")
 public class IdeeServlet extends HttpServlet {
@@ -116,6 +116,19 @@ public class IdeeServlet extends HttpServlet {
 				c.setDateCreation(new Date());	
 				commentaireService.add(c);
 			}
+			resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/idee?action=detail&id=" + id);
+		} else if (req.getParameter("action").equals("vote")) {
+			String vote = req.getParameter("vote");
+			String id = req.getParameter("id");
+			
+			if (vote.equals(Vote.top.toString())) {
+				ideeService.addTopById(Long.parseLong(id));
+			} else if (vote.equals(Vote.flop.toString())) {
+				ideeService.addFlopById(Long.parseLong(id));
+			}
+
+			HttpSession session = req.getSession();
+			session.setAttribute("voted", true);
 			resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/idee?action=detail&id=" + id);
 		}
 	}

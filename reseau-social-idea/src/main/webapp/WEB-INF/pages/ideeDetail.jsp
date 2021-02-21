@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import="fr.epsi.utilisateur.Utilisateur"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import="fr.epsi.utilisateur.Utilisateur" import="fr.epsi.vote.Vote"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+	Vote top = Vote.top;
+	Vote flop = Vote.flop;
 %>
 <!DOCTYPE html>
 <html>
@@ -33,21 +35,36 @@
 	<h2><c:out value="${idee.getTitre()}"/></h2>
 	<div class="container">
 		<img style="max-width: 100%;" alt="<c:out value="${idee.getTitre()}"/>" src="<c:out value="${idee.getImage()}"/>">
+		<div>
+			<c:if test="<%= user != null %>">
+				<form action="idee?action=vote" method="post">
+			    	<input type="hidden" name="id" value="${idee.getId()}"/>
+					<button class="btn waves-effect waves-light" name="vote" value="<%= top %>" type="submit"><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
+					<button class="btn waves-effect waves-light" name="vote" value="<%= flop %>" type="submit"><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
+				</form>
+			</c:if>
+			<c:if test="<%= user == null %>">
+				<button class="btn waves-effect waves-light" disabled><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
+				<button class="btn waves-effect waves-light" disabled><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
+				<h6>Vous devez être connecté pour pouvoir voter.</h6>
+			</c:if>
+		</div>
     	<div>
 		    <p><c:out value="${idee.getDescription()}"/></p>
 		    <h6>
 		    	Publiée par 
-		    	<c:if test="${idee.getUtilisateur() != null}"><c:out value="${idee.getUtilisateur().getUsername()}"/></c:if>
-		    	<c:if test="${idee.getUtilisateur() == null}">anonyme</c:if>
+		    		<c:if test="${idee.getUtilisateur() != null}"><c:out value="${idee.getUtilisateur().getUsername()}"/></c:if>
+		    		<c:if test="${idee.getUtilisateur() == null}">anonyme</c:if>
 		    </h6>
 		    <h6>
-		    	Publiée <c:if test="${idee.getDate() != null}">le <c:out value="${idee.getDate()}"/></c:if>
-		    	<c:if test="${idee.getDate() == null}">on ne sait pas quand :(</c:if>
+		    	Publiée 
+		    		<c:if test="${idee.getDate() != null}">le <c:out value="${idee.getDate()}"/></c:if>
+		    		<c:if test="${idee.getDate() == null}">on ne sait pas quand :(</c:if>
 	    	</h6>
 	    	<p>
           		Catégorie : 
-          		<c:if test="${i.getCategorie() != null}"><c:out value="${i.getCategorie().getNom()}"/></c:if>
-          		<c:if test="${i.getCategorie() == null}"> aucune</c:if>
+          			<c:if test="${i.getCategorie() != null}"><c:out value="${i.getCategorie().getNom()}"/></c:if>
+          			<c:if test="${i.getCategorie() == null}"> aucune</c:if>
   			</p>
 	    </div>
 	    <hr>
