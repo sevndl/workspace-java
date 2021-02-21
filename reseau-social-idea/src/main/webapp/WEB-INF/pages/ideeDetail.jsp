@@ -63,8 +63,8 @@
 	    	</h6>
 	    	<p>
           		Catégorie : 
-          			<c:if test="${i.getCategorie() != null}"><c:out value="${i.getCategorie().getNom()}"/></c:if>
-          			<c:if test="${i.getCategorie() == null}"> aucune</c:if>
+          			<c:if test="${idee.getCategorie() != null}"><c:out value="${idee.getCategorie().getNom()}"/></c:if>
+          			<c:if test="${idee.getCategorie() == null}"> aucune</c:if>
   			</p>
 	    </div>
 	    <hr>
