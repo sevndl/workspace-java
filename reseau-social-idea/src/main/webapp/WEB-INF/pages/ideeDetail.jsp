@@ -21,6 +21,7 @@
 	        		<li><a href="idee?action=liste">Feed</a></li>
 	   			</c:if>
 	   			<c:if test="<%= user != null %>">
+	   				<li><c:out value="<%= user.getUsername() %>"></c:out></li>
 	       			<li><a href="utilisateur?action=deconnexion">Déconnexion</a></li>
 	        		<li><a href="idee?action=liste">Feed</a></li>
 	        		<li><a href="idee?action=ajouter">Ajouter une idée</a></li>
@@ -43,6 +44,11 @@
 		    	Publiée <c:if test="${idee.getDate() != null}">le <c:out value="${idee.getDate()}"/></c:if>
 		    	<c:if test="${idee.getDate() == null}">on ne sait pas quand :(</c:if>
 	    	</h6>
+	    	<p>
+          		Catégorie : 
+          		<c:if test="${i.getCategorie() != null}"><c:out value="${i.getCategorie().getNom()}"/></c:if>
+          		<c:if test="${i.getCategorie() == null}"> aucune</c:if>
+  			</p>
 	    </div>
 	    <hr>
 	    <h3>Commentaires :</h3>
