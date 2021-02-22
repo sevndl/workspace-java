@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import="fr.epsi.utilisateur.Utilisateur" import="fr.epsi.vote.Vote"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" import="fr.epsi.utilisateur.Utilisateur" import="fr.epsi.vote.Vote.vote"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-	Vote top = Vote.top;
-	Vote flop = Vote.flop;
+	vote top = vote.top;
+	vote flop = vote.flop;
 %>
 <!DOCTYPE html>
 <html>
@@ -26,8 +26,8 @@
 		   			<c:if test="<%= user != null %>">
 		   				<li><c:out value="<%= user.getUsername() %>"></c:out></li>
 		       			<li><a href="utilisateur?action=deconnexion">Déconnexion</a></li>
-		        		<li><a href="idee?action=liste">Feed</a></li>
 		        		<li><a href="idee?action=ajouter">Ajouter une idée</a></li>
+		        		<li><a href="idee?action=liste">Feed</a></li>
 	      			</c:if>
 	     		</ul>
 			</div>
@@ -38,11 +38,18 @@
 			<img style="max-width: 100%;" alt="<c:out value="${idee.getTitre()}"/>" src="<c:out value="${idee.getImage()}"/>">
 			<div>
 				<c:if test="<%= user != null %>">
-					<form action="idee?action=vote" method="post">
-				    	<input type="hidden" name="id" value="${idee.getId()}"/>
-						<button class="btn waves-effect waves-light" name="vote" value="<%= top %>" type="submit"><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
-						<button class="btn waves-effect waves-light" name="vote" value="<%= flop %>" type="submit"><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
-					</form>
+					<c:if test="${peutVoter}">
+						<form action="idee?action=vote" method="post">
+					    	<input type="hidden" name="id" value="${idee.getId()}"/>
+							<button class="btn waves-effect waves-light" name="vote" value="<%= top %>" type="submit"><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
+							<button class="btn waves-effect waves-light" name="vote" value="<%= flop %>" type="submit"><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
+						</form>
+					</c:if>
+					<c:if test="${!peutVoter}">
+						<button class="btn waves-effect waves-light" disabled><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
+						<button class="btn waves-effect waves-light" disabled><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
+						<h6>Vous avez déjà voté.</h6>
+					</c:if>
 				</c:if>
 				<c:if test="<%= user == null %>">
 					<button class="btn waves-effect waves-light" disabled><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
@@ -100,6 +107,7 @@
 	    	</c:if>
 		</div>
 	</div>
+	<br><br>
 	<%@include file="commons/footer.jsp"%>
 </body>
 </html>

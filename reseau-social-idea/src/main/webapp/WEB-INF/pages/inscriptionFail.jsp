@@ -24,8 +24,8 @@
 		   			<c:if test="<%= user != null %>">
 		   				<li><c:out value="<%= user.getUsername() %>"></c:out></li>
 		       			<li><a href="utilisateur?action=deconnexion">Déconnexion</a></li>
-		        		<li><a href="idee?action=liste">Feed</a></li>
 		        		<li><a href="idee?action=ajouter">Ajouter une idée</a></li>
+		        		<li><a href="idee?action=liste">Feed</a></li>
 	      			</c:if>
 	     		</ul>
 			</div>

@@ -29,8 +29,8 @@ public class Idee {
 	private Long nbTop;
 	private Long nbFlop;
 	private Date date;
-	@Enumerated
-	@ElementCollection(targetClass = Vote.class)
+	
+	@OneToMany(mappedBy = "idee")
 	private List<Vote> vote;
 	
 	@ManyToOne
