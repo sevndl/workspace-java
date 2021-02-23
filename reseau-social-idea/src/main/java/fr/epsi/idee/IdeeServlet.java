@@ -1,6 +1,5 @@
 package fr.epsi.idee;
 
-import java.util.List;
 import java.io.IOException;
 import java.util.Date;
 
@@ -70,9 +69,10 @@ public class IdeeServlet extends HttpServlet {
 			Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
 			Boolean peutVoter = true;
 			
-			if (!u.equals(null)) {
+			if (u != null) {
 				int nbVotes = voteService.getByUtilisateurAndIdee(u, idee).size();				
 				if (nbVotes > 0) { peutVoter = false; }
+				if (u.getUsername().equals(idee.getUtilisateur().getUsername())) { peutVoter = false; }
 			}
 			
 			req.setAttribute("peutVoter", peutVoter);
@@ -108,7 +108,7 @@ public class IdeeServlet extends HttpServlet {
 						Categorie c = categorieService.getById(Long.parseLong(categorie));
 						i.setCategorie(c);
 					}
-					if (!userConnect.equals(null)) {
+					if (userConnect != null) {
 						i.setUtilisateur(userConnect);
 					}
 					
@@ -134,7 +134,7 @@ public class IdeeServlet extends HttpServlet {
 				Utilisateur userConnect = (Utilisateur) session.getAttribute("utilisateur");
 				
 				Commentaire c = new Commentaire();
-				if (!userConnect.equals(null)) {
+				if (userConnect != null) {
 					c.setAuteur(userConnect);
 				}
 				c.setIdee(idee);
@@ -151,27 +151,28 @@ public class IdeeServlet extends HttpServlet {
 			
 			HttpSession session = req.getSession();
 			Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
-
-			int nbVotes = voteService.getByUtilisateurAndIdee(u, idee).size();
 			
-			if (nbVotes > 0) {
-				resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/idee?action=detail&id=" + id);
-			} else {
-				Vote v = new Vote();
-				v.setIdee(idee);
-				v.setUtilisateur(u);
+			if (u != null) {
+				int nbVotes = voteService.getByUtilisateurAndIdee(u, idee).size();
 				
-				if (vote.equals(Vote.vote.top.toString())) {
-					v.setTypeVote(Vote.vote.top);
-					ideeService.addTopById(Long.parseLong(id));
-				} else if (vote.equals(Vote.vote.flop.toString())) {
-					v.setTypeVote(Vote.vote.flop);
-					ideeService.addFlopById(Long.parseLong(id));
+				if (nbVotes > 0) {
+					resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/idee?action=detail&id=" + id);
+				} else {
+					Vote v = new Vote();
+					v.setIdee(idee);
+					v.setUtilisateur(u);
+					
+					if (vote.equals(Vote.vote.top.toString())) {
+						v.setTypeVote(Vote.vote.top);
+						ideeService.addTopById(Long.parseLong(id));
+					} else if (vote.equals(Vote.vote.flop.toString())) {
+						v.setTypeVote(Vote.vote.flop);
+						ideeService.addFlopById(Long.parseLong(id));
+					}
+					voteService.add(v);				
 				}
-				voteService.add(v);
-				resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/idee?action=detail&id=" + id);
 			}
-			
+			resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/idee?action=detail&id=" + id);			
 		}
 	}
 

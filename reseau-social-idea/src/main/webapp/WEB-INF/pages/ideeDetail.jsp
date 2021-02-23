@@ -48,7 +48,7 @@
 					<c:if test="${!peutVoter}">
 						<button class="btn waves-effect waves-light" disabled><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
 						<button class="btn waves-effect waves-light" disabled><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
-						<h6>Vous avez déjà voté.</h6>
+						<h6>Soit vous avez déjà voté, soit vous ne pouvez pas voter pour votre propre idée.</h6>
 					</c:if>
 				</c:if>
 				<c:if test="<%= user == null %>">
