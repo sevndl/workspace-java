@@ -21,11 +21,17 @@
 		   			<c:if test="<%= user == null %>">
 		       			<li><a href="utilisateur?action=connexion">Connexion</a></li>
 		        		<li><a href="utilisateur?action=inscription">Inscription</a></li>
+		        		<li><a href="classement?action=brains">Brains</a></li>
+		        		<li><a href="classement?action=tops">Tops</a></li>
+		        		<li><a href="classement?action=buzz">Buzz</a></li>
 		        		<li><a href="idee?action=liste">Feed</a></li>
 		   			</c:if>
 		   			<c:if test="<%= user != null %>">
 		   				<li><c:out value="<%= user.getUsername() %>"></c:out></li>
 		       			<li><a href="utilisateur?action=deconnexion">Déconnexion</a></li>
+		        		<li><a href="classement?action=brains">Brains</a></li>
+		        		<li><a href="classement?action=tops">Tops</a></li>
+		        		<li><a href="classement?action=buzz">Buzz</a></li>
 		        		<li><a href="idee?action=ajouter">Ajouter une idée</a></li>
 		        		<li><a href="idee?action=liste">Feed</a></li>
 	      			</c:if>
