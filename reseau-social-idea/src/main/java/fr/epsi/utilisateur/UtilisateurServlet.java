@@ -1,6 +1,5 @@
 package fr.epsi.utilisateur;
 
-import java.util.List;
 import java.io.IOException;
 import java.util.Date;
 
@@ -21,9 +20,9 @@ public class UtilisateurServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getParameter("action").equals("inscription")) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/inscription.jsp").forward(req, resp);			
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/inscription/inscription.jsp").forward(req, resp);			
 		} else if (req.getParameter("action").equals("connexion")) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connexion.jsp").forward(req, resp);			
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connexion/connexion.jsp").forward(req, resp);			
 		} else if (req.getParameter("action").equals("deconnexion")) {
 			HttpSession session = req.getSession(true);
 			session.invalidate();
@@ -64,7 +63,7 @@ public class UtilisateurServlet extends HttpServlet {
 					throw new IllegalArgumentException();
 				}				
 			} catch (IllegalArgumentException e) {
-				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/inscriptionFail.jsp").forward(req, resp);	
+				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/inscription/inscriptionFail.jsp").forward(req, resp);	
 			}
 		} else if (req.getParameter("action").equals("connexion")) {
 			String mail = req.getParameter("mail");
@@ -77,10 +76,10 @@ public class UtilisateurServlet extends HttpServlet {
 					session.setAttribute("utilisateur", user);
 					resp.sendRedirect("http://localhost:8080/reseau-social-idea-0.0.1-SNAPSHOT/home");				
 				} else {
-					this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connexionFail.jsp").forward(req, resp);	
+					this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connexion/connexionFail.jsp").forward(req, resp);	
 				}				
 			} else {
-				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connexionFail.jsp").forward(req, resp);	
+				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/connexion/connexionFail.jsp").forward(req, resp);	
 			}
 		}
 	}

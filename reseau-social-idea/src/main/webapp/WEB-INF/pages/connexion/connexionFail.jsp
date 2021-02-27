@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<%@include file="commons/title.jsp"%>
-<%@include file="commons/style.jsp"%>
+<%@include file="../commons/title.jsp"%>
+<%@include file="../commons/style.jsp"%>
 </head>
 <body>
 	<div class="content">
@@ -30,24 +30,17 @@
 	     		</ul>
 			</div>
 		</nav>
-		<h2>Publier une idée</h2>
+		<h2>Connexion</h2>
 		<div class="container">
-			<h3 class="erreur">Erreur lors de la création de l'idée.</h3>
-			<form action="idee?action=ajouter" method="post">
-				<input type="text" name="titre" placeholder="Titre"/>
-				<input type="text" name="description" placeholder="Description"/>
-				<input type="text" name="image" placeholder="Url de l'image">
-				<select name="categorie" class="browser-default">
-					<option value="">## Choisir une catégorie ##</option>
-					<c:forEach items="${categories}" var="c">
-						<option value="<c:out value="${c.getId()}"/>"><c:out value="${c.getNom()}"/></option>
-					</c:forEach>
-				</select>
+			<h3 class="erreur">Erreur lors de la connexion.</h3>
+			<form action="utilisateur?action=connexion" method="post">
+				<input type="email" name="mail" placeholder="E-mail"/>
+				<input type="password" name="password" placeholder="Mot de passe">
 				<br>
-				<button class="btn waves-effect waves-light right" type="submit">Publier</button>
+				<button class="btn waves-effect waves-light right" type="submit">Se connecter</button>
 			</form>
 		</div>
 	</div>
-	<%@include file="commons/footer.jsp"%>
+	<%@include file="../commons/footer.jsp"%>
 </body>
 </html>

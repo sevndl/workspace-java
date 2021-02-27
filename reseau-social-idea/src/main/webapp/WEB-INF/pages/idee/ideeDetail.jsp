@@ -9,8 +9,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<%@include file="commons/title.jsp"%>
-<%@include file="commons/style.jsp"%>
+<%@include file="../commons/title.jsp"%>
+<%@include file="../commons/style.jsp"%>
 </head>
 <body>
 	<div class="content">
@@ -38,17 +38,27 @@
 			<img style="max-width: 100%;" alt="<c:out value="${idee.getTitre()}"/>" src="<c:out value="${idee.getImage()}"/>">
 			<div>
 				<c:if test="<%= user != null %>">
-					<c:if test="${peutVoter}">
+					<c:if test="${peutVoter && !propreIdee && !dateDepassee}">
 						<form action="idee?action=vote" method="post">
 					    	<input type="hidden" name="id" value="${idee.getId()}"/>
 							<button class="btn waves-effect waves-light" name="vote" value="<%= top %>" type="submit"><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
 							<button class="btn waves-effect waves-light" name="vote" value="<%= flop %>" type="submit"><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
 						</form>
 					</c:if>
-					<c:if test="${!peutVoter}">
+					<c:if test="${!peutVoter && !propreIdee && !dateDepassee }">
 						<button class="btn waves-effect waves-light" disabled><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
 						<button class="btn waves-effect waves-light" disabled><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
-						<h6>Soit vous avez déjà voté, soit vous ne pouvez pas voter pour votre propre idée.</h6>
+						<h6>Vous avez déjà voté.</h6>
+					</c:if>
+					<c:if test="${peutVoter && !propreIdee && dateDepassee }">
+						<button class="btn waves-effect waves-light" disabled><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
+						<button class="btn waves-effect waves-light" disabled><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
+						<h6>La date est dépassée. Pour rappel, une idée peut être votée pendant 7 jours.</h6>
+					</c:if>
+					<c:if test="${peutVoter && propreIdee && !dateDepassee }">
+						<button class="btn waves-effect waves-light" disabled><%= top %><c:out value=" ${idee.getNbTop()}"/></button>
+						<button class="btn waves-effect waves-light" disabled><%= flop %><c:out value=" ${idee.getNbFlop()}"/></button>
+						<h6>Vous ne pouvez pas voter pour votre propre idée.</h6>
 					</c:if>
 				</c:if>
 				<c:if test="<%= user == null %>">
@@ -108,6 +118,6 @@
 		</div>
 	</div>
 	<br><br>
-	<%@include file="commons/footer.jsp"%>
+	<%@include file="../commons/footer.jsp"%>
 </body>
 </html>

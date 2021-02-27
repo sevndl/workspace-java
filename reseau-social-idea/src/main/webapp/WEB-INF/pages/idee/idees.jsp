@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<%@include file="commons/title.jsp"%>
-<%@include file="commons/style.jsp"%>
+<%@include file="../commons/title.jsp"%>
+<%@include file="../commons/style.jsp"%>
 </head>
 <body>
 	<div class="content">
@@ -66,6 +66,6 @@
 			</c:forEach>
 		</div>
 	</div>
-	<%@include file="commons/footer.jsp"%>
+	<%@include file="../commons/footer.jsp"%>
 </body>
 </html>

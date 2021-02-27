@@ -1,6 +1,7 @@
 package fr.epsi.idee;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -50,15 +51,15 @@ public class IdeeServlet extends HttpServlet {
 		if (req.getParameter("action").equals("liste")) {
 			
 			req.setAttribute("idees", ideeService.get());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/idees.jsp").forward(req, resp);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/idee/idees.jsp").forward(req, resp);
 			
 		} else if (req.getParameter("action").equals("ajouter")) {
 			
 			req.setAttribute("categories", categorieService.get());
 			if (this.getErreur().equals(false)) {
-				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ajouterIdee.jsp").forward(req, resp);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/idee/ajouterIdee.jsp").forward(req, resp);
 			} else {
-				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ajouterIdeeFail.jsp").forward(req, resp);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/idee/ajouterIdeeFail.jsp").forward(req, resp);
 			}
 			
 		} else if (req.getParameter("action").equals("detail")) {
@@ -68,17 +69,27 @@ public class IdeeServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			Utilisateur u = (Utilisateur) session.getAttribute("utilisateur");
 			Boolean peutVoter = true;
+			Boolean propreIdee = false;
+			Boolean dateDepassee = false;
 			
 			if (u != null) {
 				int nbVotes = voteService.getByUtilisateurAndIdee(u, idee).size();				
 				if (nbVotes > 0) { peutVoter = false; }
-				if (u.getUsername().equals(idee.getUtilisateur().getUsername())) { peutVoter = false; }
+				if (u.getUsername().equals(idee.getUtilisateur().getUsername())) { propreIdee = true; }
+				
+				Calendar c = Calendar.getInstance();
+				c.setTime(new Date());
+				c.add(Calendar.HOUR, 168);
+				Date dateP7 = c.getTime();
+				if (idee.getDate().after(dateP7)) { dateDepassee = true; }
 			}
 			
 			req.setAttribute("peutVoter", peutVoter);
+			req.setAttribute("propreIdee", propreIdee);
+			req.setAttribute("dateDepassee", dateDepassee);
 			req.setAttribute("commentaires", commentaireService.getByIdee(idee));
 			req.setAttribute("idee", idee);
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ideeDetail.jsp").forward(req, resp);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/idee/ideeDetail.jsp").forward(req, resp);
 		}
 		
 	}

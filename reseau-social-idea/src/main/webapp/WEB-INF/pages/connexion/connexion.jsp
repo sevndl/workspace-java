@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<%@include file="commons/title.jsp"%>
-<%@include file="commons/style.jsp"%>
+<%@include file="../commons/title.jsp"%>
+<%@include file="../commons/style.jsp"%>
 </head>
 <body>
 	<div class="content">
@@ -30,18 +30,16 @@
 	     		</ul>
 			</div>
 		</nav>
-		<h2>Inscription</h2>
+		<h2>Connexion</h2>
 		<div class="container">
-			<h3 class="erreur">Erreur lors de l'inscription.</h3>
-			<form action="utilisateur?action=inscription" method="post">
-				<input type="text" name="username" placeholder="Nom d'utilisateur"/>
+			<form action="utilisateur?action=connexion" method="post">
 				<input type="email" name="mail" placeholder="E-mail"/>
 				<input type="password" name="password" placeholder="Mot de passe">
 				<br>
-				<button class="btn waves-effect waves-light right" type="submit">S'inscrire</button>
+				<button class="btn waves-effect waves-light right" type="submit">Se connecter</button>
 			</form>
 		</div>
 	</div>
-	<%@include file="commons/footer.jsp"%>
+	<%@include file="../commons/footer.jsp"%>
 </body>
 </html>
