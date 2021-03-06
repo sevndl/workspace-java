@@ -3,6 +3,7 @@
 <%
 	Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
 %>
+<c:set var="count" value="0" scope="page"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,41 +39,25 @@
 		</nav>
 		<h2>Classement Buzz</h2>
 		<div class="container">
-			<c:forEach items="users" var="user">
-				<table class="centered">
-					<thead>
+			<table class="centered">
+				<thead>
+					<tr>
+						<th>Classement</th>
+						<th>Titre</th>
+						<th>Nombre de votes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${top}" var="idee">
+						<c:set var="count" value="${count + 1}" scope="page"/>
 						<tr>
-							<th>Classement</th>
-							<th>Nom d'utilisateur</th>
-							<th>Nombre d'idées proposées</th>
+							<td><c:out value="${count}"></c:out></td>
+							<td><c:out value="${idee.getTitre()}"></c:out></td>
+							<td><c:out value="${idee.getNbVotes()}"></c:out></td>
 						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>classement</td>
-							<td>username</td>
-							<td>nombre</td>
-						</tr>
-						<tr>
-							<td>classement</td>
-							<td>username</td>
-							<td>nombre</td>
-						</tr>
-						<tr>
-							<td>classement</td>
-							<td>username</td>
-							<td>nombre</td>
-						</tr>
-<%-- 						<c:forEach items="users" var="user"> --%>
-<!-- 							<tr> -->
-<!-- 								<td>nombre</td> -->
-<%-- 								<td><c:out value="${user.getUsername()}"></c:out></td> --%>
-<%-- 								<td><c:out value="${user.getUsername()}"></c:out></td> --%>
-<!-- 							</tr> -->
-<%-- 						</c:forEach> --%>
-					</tbody>
-				</table>
-			</c:forEach>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<%@include file="../commons/footer.jsp"%>

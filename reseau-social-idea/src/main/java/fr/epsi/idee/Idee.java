@@ -123,4 +123,8 @@ public class Idee {
 		this.nbFlop = this.nbFlop + 1L;
 	}
 	
+	public Long getNbVotes() {
+		return this.getNbTop() + this.getNbFlop();
+	}
+	
 }
