@@ -39,6 +39,7 @@
 		</nav>
 		<h2>Classement Buzz</h2>
 		<div class="container">
+			<p>Ce classement représente le top 3 des idées ayant suscité le plus de votes.</p>
 			<table class="centered">
 				<thead>
 					<tr>
