@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ClassementServlet extends HttpServlet {
 	
 	@EJB
-	IClassementService classementService;
+	private IClassementService classementService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,8 +21,10 @@ public class ClassementServlet extends HttpServlet {
 			req.setAttribute("top", classementService.getTop3IdeesPlusDeVotes());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/classement/buzz.jsp").forward(req, resp);			
 		} else if (req.getParameter("action").equals("brains")) {
+			req.setAttribute("top", classementService.getTop3UtilisateursPlusIdees());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/classement/brains.jsp").forward(req, resp);			
 		} else if (req.getParameter("action").equals("tops")) {
+			req.setAttribute("top", classementService.getTop3IdeesMieuxNotees());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/classement/tops.jsp").forward(req, resp);			
 		} 
 	}

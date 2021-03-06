@@ -29,6 +29,7 @@ public class Idee {
 	private Long nbTop;
 	private Long nbFlop;
 	private Date date;
+	private Long nbVotes;
 	
 	@OneToMany(mappedBy = "idee")
 	private List<Vote> vote;
