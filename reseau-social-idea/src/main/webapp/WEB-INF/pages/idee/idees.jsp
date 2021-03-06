@@ -50,10 +50,10 @@
 		</div>
 		<div class="row s12">
 			<c:forEach items="${idees}" var="i">
-				<div class="col s6">
+				<div class="col s4">
 			    	<div class="card">
 			        	<div class="card-image">
-							<a href="idee?action=detail&id=<c:out value="${i.getId()}"/>"><img style="object-fit: contains;" width="800px" height="500px" alt="<c:out value="${i.getTitre()}"/>" src="<c:out value="${i.getImage()}"/>"></a>
+							<a href="idee?action=detail&id=<c:out value="${i.getId()}"/>"><img width="500px" height="350px" alt="<c:out value="${i.getTitre()}"/>" src="<c:out value="${i.getImage()}"/>"></a>
 			          		<span class="card-title"><c:out value="${i.getTitre()}"/></span>
 			        	</div>
 			        	<div class="card-content">

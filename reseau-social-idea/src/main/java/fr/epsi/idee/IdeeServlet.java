@@ -79,9 +79,9 @@ public class IdeeServlet extends HttpServlet {
 				
 				Calendar c = Calendar.getInstance();
 				c.setTime(new Date());
-				c.add(Calendar.HOUR, 168);
-				Date dateP7 = c.getTime();
-				if (idee.getDate().after(dateP7)) { dateDepassee = true; }
+				c.add(Calendar.HOUR, -168);
+				Date dateM7 = c.getTime();
+				if (idee.getDate().before(dateM7)) { dateDepassee = true; }
 			}
 			
 			req.setAttribute("peutVoter", peutVoter);
